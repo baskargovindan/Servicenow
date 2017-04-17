@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="INSERT_OR_UPDATE">
+        <authentication_type/>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>post</function_name>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <rest_endpoint>${url}/RestAPI/CreateUser</rest_endpoint>
+        <rest_message display_value="CreateUser">e0679f73dbb97200208572ffbf961929</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-05 13:12:30</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a5c79f77db797200208572ffbf961943</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>post</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_rest_message_fn_a5c79f77db797200208572ffbf961943</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-05 13:15:18</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server display_value="SNCMIDServer_Prod1">83fd518bdb853200208572ffbf961961</use_mid_server>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+</record_update>

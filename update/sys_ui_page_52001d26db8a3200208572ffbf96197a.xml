@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function loadUserList(userListJSON, dialogWindow)
+{
+	userListJSON = userListJSON.evalJSON(); 
+	$j('#start_index').html(userListJSON.startIndex);
+	$j('#end_index').html(userListJSON.endIndex);
+	$j('#total_count').html(userListJSON.count);
+	var UsersList = userListJSON.UsersList;
+	var html = '';
+	if(UsersList.length > 0)
+	{
+		for(var i=0; i<UsersList.length; i++)
+		{
+			var displayName = UsersList[i].DISPLAY_NAME?UsersList[i].DISPLAY_NAME:'-';
+
+			var logonName = UsersList[i].LOGON_NAME?UsersList[i].LOGON_NAME:'-';
+			if(logonName == '-')
+				logonName = UsersList[i].userPrincipalName?UsersList[i].userPrincipalName:'-';
+
+			var distinguishedName = UsersList[i].DISTINGUISHED_NAME?UsersList[i].DISTINGUISHED_NAME:'-';
+			if(distinguishedName == '-')
+				distinguishedName = UsersList[i].distinguishedName?UsersList[i].distinguishedName:'-';
+
+			var ouName = UsersList[i].OU_NAME?UsersList[i].OU_NAME:'-';
+			var sid = UsersList[i].SID_STRING?UsersList[i].SID_STRING:UsersList[i].objectSID;
+			var sAMAccountName = UsersList[i].SAM_ACCOUNT_NAME?UsersList[i].SAM_ACCOUNT_NAME:UsersList[i].sAMAccountName;
+			var objectGUID = UsersList[i].OBJECT_GUID?UsersList[i].OBJECT_GUID:UsersList[i].objectGUID;
+			var isChecked = isExist(UsersList[i].OBJECT_GUID)?'checked' : '';
+			
+			if(i%2==1)
+				html = html+'<tr class="list_row list_odd">';
+			else
+				html = html+'<tr class="list_row list_even">';
+
+			html = html+'<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-checkbox"><input data-logon_name = "'+logonName+'" data-samaccountname = "'+sAMAccountName+'" data-sid = "'+sid+'" data-distinguishedname = "'+distinguishedName+'" data-displayname = "'+displayName+'" data-ouname = "'+ouName+'" name="check_aduser" id="check_aduserlist_'+objectGUID+'" data-type="list2_checkbox" type="checkbox" class="checkbox " onClick="selectSingle(this);" value = '+objectGUID+' '+isChecked+'></input><label for="check_aduserlist_'+objectGUID+'" class="checkbox-label" style=""></label></span></td>';
+
+			html = html+'<td class="vt vt-spacer" style="padding: 0">'+displayName+'</td><td class="vt vt-spacer" style="padding: 0">'+logonName+'</td><td class="vt vt-spacer" style="padding: 0">'+distinguishedName+'</td><td class="vt vt-spacer" style="padding: 0">'+ouName+'</td></tr>'; 
+		}
+		showSubmitButton();
+	}
+	else
+	{
+		$j('#start_index').html(0);
+		html = html+'<tr class="list2_no_records"><td colspan="99">No records to display</td></tr>';
+		hideSubmitButton();
+	}
+
+	$j("#ADUserListBody").html(html);
+	showUsersList(); 
+	if(dialogWindow)
+		dialogWindow.destroy();
+}
+
+function hideUsersList()
+{
+	$j("#ADUserList").hide();
+}
+function showUsersList()
+{
+	$j("#ADUserList").show();
+}
+
+function getDialogWindow()
+{
+	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
+	loadingDialog.setPreference('table', 'loading');
+	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	return loadingDialog;
+}
+function navigateFirst()
+{
+	var StartIndex = parseInt($j('#start_index').html());
+	if(StartIndex>100)
+		searchUsers(1, 100);
+}
+function navigateBack()
+{
+	var total_count = parseInt($j('#total_count').html());
+	var StartIndex = parseInt($j('#start_index').html());
+
+	if(StartIndex-100>=1)
+		searchUsers(StartIndex-100, 100);
+}
+function navigateNext()
+{
+	var total_count = parseInt($j('#total_count').html());
+	var StartIndex = parseInt($j('#start_index').html());
+
+	if(StartIndex+100<total_count)
+		searchUsers(StartIndex+100, 100);
+}
+function navigateLast()
+{
+	var total_count = parseInt($j('#total_count').html());
+	var StartIndex = parseInt($j('#start_index').html());
+
+	if(StartIndex+100<total_count)
+	{
+		var startIndex = 1;
+		if(total_count%100 ==0)
+			startIndex = total_count-99;
+		else
+			startIndex = total_count-(total_count%100)+1;
+
+		searchUsers(startIndex, 100);
+	}
+
+}
+
+function selectAllFunc()
+{
+// 	$j('#ADUserListSelectAll').prop("checked",true);
+// 	$j('#ADUserListSelectAll').click();
+	//$j('#ADUserListSelectAll').prop("checked",checkBoxCheckedStatus);
+}
+function selectAll(obj)
+{
+	var checkBoxCheckedStatus = $j(obj).prop("checked");
+
+	$j('[name=check_aduser]').each(function() { //No i18N
+		$j(this).prop("checked",checkBoxCheckedStatus);
+	});
+}
+function selectSingle(obj)
+{
+	var checkBoxCheckedStatus = $j(obj).prop("checked");
+	if(!checkBoxCheckedStatus)
+	{
+		removeUser(obj.value);
+	}
+}
+
+function getCurrentSelectedUsersData()
+{
+	var userDetailsList = [];
+
+	$j('[name=check_aduser]').each(function() { //No i18N
+		var checkBoxCheckedStatus = $j(this).prop("checked");
+		if(checkBoxCheckedStatus)
+		{
+			var userDetails = {};
+			userDetails.DISPLAY_NAME = $j(this).data('displayname');
+			userDetails.userPrincipalName = $j(this).data('logon_name');
+			userDetails.sAMAccountName = $j(this).data('samaccountname');
+			userDetails.objectSID = $j(this).data('sid');
+			userDetails.distinguishedName = $j(this).data('distinguishedname');
+			userDetails.objectGUID = this.value;
+			userDetails.OU_NAME = $j(this).data('ouname');
+			userDetailsList.push(userDetails);
+		}
+	});
+	return userDetailsList;
+}
+
+function getSelectedUsersList()
+{
+	var selectedUsers  = $j('#selectedUsers').val();
+	if(selectedUsers == "")
+		selectedUsers = '[]';
+	selectedUsers = selectedUsers.evalJSON();
+	return selectedUsers;
+}
+function setSelectedUsersList(selectedUsers)
+{
+	$j('#selectedUsers').val(selectedUsers);
+}
+function addUsers(userList)
+{
+	var selectedUsers = getSelectedUsersList();
+	for(var i=0; i<userList.length; i++)
+	{
+		if(!isExist(userList[i].objectGUID))
+			selectedUsers.push(userList[i]);
+	}
+	setSelectedUsersList(JSON.stringify(selectedUsers));
+}
+function removeUser(guid)
+{
+	var selectedUsers = getSelectedUsersList();
+	for(var i=0; i< selectedUsers.length; i++)
+	{
+		if(selectedUsers[i].objectGUID==guid)
+			selectedUsers.splice(i,1);
+	}
+	setSelectedUsersList(JSON.stringify(selectedUsers));
+}
+function isExist(guid)
+{
+	var selectedUsers = getSelectedUsersList();
+	for(var i=0; i< selectedUsers.length; i++)
+	{
+		if(selectedUsers[i].objectGUID==guid)
+			return true;
+	}
+	return false;
+}
+function updateStatus(statusArray)
+{
+	var headerHtml = '<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span>sAMAccountName</span></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span> Logon Name</span></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span>Status Message</span></th>';
+	hideSubmitButton();
+	var count = statusArray.length;
+	$j("#ADUserListHeader").html(headerHtml);
+	$j('#start_index').html(1);
+	$j('#end_index').html(count);
+	$j('#total_count').html(count);
+
+	var html = '';
+	for(var i=0; i<count; i++)
+	{
+		var logonName = statusArray[i].LOGON_NAME?statusArray[i].LOGON_NAME:'-';
+		var sAMAccountName = statusArray[i].sAMAccountName?statusArray[i].sAMAccountName:'-';
+		var statusMessage = statusArray[i].statusMessage?statusArray[i].statusMessage:'-';
+		if(i%2==1)
+			html = html+'<tr class="list_row list_odd" style="height=20px;">';
+		else
+			html = html+'<tr class="list_row list_even">';
+
+		html = html+'<td class="vt vt-spacer" style="padding: 0">'+sAMAccountName+'</td><td class="vt vt-spacer" style="padding: 0">'+logonName+'</td><td class="vt vt-spacer" style="padding: 0">'+statusMessage+'</td></tr>'; 
+	}
+
+	$j("#ADUserListBody").html(html);
+}]]></client_script>
+        <description>ADMPUsersList</description>
+        <direct>false</direct>
+        <endpoint>x_96574_admanager_ADMPUsersList.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<input type="hidden" id="selectedUsers" value=""/>
+
+	<div id="ADUserList">
+		<nav style="display: block; width: 100%; position: relative;" id="list_nav_aduserlist" class="navbar navbar-default list_nav list_nav_top  list_nav_top_border">
+			<div class="nav navbar-right text-align-right" id="nav_elements">
+				<button name="vcr_first" data-nav="true" title="" id="nav_first" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="First page" style="right: 0px; z-index: 10;" onClick="navigateFirst();"><span class="sr-only">First page</span><span class="icon-vcr-left"></span><span class="icon-vcr-left"></span></button>
+				<button name="vcr_back" data-nav="true" title="" id="nav_back" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Previous page" onClick="navigateBack();"><span class="sr-only">Previous page</span><span class="icon-vcr-left"></span></button>
+
+				<span style="margin-left: 5px;" class=" list_row_number_input ">
+					<span style="margin-left: 1px; margin-right: 1px" id="start_index">1</span>
+					to
+					<span style="margin-left: 1px; margin-right: 1px" id="end_index">100</span>
+					of
+					<span style="margin-left: 1px;" id="total_count">100</span></span>
+
+
+				<button name="vcr_next" data-nav="true" title="" id="nav_next" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Next page"  onClick="navigateNext();"><span class="sr-only">Next page</span><span class="icon-vcr-right"></span></button>
+				<button name="vcr_last" data-nav="true" title="" id="nav_last" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Last page"  onClick="navigateLast();"><span class="sr-only">Last page</span><span class="icon-vcr-right"></span><span class="icon-vcr-right"></span></button>
+			</div></nav>
+
+		<table style="width: 100%; margin-bottom: 0px; outline: none;" class="data_list_table list_table table table-hover " id="ADUserListTable">
+			<thead>
+				<tr id="ADUserListHeader">
+					<th style=" padding: 0 2px 5px; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span class="input-group-checkbox"><input name="ADUserListSelectAll" id="ADUserListSelectAll" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " onClick="selectAll(this);"></input><label for="ADUserListSelectAll" class="checkbox-label" style=""></label></span>
+					</th>
+
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Display Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Logon Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Distinguished Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> OU Name</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="list2_body" tabindex="0" id = "ADUserListBody">
+			</tbody>
+		</table>
+	</div>
+</j:jelly>]]></html>
+        <name>ADMPUsersList</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-13 16:28:03</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>52001d26db8a3200208572ffbf96197a</sys_id>
+        <sys_mod_count>89</sys_mod_count>
+        <sys_name>ADMPUsersList</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_page_52001d26db8a3200208572ffbf96197a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 09:20:11</sys_updated_on>
+    </sys_ui_page>
+</record_update>

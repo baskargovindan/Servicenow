@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPAPIUtil</api_name>
+        <client_callable>true</client_callable>
+        <description>APIUtil</description>
+        <name>ADMPAPIUtil</name>
+        <script><![CDATA[var ADMPAPIUtil = Class.create();
+ADMPAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+	mobileLogin: function(){
+		var requestBody, responseBody, responseCode, sm;
+
+		var methodToCall = this.getParameter('methodToCall');
+		var url = new ADMPServerDetails().getURL();
+		if(this.getParameter('server_name') && this.getParameter('server_port'))
+			url = this.getParameter('protocol_settings')+'://'+this.getParameter('server_name')+':'+this.getParameter('server_port');
+		
+		try{
+			sm = new sn_ws.RESTMessageV2("MobileLogin", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('methodToCall', methodToCall);  
+			sm.setStringParameter('url', url);
+			if(methodToCall == 'getAuthTicket')
+			{
+				sm.setStringParameter('username', this.getParameter('username'));  
+				sm.setStringParameter('pwd', this.getParameter('pwd'));  
+				sm.setStringParameter('domainName', this.getParameter('domainName')); 
+			}
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+		
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		
+		var responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+
+		if(methodToCall == 'domainList')
+		{
+			if(responseJSON.status == 'true')
+			{
+				new ADMPDomainListHandler().insertLoginDomainList(responseJSON.responseBody);
+				var sys_id = responseJSON.sys_id = new ADMPServerDetails().insertEntry(this.getParameter('protocol_settings'), this.getParameter('server_name'), this.getParameter('server_port'), this.getParameter('is_enabled'),  this.getParameter('enable_service_catalog_item')).toString();
+				responseJSON.sys_id = sys_id;
+				gs.addInfoMessage('Connected Successfully.');
+			}
+			else
+			{
+				gs.addErrorMessage('Couldn\'t connect to ADMananager Plus.');
+			}
+		}
+		else if(methodToCall == 'getAuthTicket')
+		{
+			if(responseJSON.status == 'true')
+			{
+				new ADMPAuthHandler().handleResponse(responseJSON.responseBody);
+				new ADMPServerDetails().updateLoginCredentials(this.getParameter('username'), this.getParameter('pwd'), this.getParameter('domainName'));	
+				gs.addInfoMessage('Login Successful');
+			}else
+			{
+				gs.addErrorMessage('Login Failure');
+			}
+		}
+		return new global.JSON().encode(responseJSON);
+	},
+	
+	getTemplateList: function()
+	{
+		var responseJSON = {};
+		var requestBody, responseBody, responseCode, sm;
+
+		//Script Includes
+		var domainHandler = new ADMPDomainListHandler();
+		var authHandler = new ADMPAuthHandler();
+		var templateHandler = new ADMPTemplateHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		var domainList =  new global.JSON().decode(domainHandler.getDomainList());
+		templateHandler.removeTemplates();
+		for(var i= 0; i<domainList.length;i++)
+		{
+			var domainName = domainList[i].domainName;
+			var domainId = domainList[i].domainId;
+			try{
+				sm = new sn_ws.RESTMessageV2("MTemplateNames", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+				sm.setStringParameter('AuthToken', authToken);  
+				sm.setStringParameter('url', url);
+				sm.setStringParameter('domainName', domainName);
+				sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+				response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+
+				responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+				responseCode = response.getStatusCode();
+			} catch(ex) {
+				responseBody = ex.getMessage();
+				responseCode = '500';
+			} finally {
+				requestBody = sm ? sm.getRequestBody():null;
+			}
+			
+			responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+
+			if(responseJSON.status == 'true')
+			{
+				var response =  new global.JSON().decode(responseJSON.responseBody);
+				templateHandler.addTemplateList(response.TemplateList, domainId);
+			} 
+		}
+		responseJSON.DomainName = domainHandler.getDefaultDomain().toString();
+
+		return new global.JSON().encode(responseJSON);
+	},
+	
+	createSingleUser: function()
+	{
+		var requestBody, responseBody, responseCode, sm;
+
+		//Script Includes
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		// To get domainName & AuthToken
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		var userDetails = this.getParameter('userDetails');
+		var domainName =  this.getParameter('domainName');
+		try{
+			sm = new sn_ws.RESTMessageV2("CreateUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('AuthToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameterNoEscape('inputFormat', userDetails);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		var responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+
+		return new global.JSON().encode(responseJSON);
+	},
+	
+	getADUsersList: function(domainName, searchText, startIndex, range)
+	{
+		var requestBody, responseBody, responseCode, sm;
+		var responseJSON = {};
+
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		try{
+			sm = new sn_ws.RESTMessageV2("ADUserList", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('authToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameter('searchText', searchText);
+			sm.setStringParameter('fromIndex', startIndex);
+			sm.setStringParameter('range', range);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+		return new global.JSON().encode(responseJSON);
+	},
+	enableDisableUser: function()
+	{		
+		var requestBody, responseBody, responseCode, sm;
+		var responseJSON = {};
+
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		
+		var domainName = this.getParameter('domainName');
+		var isEnable = this.getParameter('isEnable');
+		var inputFormat = this.getParameter('inputFormat');
+		try{
+			sm = new sn_ws.RESTMessageV2("EnableUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('authToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameter('isEnable', isEnable);
+			sm.setStringParameterNoEscape('inputFormat', inputFormat);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+		return new global.JSON().encode(responseJSON);
+	},
+	unlockUser: function()
+	{
+		var requestBody, responseBody, responseCode, sm;
+		var responseJSON = {};
+
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		var domainName = this.getParameter('domainName');
+		var password = this.getParameter('password');
+		var mustChangePassword = this.getParameter('mustChangePassword');
+		var inputFormat = this.getParameter('inputFormat');
+		try{
+			sm = new sn_ws.RESTMessageV2("UnlockUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('AuthToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameterNoEscape('inputFormat', inputFormat);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+		return new global.JSON().encode(responseJSON);
+	},
+	deleteUser: function()
+	{
+		var requestBody, responseBody, responseCode, sm;
+		var responseJSON = {};
+
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		
+		var domainName = this.getParameter('domainName');
+		var password = this.getParameter('password');
+		var mustChangePassword = this.getParameter('mustChangePassword');
+		var inputFormat = this.getParameter('inputFormat');
+		try{
+			sm = new sn_ws.RESTMessageV2("DeleteUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('AuthToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameterNoEscape('inputFormat', inputFormat);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+		return new global.JSON().encode(responseJSON);
+	},
+	resetPwd: function()
+	{
+		var requestBody, responseBody, responseCode, sm;
+		var responseJSON = {};
+
+		var authHandler = new ADMPAuthHandler();
+		var serverHandler = new ADMPServerDetails();
+
+		var authToken = authHandler.getAuthToken();
+		var url = serverHandler.getURL();	
+		
+		var domainName = this.getParameter('domainName');
+		var password = this.getParameter('password');
+		var mustChangePassword = this.getParameter('mustChangePassword');
+		var inputFormat = this.getParameter('inputFormat');
+		try{
+			sm = new sn_ws.RESTMessageV2("ResetPwd", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
+			sm.setStringParameter('AuthToken', authToken);  
+			sm.setStringParameter('url', url);
+			sm.setStringParameter('domainName', domainName);
+			sm.setStringParameter('pwd', password);
+			sm.setStringParameter('mustChangePassword', mustChangePassword);
+			sm.setStringParameterNoEscape('inputFormat', inputFormat);
+			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
+			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
+			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
+			responseCode = response.getStatusCode();
+		} catch(ex) {
+			responseBody = ex.getMessage();
+			responseCode = '500';
+		} finally {
+			requestBody = sm ? sm.getRequestBody():null;
+		}
+		responseJSON = new ADMPErrorHandler().handleError(responseCode, responseBody);	
+		return new global.JSON().encode(responseJSON);
+	},
+	type: 'ADMPAPIUtil'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-28 14:22:21</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>74291e19db793200208572ffbf961909</sys_id>
+        <sys_mod_count>219</sys_mod_count>
+        <sys_name>ADMPAPIUtil</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_74291e19db793200208572ffbf961909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 11:55:51</sys_updated_on>
+    </sys_script_include>
+</record_update>

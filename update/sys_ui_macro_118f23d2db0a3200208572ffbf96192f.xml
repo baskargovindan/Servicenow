@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>User search Button</description>
+        <media_type/>
+        <name>Search Button</name>
+        <scoped_name>x_96574_admanager_Search Button</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-13 09:22:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>118f23d2db0a3200208572ffbf96192f</sys_id>
+        <sys_mod_count>43</sys_mod_count>
+        <sys_name>Search Button</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_118f23d2db0a3200208572ffbf96192f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-15 09:42:28</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<button href="#" type="button" onclick="searchUsers();" name="search_button" id="search_button" title="" class="header_button btn cat-btn btn-primary" aria-label="Search" data-original-title="Search">Search</button>
+<button href="#" type="button" onclick="saveProducer('');" name="enable_submit_button" id="enable_submit_button" title="" class="header_button btn cat-btn btn-primary" aria-label="Submit" style="display: inline-block;" data-original-title="Submit">Submit</button>
+	
+	<script>
+		function hideSubmitButton()
+		{
+			$j("#submit_button").hide();
+			$j("#enable_submit_button").hide();
+		}
+		function showSubmitButton()
+		{
+			$j("#enable_submit_button").show();
+		}
+		function searchUsers(startIndex, range)
+		{
+			if(!startIndex)
+			{
+				if(g_form.getValue('Name') == '')
+				{
+					alert('Please enter a user name');
+					return false;
+				}
+				setSelectedUsersList('[]');
+			}
+			else
+				addUsers(getCurrentSelectedUsersData());
+		
+			var dialogWindow = getDialogWindow();
+			dialogWindow.render();
+			
+			if(!startIndex)
+				startIndex = 1;
+			if(!range)
+				range = 100;
+		
+			var domainName = g_form.getValue('Select_Domain');
+			var searchText = g_form.getValue('Name');
+			
+			var userDetailsAjax = new GlideAjax("ADMPUserListHandler");
+			userDetailsAjax.addParam("sysparm_name","getADUsersList");
+			userDetailsAjax.addParam("searchText",searchText);
+			userDetailsAjax.addParam("domainName",domainName);
+			userDetailsAjax.addParam("startIndex",startIndex);
+			userDetailsAjax.addParam("range",range);
+			userDetailsAjax.getXMLAnswer(userDetailsResponse);
+
+			function userDetailsResponse(userDetails) 
+			{
+				loadUserList(userDetails, dialogWindow);
+			}
+		}
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

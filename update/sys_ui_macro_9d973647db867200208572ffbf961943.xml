@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>ADMP Server Login</description>
+        <media_type/>
+        <name>ADMPLogin</name>
+        <scoped_name>x_96574_admanager_ADMPLogin</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-15 13:12:27</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9d973647db867200208572ffbf961943</sys_id>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>ADMPLogin</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_9d973647db867200208572ffbf961943</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 07:56:07</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<input type="hidden" id="canReload" value="false"/>
+	<g:evaluate var="jvar_domainList" jelly="true" object="true">  
+		var domainList = [];
+		var domainGr = new GlideRecord('x_96574_admanager_admplogindomaindetails');  
+		domainGr.query();  
+		while (domainGr.next()){  
+		domainList.push(domainGr.domain_name.toString());
+		}   
+		domainList;
+	</g:evaluate>
+	<tr parent_container_id="" id="serverAuthLabel" style='padding-top:-100;'>
+
+		<td class="guide_tray">ADManager Plus - Server Authentication</td>
+	</tr>
+	<tr parent_container_id="" id="loginNameField" style='padding-top:-100;'>
+		<td class="iotd"> 
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="">
+						<label class="col-xs-12 control-label">
+							<span title="" class=" required-marker" aria-label="" oclass="" mandatory="false" data-original-title="">
+							</span>
+							<img style="width:1px; margin-right:0px; margin-left:0px" src="images/s.gifx"/>
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Login Name</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<input type="text" class="cat_item_option sc-content-pad form-control" value="" maxlength="" name="loginNameInput" id="loginNameInput" />
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr parent_container_id="" id="Password_field" style='padding-top:-100;'>
+		<td class="iotd"> 
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="">
+						<label class="col-xs-12 control-label">
+							<span title="" class=" required-marker" aria-label="" oclass="" mandatory="false" data-original-title="">
+							</span>
+							<img style="width:1px; margin-right:0px; margin-left:0px" src="images/s.gifx"/>
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Password</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<input type="password" class="cat_item_option sc-content-pad form-control" value="" maxlength="" name="passwordInput" id="passwordInput"/>
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr parent_container_id="" id="login_domain_select">
+		<td class="iotd">
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="" id="login_domain_select_div">
+						<label class="col-xs-12 control-label" for="login_domain_select_div">
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Select Domain</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<select name="login_domain_select_box" id="login_domain_select_box" class="form-control cat_item_option">
+							<j:forEach items="${jvar_domainList}" var="jvar_domain" indexVar="jvar_idx">  
+								<option value="${jvar_domain}">${jvar_domain}</option>
+							</j:forEach> 
+						</select>
+
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<script>
+		function removeEmptyVars()
+		{
+		$j("#container_7d6772cfdb467200208572ffbf96196e").hide();
+		}
+		function hideLoginSection()
+		{
+		$j("#loginNameField").hide();
+		$j("#Password_field").hide();	
+		$j("#login_domain_select").hide();	
+		$j("#serverAuthLabel").hide();
+		}
+		function slideDownLoginSection()
+		{
+		//$j("#loginNameField").slideDown(400, function(){$j("#Password_field").slideDown(400, function(){$j("#login_domain_select").slideDown(400, $j("#serverAuthLabel").slideDown(400))})});
+		$j("#loginNameField").slideDown();
+		$j("#Password_field").slideDown();	
+		$j("#login_domain_select").slideDown();	
+		$j("#serverAuthLabel").slideDown();
+		}
+		function getLoginSectionVisibility()
+		{
+		return $j("#loginNameField").is(":visible");
+		}
+		function  getLoginName()
+		{
+		return 	$j("#loginNameInput").val();
+		}
+		function getPwd()
+		{
+		return 	$j("#passwordInput").val();
+		}
+		function getDomainName()
+		{ 
+		return 	$j("#login_domain_select_box").val();
+		}
+		function setLoginCredentials(login_name, password, domain_name)
+		{
+			$j("#loginNameInput").val(login_name);
+			$j("#passwordInput").val(password);
+			$j("#login_domain_select_box").val(domain_name);
+		}
+		function disableSeverConfigSection()
+		{
+			//TODO
+			<!-- g_form.setDisabled('isenabled', true);
+			g_form.setDisabled('enable_service_catalog_item', true);
+			g_form.setDisabled('server_name', true);
+			g_form.setDisabled('server_port', true);
+			g_form.setDisabled('protocol_settings', true); -->
+		}
+		function setCanReload(status)
+		{
+			$j("#canReload").val(status);
+		}
+		function getCanReload(status)
+		{
+			return $j("#canReload").val();
+		}
+	</script>
+
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

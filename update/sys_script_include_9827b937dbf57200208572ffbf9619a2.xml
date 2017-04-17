@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPIncidentHandler</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ADMPIncidentHandler</name>
+        <script><![CDATA[var ADMPIncidentHandler = Class.create();
+ADMPIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	createIncident: function()
+	{
+		var requestDetails = this.getParameter('requestDetails');
+		var description = this.getParameter('description');
+		var requestJSON = new global.JSON().decode(requestDetails);
+		var comments = this.getParameter('comments');
+		
+		//create a new incident
+		var user_id = gs.getUser().getName();
+		try
+		{
+			var userRecord = new GlideRecord('sys_user');
+			userRecord.addQuery('user_name', user_id);
+			userRecord.query();
+			if (userRecord.next()) { 
+				var domainRecord = new GlideRecord('incident');
+				domainRecord.initialize(); 
+				domainRecord.caller_id = userRecord.sys_id; 
+				domainRecord.short_description = description; 
+				domainRecord.x_96574_admanager_request_details = requestDetails;
+				domainRecord.comments = comments;
+				domainRecord.insert();
+			}			
+		}
+		catch(e)
+		{
+			gs.addInfoMessage(e.getMessage());
+		}
+	},
+	getIncidentDetails: function(sys_id)
+	{
+		var detailsRecord = new GlideRecord('incident');
+		detailsRecord.addQuery('sys_id', sys_id);
+		detailsRecord.query();
+		var requestDetails = '';
+		if (detailsRecord.next()) { 
+			 requestDetails = detailsRecord.x_96574_admanager_request_details;
+		}
+		return requestDetails;
+	},
+    type: 'ADMPIncidentHandler'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-05 06:10:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9827b937dbf57200208572ffbf9619a2</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>ADMPIncidentHandler</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_9827b937dbf57200208572ffbf9619a2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-14 13:59:43</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>testMacro</name>
+        <scoped_name>x_96574_admanager_testMacro</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-05 10:21:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>d9903677db797200208572ffbf96192f</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>testMacro</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_d9903677db797200208572ffbf96192f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-05 16:36:40</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+</j:jelly>
+<!--  <?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+	<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" class="bluetable">
+			<tbody>
+				<tr>	
+					<td align="center"><span class="blacktxtbold">Selected Domain:&nbsp;</span><select style="width: 250px; visibility: visible;" name="TEMPLATE_DOMAIN_NAME" id="TEMPLATE_DOMAIN_NAME" class="combox" onchange="changeDomainAlert();"> 
+
+			<option value="csez.zohocorpin.com" selected="selected">csez.zohocorpin.com</option>
+	
+			<option value="erpex.com">erpex.com</option>
+	
+
+</table>
+	
+	
+	
+ <b>Short Description </b>: <input id="short_description" type="text" onchange="checkInput();"/>
+
+	<b>Short Description </b>: <input id="short_descriptionn" type="text" onchange="checkInput();"/>
+
+	<b>Short Description </b>: <input id="short_descriptionnnn" type="text" onchange="checkInput();"/>
+
+	<b>Short Description </b>: <input id="short_descriptionnnn" type="text" onchange="checkInput();"/>
+<b>Short Description </b>: <input id="short_descriptionnnnnn" type="text" onchange="checkInput();"/>
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+	<script>
+  function setDesc(text){
+	  $j("#short_description").val(text+'Baskar');
+  }
+ 
+	  function checkInput()
+	  {
+	  alert('Hello');
+	  $j("#short_description").val('Baskarsdsdd');
+	  }
+	  function setValue(text)
+	  {
+	  alert('Hello');
+	  	  $j("#short_description").val(text);
+
+	  }
+	  function returnfunc()
+	  {
+		  return 'zoho';
+	  }
+  </script> 
+</j:jelly>  -->]]></xml>
+    </sys_ui_macro>
+</record_update>

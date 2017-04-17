@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Password field in "Reset user password in AD" catalog item</description>
+        <media_type/>
+        <name>Passsword_ResetPassword</name>
+        <scoped_name>x_96574_admanager_Passsword_ResetPassword</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-15 08:23:52</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>5f15318fdb067200208572ffbf9619d8</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>Passsword_ResetPassword</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_5f15318fdb067200208572ffbf9619d8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-15 09:00:30</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<tr parent_container_id="" style='padding-top:-100;'>
+		<td class="iotd"> 
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="">
+						<label class="col-xs-12 control-label">
+							<span title="" class=" required-marker" aria-label="" oclass="" mandatory="false" data-original-title="">
+							</span>
+							<img style="width:1px; margin-right:0px; margin-left:0px" src="images/s.gifx"/>
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Password</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<input type="password" class="cat_item_option sc-content-pad form-control" value="" maxlength="" name="password" id="password"/>
+											<div class="fieldmsg-container" id="password_error_box"><div class="fieldmsg notification notification-error">Confirmation must match</div></div>
+
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr parent_container_id="" style='padding-top:-100;'>
+		<td class="iotd"> 
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="">
+						<label class="col-xs-12 control-label">
+							<span title="" class=" required-marker" aria-label="" oclass="" mandatory="false" data-original-title="">
+							</span>
+							<img style="width:1px; margin-right:0px; margin-left:0px" src="images/s.gifx"/>
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Re-enter</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<input type="password" class="cat_item_option sc-content-pad form-control" value="" maxlength="" name="password_re_type" id="password_re_type" onChange="passwordChanged();"/>
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<script>
+		function getPassword()
+		{
+		return $j("#password").val();
+		}
+		function setPassword(text)
+		{
+		$j("#password").val(text);
+		$j("#password_re_type").val(text);
+		}
+		function removeEmptyVars()
+		{
+		$j("#container_4f889236db427200208572ffbf9619eb").hide();
+		$j("#password_error_box").hide();
+		}
+		function passwordChanged()
+		{
+			if($j("#password").val() != $j("#password_re_type").val())
+			{
+				$j("#password_error_box").show();
+			}
+			else
+			{
+				$j("#password_error_box").hide();
+			}
+		}
+		function isValidPassword()
+		{
+			return ($j("#password").val() == $j("#password_re_type").val()) &amp;&amp; ($j("#password").val() != '');
+		}
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

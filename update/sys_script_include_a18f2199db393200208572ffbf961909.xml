@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPServerDetails</api_name>
+        <client_callable>true</client_callable>
+        <description>ADMPServerDetails</description>
+        <name>ADMPServerDetails</name>
+        <script><![CDATA[var ADMPServerDetails = Class.create();
+ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	getServerDetails:function()
+	{
+		var serverDetails = {};
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		gs.addInfoMessage(detailsRecord.getRowCount());
+		
+		if(detailsRecord.next())
+		{
+			serverDetails.protocol_settings =  detailsRecord.protocol_settings.toString();
+			serverDetails.server_name = detailsRecord.server_name.toString();
+			serverDetails.server_port = detailsRecord.server_port.toString();
+			serverDetails.isenabled = detailsRecord.isenabled.toString();
+			serverDetails.enable_service_catalog_item = detailsRecord.enable_service_catalog_item.toString();
+			serverDetails.login_name = detailsRecord.loginname.toString();
+			serverDetails.password = detailsRecord.password.toString();
+			serverDetails.domain_name = detailsRecord.domain_name.toString();
+			serverDetails.server_url = detailsRecord.protocol_settings+"://"+detailsRecord.server_name+":"+detailsRecord.server_port;
+		}
+
+		return new global.JSON().encode(serverDetails);
+	},
+	removeEntries:function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.deleteMultiple(); //To remove previous entry before set the new server details.
+		return 'success';
+	},
+	insertEntry:function(protocol_settings, server_name, server_port, is_enabled, enable_service_catalog_item)
+	{
+		this.removeEntries();
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.initialize(); 
+		detailsRecord.protocol_settings = protocol_settings;
+		detailsRecord.server_name = server_name;
+		detailsRecord.server_port = server_port;
+		detailsRecord.isenabled = is_enabled;
+		detailsRecord.enable_service_catalog_item = enable_service_catalog_item;
+		detailsRecord.insert();
+
+		return detailsRecord.sys_id;
+	},
+	updateState:function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		if(detailsRecord.next())
+		{
+			detailsRecord.isenabled = this.getParameter('state');
+			detailsRecord.update();
+			return 'success';
+		}
+	},
+	updateCatalogState:function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		if(detailsRecord.next())
+		{
+			detailsRecord.enable_service_catalog_item = this.getParameter('state');
+			detailsRecord.update();
+		}
+		else
+		{
+			return 'failed';
+		}
+		
+		// To Deactivate all catalog categories;
+		var categoryRecord = new GlideRecord('sc_category');
+		categoryRecord.addQuery('title', "ADManager Plus");
+		categoryRecord.query();
+		while(categoryRecord.next())
+		{
+			categoryRecord.active = this.getParameter('state');
+			categoryRecord.update();
+		}
+		
+			
+		// To Deactivate all catalog items;
+		var itemRecord = new GlideRecord('sc_cat_item');
+		itemRecord.addQuery('name', "Create a User in AD");
+		itemRecord.query();
+		while(itemRecord.next())
+		{
+			itemRecord.active = this.getParameter('state');
+			itemRecord.update();
+		}
+	},
+	updateLoginCredentials:function(username, pwd, domainName)
+	{
+		var sys_id = new ADMPDomainListHandler().getSysIdforDomain(domainName);
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		detailsRecord.next();
+		detailsRecord.loginname = username;
+		detailsRecord.password = pwd;
+		detailsRecord.domain_name = sys_id;
+		detailsRecord.update();
+		return 'success';
+	},
+	getURL:function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		var url = null;
+		detailsRecord.query();
+		if(detailsRecord.next())
+			url = detailsRecord.protocol_settings+"://"+detailsRecord.server_name+":"+detailsRecord.server_port;
+		return url;
+	},
+	getSysId: function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		detailsRecord.next();
+		return detailsRecord.sys_id;
+	},
+	isEnabled: function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		detailsRecord.next();
+		return detailsRecord.isenabled;
+	},
+	isCatalogItemEnabled: function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		detailsRecord.next();
+		return detailsRecord.enable_service_catalog_item;
+	},
+	isServerConfigured: function()
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		if(detailsRecord.next())
+		{
+			if(detailsRecord.server_name != '' && detailsRecord.server_port != '' && detailsRecord.protocol_settings !='')
+				return true;
+			else
+				return false;
+		}
+		return false;
+	},
+	type: 'ADMPServerDetails'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-28 11:13:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a18f2199db393200208572ffbf961909</sys_id>
+        <sys_mod_count>88</sys_mod_count>
+        <sys_name>ADMPServerDetails</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_a18f2199db393200208572ffbf961909</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-11 17:03:03</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPErrorHandler</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ADMPErrorHandler</name>
+        <script><![CDATA[var ADMPErrorHandler = Class.create();
+ADMPErrorHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	handleError: function(responseCode, responseBody)
+	{		
+		var responseJSON = {};
+		if(responseCode != '200' || responseBody == '' || responseBody == 'null')
+		{
+			responseJSON.status = 'false';
+			responseJSON.responseCode = responseCode;
+			responseJSON.responseBody = (responseBody == '' || responseBody == null)?'Couldn\'t connect to server':responseBody;
+		}
+		else if((new global.JSON().decode(responseBody)).ERROR_CODE != null)
+		{
+			responseBody = new global.JSON().decode(responseBody);
+			responseJSON.status = 'false';
+			responseJSON.responseCode = responseBody.ERROR_CODE;
+			responseJSON.responseBody = responseBody.STATUS_MESSAGE;
+		}
+		else if((new global.JSON().decode(responseBody)))
+		{
+			var responseBodyy = new global.JSON().decode(responseBody);
+			if(responseBodyy[0])
+			{
+				var status = responseBodyy[0].status;
+				if(status == 'SEVERE')
+				{
+					responseJSON.status = 'false';
+					responseJSON.responseBody = responseBody;
+				}
+				else
+				{
+					responseJSON.status = 'true';
+					responseJSON.responseCode = responseCode;
+					responseJSON.responseBody =responseBody;
+				}
+			}
+			else
+			{
+				responseJSON.status = 'true';
+				responseJSON.responseCode = responseCode;
+				responseJSON.responseBody =responseBody;
+			}
+		}
+		else			
+		{
+			responseJSON.status = 'true';
+			responseJSON.responseCode = responseCode;
+			responseJSON.responseBody =responseBody;
+		}
+		return responseJSON;
+	},
+	type: 'ADMPErrorHandler'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-02 13:41:20</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ff814c47db353200208572ffbf9619f2</sys_id>
+        <sys_mod_count>47</sys_mod_count>
+        <sys_name>ADMPErrorHandler</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_ff814c47db353200208572ffbf9619f2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-12 06:35:45</sys_updated_on>
+    </sys_script_include>
+</record_update>

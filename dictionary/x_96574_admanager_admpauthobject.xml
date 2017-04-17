@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="ADMPAuthObject" max_length="40" name="x_96574_admanager_admpauthobject" type="collection">
+        <element label="AuthToken" mandatory="true" max_length="255" name="authtoken" type="password2"/>
+        <element label="LoginName" max_length="40" name="loginname" type="string"/>
+        <element label="Login Id" max_length="40" name="login_id" type="integer"/>
+        <element label="Login Status" max_length="40" name="login_status" type="boolean"/>
+        <element label="Login Status Message" max_length="40" name="login_status_message" type="string"/>
+        <element label="ValidDate" max_length="40" name="validdate" type="string"/>
+    </element>
+</database>

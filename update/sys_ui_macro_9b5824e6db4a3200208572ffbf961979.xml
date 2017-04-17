@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>ADMPUserList</description>
+        <media_type/>
+        <name>ADMPUserList</name>
+        <scoped_name>x_96574_admanager_ADMPUserList</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-13 13:29:44</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9b5824e6db4a3200208572ffbf961979</sys_id>
+        <sys_mod_count>55</sys_mod_count>
+        <sys_name>ADMPUserList</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_9b5824e6db4a3200208572ffbf961979</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-13 16:22:10</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<div id="ADUserList">
+		<nav style="display: block; width: 100%; position: relative;" id="list_nav_aduserlist" class="navbar navbar-default list_nav list_nav_top  list_nav_top_border">
+			<div class="nav navbar-right text-align-right" id="nav_elements">
+				<button name="vcr_first" data-nav="true" title="" id="nav_first" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="First page" style="right: 0px; z-index: 10;" onClick="navigateFirst();"><span class="sr-only">First page</span><span class="icon-vcr-left"></span><span class="icon-vcr-left"></span></button>
+				<button name="vcr_back" data-nav="true" title="" id="nav_back" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Previous page" onClick="navigateBack();"><span class="sr-only">Previous page</span><span class="icon-vcr-left"></span></button>
+				
+				<span style="margin-left: 5px;" class=" list_row_number_input ">
+					<span style="margin-left: 1px; margin-right: 1px" id="start_index">1</span>
+					to
+					<span style="margin-left: 1px; margin-right: 1px" id="end_index">100</span>
+					of
+					<span style="margin-left: 1px;" id="total_count">100</span></span>
+
+
+				<button name="vcr_next" data-nav="true" title="" id="nav_next" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Next page"  onClick="navigateNext();"><span class="sr-only">Next page</span><span class="icon-vcr-right"></span></button>
+				<button name="vcr_last" data-nav="true" title="" id="nav_last" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="Last page"  onClick="navigateLast();"><span class="sr-only">Last page</span><span class="icon-vcr-right"></span><span class="icon-vcr-right"></span></button>
+			</div></nav>
+
+		<table style="width: 100%; margin-bottom: 0px; outline: none;" class="data_list_table list_table table table-hover " id="ADUserListTable">
+			<thead>
+				<tr>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span class="input-group-checkbox"><input data-list_id="ADUserListSelectAll" name="ADUserListSelectAll" id="ADUserListSelectAll" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " data-original-title="Mark record for List Action" onClick="selectAll(this);"></input><label for="ADUserListSelectAll" class="checkbox-label" style=""><span class="sr-only">Select record for action</span></label></span>
+					</th>
+
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Display Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Logon Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> Distinguished Name</span>
+					</th>
+					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
+						<span> OU Name</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="list2_body" tabindex="0" id = "ADUserListBody">
+				<!--  <tr class="list_row list_odd">
+					<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-checkbox"><input data-list_id="x_96574_admanager_admphskey" name="check_x_96574_admanager_admphskey" id="check_x_96574_admanager_admphskey_b26d2792db0a3200208572ffbf9619a0" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " data-original-title="Mark record for List Action" onClick="select(this);"></input><label for="check_x_96574_admanager_admphskey_b26d2792db0a3200208572ffbf9619a0" class="checkbox-label" style=""><span class="sr-only">Select record for action</span></label></span>
+					</td>
+
+					<td class="vt vt-spacer" style="padding: 0">admin-xp2</td>
+					<td class="vt vt-spacer" style="padding: 0">admin-xp2@csez.zohocorpin.com</td>
+					<td class="vt vt-spacer" style="padding: 0">CN=admin-xp2,CN=Users,DC=csez,DC=zohocorpin,DC=com</td>
+					<td class="vt vt-spacer" style="padding: 0">Users</td>
+				</tr>
+				<tr class="list_row list_even">
+					<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-checkbox"><input data-list_id="x_96574_admanager_admphskey" name="check_x_96574_admanager_admphskey" id="check_x_96574_admanager_admphskey_b26d2792db0a3200208572ffbf96194353" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " data-original-title="Mark record for List Action"></input><label for="check_x_96574_admanager_admphskey_b26d2792db0a3200208572ffbf96194353" class="checkbox-label" style=""><span class="sr-only">Select record for action</span></label></span>
+					</td>
+
+					<td class="vt vt-spacer" style="padding: 0">admin-xp2</td>
+					<td class="vt vt-spacer" style="padding: 0">admin-xp2@csez.zohocorpin.com</td>
+					<td class="vt vt-spacer" style="padding: 0">CN=admin-xp2,CN=Users,DC=csez,DC=zohocorpin,DC=com</td>
+					<td class="vt vt-spacer" style="padding: 0">Users</td>
+				</tr>  -->
+			</tbody>
+		</table>
+	</div>
+	
+	<script>
+		
+		function loadUserList(userListJSON)
+		{
+		console.dir(userListJSON);
+		 userListJSON = userListJSON.evalJSON(); 
+		console.dir(userListJSON);
+			alert(userListJSON.startIndex);
+			$j('#start_index').html(userListJSON.startIndex);
+			$j('#end_index').html(userListJSON.endIndex);
+			$j('#total_count').html(userListJSON.count);
+		
+			var UsersList = userListJSON.UsersList;
+			console.dir(UsersList);
+			console.dir(UsersList.length);
+			var html = '';
+		
+			for(var i=0; UsersList.length >i ; i++)
+			{
+				alert(UsersList[i].DISPLAY_NAME);
+				var class = '';
+				if(i%2==1)
+					class = 'list_odd';
+				else
+					class = 'list_even';
+				html = html+'<tr class="list_row '+class+'"></tr>';
+		alert(html);
+				
+				<!-- html = html+'<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-checkbox"><input data-list_id="x_96574_admanager_admphskey" name="check_aduserlist_'+userList[i].OBJECT_GUID+'" id="check_aduserlist_'+userList[i].OBJECT_GUID+'" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " data-original-title="Mark record for List Action" onClick="select(this);"></input><label for="check_aduserlist_'+userList[i].OBJECT_GUID+'" class="checkbox-label" style=""><span class="sr-only">Select record for action</span></label></span></td>';
+		html = html+'<td class="vt vt-spacer" style="padding: 0">'userList[i].DISPLAY_NAME'</td><td class="vt vt-spacer" style="padding: 0">'userList[i].LOGON_NAME'</td><td class="vt vt-spacer" style="padding: 0">'userList[i].DISTINGUISHED_NAME'</td><td class="vt vt-spacer" style="padding: 0">'userList[i].OU_NAME'</td></tr>';  -->
+			}
+		//	alert(html);
+			
+		
+		//$j("#ADUserListBody").html(html);
+		//showList(); 
+		}
+		
+		function hideList()
+		{
+			$j("#ADUserList").hide();
+		}
+		function showList()
+		{
+			$j("#ADUserList").show();
+		}
+		function test()
+		{
+			$j('#start_index').html('12');
+		}
+		
+	</script>
+	
+	
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

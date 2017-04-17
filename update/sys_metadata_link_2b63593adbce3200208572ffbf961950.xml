@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>update</directory>
+        <documentkey>d8d2193adbce3200208572ffbf961933</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_audit_delete">
+    <sys_audit_delete action="INSERT_OR_UPDATE">
+        <display_value>Copy of Enable Users in AD</display_value>
+        <documentkey>bac1d976dbce3200208572ffbf9619d8</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sc_cat_item_producer&gt;&lt;active&gt;true&lt;/active&gt;&lt;availability&gt;on_desktop&lt;/availability&gt;&lt;billable&gt;false&lt;/billable&gt;&lt;can_cancel&gt;false&lt;/can_cancel&gt;&lt;category display_value="ADManager Plus"&gt;b9556ee7dbb17200208572ffbf961955&lt;/category&gt;&lt;cost&gt;0&lt;/cost&gt;&lt;custom_cart/&gt;&lt;delivery_plan display_value="DEFAULT"&gt;523da512c611228900811a37c97c2014&lt;/delivery_plan&gt;&lt;delivery_plan_script/&gt;&lt;delivery_time&gt;1970-01-03 00:00:00&lt;/delivery_time&gt;&lt;description/&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=bac1d976dbce3200208572ffbf9619d8"/&gt;&lt;entitlement_script/&gt;&lt;group/&gt;&lt;icon/&gt;&lt;ignore_price&gt;false&lt;/ignore_price&gt;&lt;image/&gt;&lt;list_price&gt;0&lt;/list_price&gt;&lt;location/&gt;&lt;meta/&gt;&lt;mobile_hide_price&gt;false&lt;/mobile_hide_price&gt;&lt;mobile_picture/&gt;&lt;mobile_picture_type&gt;use_desktop_picture&lt;/mobile_picture_type&gt;&lt;model/&gt;&lt;name&gt;Copy of Enable Users in AD&lt;/name&gt;&lt;no_cart&gt;false&lt;/no_cart&gt;&lt;no_order&gt;false&lt;/no_order&gt;&lt;no_order_now&gt;false&lt;/no_order_now&gt;&lt;no_proceed_checkout&gt;false&lt;/no_proceed_checkout&gt;&lt;no_quantity&gt;false&lt;/no_quantity&gt;&lt;no_search&gt;false&lt;/no_search&gt;&lt;omit_price&gt;false&lt;/omit_price&gt;&lt;order&gt;0&lt;/order&gt;&lt;ordered_item_link/&gt;&lt;picture/&gt;&lt;preview&gt;JavaScript: popupOpenStandard("./com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;amp;sysparm_id=bac1d976dbce3200208572ffbf9619d8&amp;amp;sysparm_preview=true", "summary");&lt;/preview&gt;&lt;price&gt;0&lt;/price&gt;&lt;fx_price action="delete_multiple" query="id=bac1d976dbce3200208572ffbf9619d8"/&gt;&lt;fx_price action="INSERT_OR_UPDATE"&gt;&lt;amount&gt;0&lt;/amount&gt;&lt;currency display_value="USD"&gt;USD&lt;/currency&gt;&lt;field&gt;price&lt;/field&gt;&lt;id&gt;bac1d976dbce3200208572ffbf9619d8&lt;/id&gt;&lt;parent/&gt;&lt;reference_amount&gt;0&lt;/reference_amount&gt;&lt;reference_currency display_value="USD"&gt;USD&lt;/reference_currency&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-04-14 11:08:55&lt;/sys_created_on&gt;&lt;sys_id&gt;f2c1d976dbce3200208572ffbf9619d9&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-04-14 11:08:55&lt;/sys_updated_on&gt;&lt;table&gt;sc_cat_item_producer&lt;/table&gt;&lt;type&gt;calculated&lt;/type&gt;&lt;/fx_price&gt;&lt;fx_price action="INSERT_OR_UPDATE"&gt;&lt;amount&gt;0&lt;/amount&gt;&lt;currency display_value="USD"&gt;USD&lt;/currency&gt;&lt;field&gt;recurring_price&lt;/field&gt;&lt;id&gt;bac1d976dbce3200208572ffbf9619d8&lt;/id&gt;&lt;parent/&gt;&lt;reference_amount&gt;0&lt;/reference_amount&gt;&lt;reference_currency display_value="USD"&gt;USD&lt;/reference_currency&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-04-14 11:08:55&lt;/sys_created_on&gt;&lt;sys_id&gt;f6c1d976dbce3200208572ffbf9619d9&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-04-14 11:08:55&lt;/sys_updated_on&gt;&lt;table&gt;sc_cat_item_producer&lt;/table&gt;&lt;type&gt;calculated&lt;/type&gt;&lt;/fx_price&gt;&lt;recurring_frequency/&gt;&lt;recurring_price&gt;0&lt;/recurring_price&gt;&lt;roles/&gt;&lt;sc_catalogs&gt;e0d08b13c3330100c8b837659bba8fb4&lt;/sc_catalogs&gt;&lt;sc_ic_item_staging/&gt;&lt;sc_ic_version/&gt;&lt;script&gt;&lt;![CDATA[	]]&gt;&lt;/script&gt;&lt;short_description&gt;Enable Users in AD&lt;/short_description&gt;&lt;start_closed&gt;false&lt;/start_closed&gt;&lt;sys_class_name&gt;sc_cat_item_producer&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-04-14 11:08:55&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_id&gt;bac1d976dbce3200208572ffbf9619d8&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;Copy of Enable Users in AD&lt;/sys_name&gt;&lt;sys_package display_value="ADManager Plus" source="x_96574_admanager"&gt;fa4b5c44db397200208572ffbf961935&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="ADManager Plus"&gt;fa4b5c44db397200208572ffbf961935&lt;/sys_scope&gt;&lt;sys_update_name&gt;sc_cat_item_producer_bac1d976dbce3200208572ffbf9619d8&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-04-14 11:08:55&lt;/sys_updated_on&gt;&lt;table_name&gt;incident&lt;/table_name&gt;&lt;template/&gt;&lt;type&gt;item&lt;/type&gt;&lt;use_sc_layout&gt;true&lt;/use_sc_layout&gt;&lt;vendor/&gt;&lt;view/&gt;&lt;visible_bundle&gt;true&lt;/visible_bundle&gt;&lt;visible_guide&gt;true&lt;/visible_guide&gt;&lt;visible_standalone&gt;true&lt;/visible_standalone&gt;&lt;workflow/&gt;&lt;/sc_cat_item_producer&gt;</payload>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-14 11:13:23</sys_created_on>
+        <sys_id>d8d2193adbce3200208572ffbf961933</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-14 11:13:23</sys_updated_on>
+        <tablename>sc_cat_item_producer</tablename>
+    </sys_audit_delete>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-14 11:16:04</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>2b63593adbce3200208572ffbf961950</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record deleted 2017-04-14 04:13:23</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_metadata_link_2b63593adbce3200208572ffbf961950</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-14 11:16:04</sys_updated_on>
+        <tablename>sys_audit_delete</tablename>
+    </sys_metadata_link>
+</record_update>

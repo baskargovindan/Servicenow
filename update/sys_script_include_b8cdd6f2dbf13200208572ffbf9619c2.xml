@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPAuthHandler</api_name>
+        <client_callable>true</client_callable>
+        <description>ADMP AuthObject Handler</description>
+        <name>ADMPAuthHandler</name>
+        <script><![CDATA[var ADMPAuthHandler = Class.create();
+ADMPAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	handleResponse: function(response)
+	{
+		this.removeAuth();
+		var authObject =  new global.JSON().decode(response);
+		var authTicket = authObject.AuthTicket;
+		var loginName = authObject.LoginName;
+		var loginId = authObject.LoginId;
+		var loginStatus = authObject.LoginStatus;
+		var validDate = authObject.ValidDate;
+		var loginStatusMessage = authObject.LoginStatusMessage;
+		this.storeAuth(authTicket, loginName, loginId, loginStatus, validDate, loginStatusMessage);
+		
+		var admpAuthObject = new global.JSON().decode(authObject.AdmpAuthObject);
+
+		new ADMPDomainListHandler().addDomainList(admpAuthObject.domainNameList);
+		new ADMPActionHandler().addActionList(admpAuthObject.domainsVsActionList);
+	},
+	removeAuth: function()
+	{
+		var gr = new GlideRecord('x_96574_admanager_admpauthobject');
+		gr.deleteMultiple();
+	},
+	storeAuth:function(authTicket, loginName, loginId, loginStatus, validDate, loginStatusMessage)
+	{
+		var authRecord = new GlideRecord('x_96574_admanager_admpauthobject');
+		authRecord.initialize(); 
+		authRecord.authtoken = authTicket;
+		authRecord.loginname = loginName;
+		authRecord.login_id = loginId;
+		authRecord.login_status = loginStatus;
+		authRecord.validdate = validDate;
+		authRecord.login_status_message	 = loginStatusMessage;
+		authRecord.insert();
+	},
+	getAuthToken: function()
+	{
+		var authRecord = new GlideRecord('x_96574_admanager_admpauthobject');
+		authRecord.query();
+		var authToken = '';
+		if (authRecord.next()) { 
+			 authToken = authRecord.authtoken;
+		}
+		return authToken;
+	},
+    type: 'ADMPAuthHandler'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-02 06:25:53</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>b8cdd6f2dbf13200208572ffbf9619c2</sys_id>
+        <sys_mod_count>33</sys_mod_count>
+        <sys_name>ADMPAuthHandler</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_b8cdd6f2dbf13200208572ffbf9619c2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-04 09:16:23</sys_updated_on>
+    </sys_script_include>
+</record_update>

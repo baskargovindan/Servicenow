@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="loginname" label="LoginName" language="en" table="x_96574_admanager_admpserverdetails">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>loginname</element>
+            <help/>
+            <hint/>
+            <label>LoginName</label>
+            <language>en</language>
+            <name>x_96574_admanager_admpserverdetails</name>
+            <plural>LoginNames</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-03-28 09:48:14</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>034c5591db393200208572ffbf961933</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>LoginName</sys_name>
+            <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+            <sys_update_name>sys_documentation_x_96574_admanager_admpserverdetails_loginname_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-03-28 09:48:14</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

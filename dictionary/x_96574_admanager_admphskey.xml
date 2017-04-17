@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="ADMPHSKey" max_length="40" name="x_96574_admanager_admphskey" type="collection">
+        <element label="GeneratedTime" max_length="40" name="generatedtime" type="string"/>
+        <element label="HSKey" max_length="40" name="hskey" type="string"/>
+    </element>
+</database>

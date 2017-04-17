@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Single User Creation password field</description>
+        <media_type/>
+        <name>password_macro</name>
+        <scoped_name>x_96574_admanager_password_macro</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-11 15:19:47</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>10cde231dbc23200208572ffbf9619a1</sys_id>
+        <sys_mod_count>44</sys_mod_count>
+        <sys_name>password_macro</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_ui_macro_10cde231dbc23200208572ffbf9619a1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 10:24:05</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<tr parent_container_id="" style='padding-top:-100;'>
+		<td class="iotd"> 
+			<div class="row sc-row">
+				<div class="form-group  sc-row">
+					<div nowrap="true" class="">
+						<label class="col-xs-12 control-label">
+							<span title="" class=" required-marker" aria-label="" oclass="" mandatory="false" data-original-title="">
+							</span>
+							<img style="width:1px; margin-right:0px; margin-left:0px" src="images/s.gifx"/>
+							<span data-toggle="tooltip" class="sn-tooltip-basic " data-placement="auto" data-original-title="" title="">Password</span>
+						</label>
+					</div>
+					<div class="col-xs-6 form-field input_controls">
+						<input type="password" class="cat_item_option sc-content-pad form-control" value="" maxlength="" name="password" id="password"/>
+
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<script>
+		function getPassword()
+		{
+		return $j("#password").val();
+		}
+		function setPassword(text)
+		{
+		$j("#password").val(text);
+		}
+		function removeEmptyVars()
+		{
+		$j("#container_d5ecae39db823200208572ffbf961981").hide();
+		}
+	</script>
+</j:jelly>
+
+]]></xml>
+    </sys_ui_macro>
+</record_update>

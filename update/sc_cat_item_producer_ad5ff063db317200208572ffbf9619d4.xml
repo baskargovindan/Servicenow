@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sc_cat_item_producer">
+    <sc_cat_item_producer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <can_cancel>false</can_cancel>
+        <category display_value="ADManager Plus">b9556ee7dbb17200208572ffbf961955</category>
+        <cost>0</cost>
+        <custom_cart/>
+        <delivery_plan display_value="DEFAULT">523da512c611228900811a37c97c2014</delivery_plan>
+        <delivery_plan_script/>
+        <delivery_time>1970-01-03 00:00:00</delivery_time>
+        <description/>
+        <entitlement_script/>
+        <group/>
+        <icon/>
+        <ignore_price>false</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model/>
+        <name>Create a User in AD</name>
+        <no_cart>false</no_cart>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>0</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: popupOpenStandard("./com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=ad5ff063db317200208572ffbf9619d4&amp;sysparm_preview=true", "summary");</preview>
+        <price>0</price>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <roles/>
+        <sc_catalogs>e0d08b13c3330100c8b837659bba8fb4</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <script><![CDATA[	]]></script>
+        <short_description>Create A User in AD</short_description>
+        <start_closed>false</start_closed>
+        <sys_class_name>sc_cat_item_producer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-04 07:29:12</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ad5ff063db317200208572ffbf9619d4</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>Create a User in AD</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sc_cat_item_producer_ad5ff063db317200208572ffbf9619d4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 10:20:44</sys_updated_on>
+        <table_name>incident</table_name>
+        <template/>
+        <type>item</type>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor/>
+        <view/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </sc_cat_item_producer>
+    <sys_translated_text action="delete_multiple" query="documentkey=ad5ff063db317200208572ffbf9619d4"/>
+    <fx_price action="delete_multiple" query="id=ad5ff063db317200208572ffbf9619d4"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>price</field>
+        <id>ad5ff063db317200208572ffbf9619d4</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-04 07:29:12</sys_created_on>
+        <sys_id>6a9fb063dbfd3200208572ffbf9619d7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-04 07:29:12</sys_updated_on>
+        <table>sc_cat_item_producer</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>recurring_price</field>
+        <id>ad5ff063db317200208572ffbf9619d4</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-04 07:29:12</sys_created_on>
+        <sys_id>6e9fb063dbfd3200208572ffbf9619d7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-04 07:29:12</sys_updated_on>
+        <table>sc_cat_item_producer</table>
+        <type>calculated</type>
+    </fx_price>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color/>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <encryption_context/>
+        <file_name>icon</file_name>
+        <image_height/>
+        <image_width/>
+        <size_bytes>2177</size_bytes>
+        <size_compressed>1910</size_compressed>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-11 11:18:21</sys_created_on>
+        <sys_id>ef2739b9db423200208572ffbf961926</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-11 11:18:21</sys_updated_on>
+        <table_name>ZZ_YYsc_cat_item_producer</table_name>
+        <table_sys_id>ad5ff063db317200208572ffbf9619d4</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="icon" sys_id="ef2739b9db423200208572ffbf961926">ef2739b9db423200208572ffbf961926</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-11 11:18:21</sys_created_on>
+        <sys_id>232739b9db423200208572ffbf961927</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>2536</length>
+        <position>1</position>
+        <sys_attachment display_value="icon" sys_id="ef2739b9db423200208572ffbf961926">ef2739b9db423200208572ffbf961926</sys_attachment>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-11 11:18:21</sys_created_on>
+        <sys_id>a32739b9db423200208572ffbf961927</sys_id>
+    </sys_attachment_doc>
+</record_update>

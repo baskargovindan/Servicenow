@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="ADMPLoginDomainDetails" max_length="40" name="x_96574_admanager_admplogindomaindetails" type="collection">
+        <element label="Domain Flat Name" mandatory="true" max_length="40" name="domain_flat_name" type="string"/>
+        <element display="true" label="Domain Name" max_length="40" name="domain_name" type="string"/>
+    </element>
+</database>

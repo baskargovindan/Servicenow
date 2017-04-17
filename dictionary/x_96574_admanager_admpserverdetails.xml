@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="ADMPServerDetails" max_length="40" name="x_96574_admanager_admpserverdetails" type="collection">
+        <element default="ADManager Plus" display="true" label="Application Name" max_length="40" name="application_name" read_only="true" type="string"/>
+        <element choice="2" default="Select a Domain" label="Domain Name" max_length="32" name="domain_name" reference="x_96574_admanager_admplogindomaindetails" type="reference">
+            <choice/>
+        </element>
+        <element default="true" label="Enable Service Catalog Item" max_length="40" name="enable_service_catalog_item" read_only="true" type="boolean"/>
+        <element default="true" label="Active" max_length="40" name="isenabled" read_only="true" type="boolean"/>
+        <element label="LoginName" max_length="40" name="loginname" type="string"/>
+        <element label="Password" max_length="255" name="password" type="password2"/>
+        <element label="Protocol Settings" max_length="40" name="protocol_settings" read_only="true" type="string"/>
+        <element label="Server Name" mandatory="true" max_length="40" name="server_name" read_only="true" type="string"/>
+        <element label="Server Port" mandatory="true" max_length="40" name="server_port" read_only="true" type="string"/>
+        <index name="index">
+            <element name="domain_name"/>
+        </index>
+    </element>
+</database>

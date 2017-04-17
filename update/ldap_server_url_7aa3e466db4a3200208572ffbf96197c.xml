@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="ldap_server_url">
+    <ldap_server_url action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <operational_status>false</operational_status>
+        <order>100</order>
+        <server display_value="">7aa3e466db4a3200208572ffbf96197b</server>
+        <sys_class_name>ldap_server_url</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-13 13:08:55</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>7aa3e466db4a3200208572ffbf96197c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ldap://host-name:389/</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>ldap_server_url_7aa3e466db4a3200208572ffbf96197c</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2017-04-13 13:24:58</sys_updated_on>
+        <url>ldap://host-name:389/</url>
+    </ldap_server_url>
+</record_update>

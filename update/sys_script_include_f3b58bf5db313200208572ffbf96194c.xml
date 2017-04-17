@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_96574_admanager.ADMPDomainListHandler</api_name>
+        <client_callable>true</client_callable>
+        <description>DomainListHandler</description>
+        <name>ADMPDomainListHandler</name>
+        <script><![CDATA[var ADMPDomainListHandler = Class.create();
+ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	insertLoginDomainList:function(domainVsFlatName)
+	{
+		var gr = new GlideRecord('x_96574_admanager_admplogindomaindetails');
+		gr.deleteMultiple();
+		domainVsFlatName = new global.JSON().decode(domainVsFlatName);
+		var i=0;
+		for(var domainName in domainVsFlatName){
+			
+			var domain_flat_name = domainVsFlatName[domainName];
+			var domainRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
+			domainRecord.initialize(); 
+			domainRecord.domain_id = ++i;
+			domainRecord.domain_name = domainName; 
+			domainRecord.domain_flat_name = domain_flat_name; 
+			domainRecord.insert();
+		}
+	},
+	addDomainList: function(domainList)
+	{
+		this.removeEntries();
+		for(var i=0;i<domainList.length;i++)
+ 		{
+			var domainRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
+			domainRecord.initialize(); 
+			domainRecord.domain_id = i+1;
+			domainRecord.domain_name = domainList[i].DOMAIN_NAME; 
+			domainRecord.domain_flat_name = domainList[i].DOMAIN_FLAT_NAME; 
+			domainRecord.isdefault = domainList[i].IS_DEFAULT_DOMAIN;
+			domainRecord.insert();
+		}
+	},
+	removeEntries:function()
+	{
+		var gr = new GlideRecord('x_96574_admanager_admpdomaindetails');
+		gr.deleteMultiple();
+	},
+	getDomainId: function(domainName)
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
+		detailsRecord.addQuery('domain_name', domainName);
+		detailsRecord.query();
+		var domain_id = 0;
+		if (detailsRecord.next()) { 
+			 domain_id = detailsRecord.domain_id;
+		}
+		return domain_id;
+	},
+	getSysIdforDomain: function(domainName)
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
+		detailsRecord.addQuery('domain_name', domainName);
+		detailsRecord.query();
+		var sys_id = -1;
+		if (detailsRecord.next()) { 
+			 sys_id = detailsRecord.sys_id;
+		}
+		return sys_id;
+	},
+	getDefaultDomain: function()
+	{
+		var domainName = '';
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
+		detailsRecord.addQuery('isdefault', 'true');
+		detailsRecord.query();
+		if (detailsRecord.next()) { 
+			 domainName = detailsRecord.domain_name;
+		}
+		return domainName;
+	},
+	getDomainList: function ()
+	{
+		var domainList = [];
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
+		detailsRecord.query();
+		while(detailsRecord.next()) { 
+			var domainDetails = {};
+			domainDetails.domainName = detailsRecord.domain_name.toString();
+			domainDetails.domainId = detailsRecord.domain_id.toString();
+			domainDetails.isDefault = detailsRecord.isdefault.toString();
+			domainList.push(domainDetails);
+		}
+		return JSON.stringify(domainList);
+	},
+    type: 'ADMPDomainListHandler'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-30 06:47:22</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>f3b58bf5db313200208572ffbf96194c</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name>ADMPDomainListHandler</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_update_name>sys_script_include_f3b58bf5db313200208572ffbf96194c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 10:49:41</sys_updated_on>
+    </sys_script_include>
+</record_update>
