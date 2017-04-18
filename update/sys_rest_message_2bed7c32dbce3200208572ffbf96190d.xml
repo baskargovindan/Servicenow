@@ -14,7 +14,7 @@
         <sys_class_name>sys_rest_message</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 09:44:21</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>2bed7c32dbce3200208572ffbf96190d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>EnableUser</sys_name>

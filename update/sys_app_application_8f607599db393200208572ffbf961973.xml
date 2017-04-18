@@ -2,13 +2,13 @@
 <record_update sys_domain="global" table="sys_app_application">
     <sys_app_application action="INSERT_OR_UPDATE">
         <active>true</active>
-        <category display_value="Integration">af726f910a0a0b24008b69fe9c311123</category>
+        <category display_value="">af726f910a0a0b24008b69fe9c311123</category>
         <description>ADManager Plus</description>
         <device_type>browser</device_type>
         <hint>ADManager Plus</hint>
         <name/>
         <order>100</order>
-        <roles>admin,x_96574_admanager.admanager_admin</roles>
+        <roles>x_96574_admanager.admanager_admin</roles>
         <sys_class_name>sys_app_application</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 11:18:53</sys_created_on>
@@ -16,7 +16,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8f607599db393200208572ffbf961973</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>ADManager Plus</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -25,7 +25,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_app_application_8f607599db393200208572ffbf961973</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 13:44:50</sys_updated_on>
+        <sys_updated_on>2017-04-17 16:15:58</sys_updated_on>
         <title>ADManager Plus</title>
         <view_name/>
     </sys_app_application>

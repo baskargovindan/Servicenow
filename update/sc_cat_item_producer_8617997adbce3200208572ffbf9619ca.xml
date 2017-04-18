@@ -45,11 +45,12 @@
         <sc_ic_version/>
         <script><![CDATA[	]]></script>
         <short_description>Delete Users In AD</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
         <sys_class_name>sc_cat_item_producer</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:32:05</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>8617997adbce3200208572ffbf9619ca</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_name>Delete Users In AD</sys_name>
@@ -111,7 +112,6 @@
         <average_image_color/>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
-        <encryption_context/>
         <file_name>icon</file_name>
         <image_height/>
         <image_width/>

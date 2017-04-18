@@ -6,7 +6,7 @@
         <sys_class_name>sc_cat_item_catalog</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:24:30</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>8f55197adbce3200208572ffbf9619cb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Service Catalog.Copy of Enable Users in AD</sys_name>

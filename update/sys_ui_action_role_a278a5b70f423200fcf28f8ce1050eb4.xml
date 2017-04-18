@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_action_role">
+    <sys_ui_action_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_ui_action_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-04-17 15:23:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a278a5b70f423200fcf28f8ce1050eb4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Create a User in AD.x_96574_admanager.admanager_admin</sys_name>
+        <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
+        <sys_ui_action display_value="Create a User in AD">5be146fbdbf57200208572ffbf9619a9</sys_ui_action>
+        <sys_update_name>sys_ui_action_role_a278a5b70f423200fcf28f8ce1050eb4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-04-17 16:06:21</sys_updated_on>
+        <sys_user_role display_value="x_96574_admanager.admanager_admin" name="x_96574_admanager.admanager_admin">5480b599db393200208572ffbf9619fa</sys_user_role>
+    </sys_ui_action_role>
+</record_update>

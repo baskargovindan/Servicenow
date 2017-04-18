@@ -58,7 +58,7 @@ ADMPAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-02 06:25:53</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>b8cdd6f2dbf13200208572ffbf9619c2</sys_id>
         <sys_mod_count>33</sys_mod_count>
         <sys_name>ADMPAuthHandler</sys_name>

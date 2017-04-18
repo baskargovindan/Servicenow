@@ -3,6 +3,7 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="unique_id" table="x_96574_admanager_admpsuctemplatelist">
         <active>true</active>
         <array>false</array>
+        <array_denormalized>false</array_denormalized>
         <attributes/>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
@@ -51,8 +52,8 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-04 07:33:50</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
-        <sys_id>57608563db317200208572ffbf96190b</sys_id>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f29629f30f423200fcf28f8ce1050e21</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Unique Id</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -60,8 +61,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_dictionary_x_96574_admanager_admpsuctemplatelist_unique_id</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-04 07:33:50</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2017-04-17 15:14:02</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

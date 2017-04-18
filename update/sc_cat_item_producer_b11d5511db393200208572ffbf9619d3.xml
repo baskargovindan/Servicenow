@@ -45,11 +45,12 @@
         <sc_ic_version/>
         <script/>
         <short_description>ADManager Plus - Server Configuration</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
         <sys_class_name>sc_cat_item_producer</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 09:51:42</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>b11d5511db393200208572ffbf9619d3</sys_id>
         <sys_mod_count>5</sys_mod_count>
         <sys_name>ADManager Setup</sys_name>

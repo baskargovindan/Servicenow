@@ -39,7 +39,7 @@
         <sys_class_name>sys_ws_operation</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-13 06:57:29</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>de8d4b56dbc63200208572ffbf961970</sys_id>
         <sys_mod_count>27</sys_mod_count>
         <sys_name>AuthenticateHSKey</sys_name>

@@ -5,7 +5,6 @@
         <can_delegate>true</can_delegate>
         <description>ADManager Plus Admin</description>
         <elevated_privilege>false</elevated_privilege>
-        <encryption_context/>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_96574_admanager.admanager_admin</name>
@@ -13,7 +12,7 @@
         <sys_class_name>sys_user_role</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 11:17:48</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>5480b599db393200208572ffbf9619fa</sys_id>
         <sys_mod_count>3</sys_mod_count>
         <sys_name>x_96574_admanager.admanager_admin</sys_name>

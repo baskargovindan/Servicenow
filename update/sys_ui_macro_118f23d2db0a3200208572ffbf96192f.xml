@@ -10,7 +10,7 @@
         <sys_class_name>sys_ui_macro</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-13 09:22:42</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>118f23d2db0a3200208572ffbf96192f</sys_id>
         <sys_mod_count>43</sys_mod_count>
         <sys_name>Search Button</sys_name>

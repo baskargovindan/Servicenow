@@ -67,6 +67,17 @@ ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProces
 		}
 		return sys_id;
 	},
+	getdomainNameforSysId: function(sys_id)
+	{
+		var detailsRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
+		detailsRecord.addQuery('sys_id', sys_id);
+		detailsRecord.query();
+		var domainName = '';
+		if (detailsRecord.next()) { 
+			 domainName = detailsRecord.domain_name.toString();
+		}
+		return domainName;
+	},
 	getDefaultDomain: function()
 	{
 		var domainName = '';
@@ -99,7 +110,7 @@ ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_created_on>2017-03-30 06:47:22</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>f3b58bf5db313200208572ffbf96194c</sys_id>
-        <sys_mod_count>26</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>ADMPDomainListHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -107,6 +118,6 @@ ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_f3b58bf5db313200208572ffbf96194c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 10:49:41</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:03:49</sys_updated_on>
     </sys_script_include>
 </record_update>

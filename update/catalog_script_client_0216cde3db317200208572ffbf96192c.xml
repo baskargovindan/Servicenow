@@ -27,7 +27,6 @@
 	loadingDialog.setPreference('table', 'loading');
 	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
 	loadingDialog.render();
-
 	var formDataAjax = new GlideAjax("ADMPCommonUtil");
 	if(sys_id != null && sys_id != '')
 	{
@@ -43,20 +42,26 @@
 
 	function handleResponse(formData)
 	{
-		formData = formData.evalJSON(); //Transform the JSON string to an object   
-		var domainList  = (formData.domainList).evalJSON();
-		g_form.clearOptions('Select_Domain');
-		var defaultDomain = '';
-		for(var i=0; i<domainList.length; i++)
+		if(formData)
 		{
-			g_form.addOption('Select_Domain', domainList[i].domainName, domainList[i].domainName);
-			if(domainList[i].isdefault == 'true')
-				defaultDomain = domainList[i].domainName;
-		}
-		g_form.setValue('Select_Domain', defaultDomain);
+			formData = formData.evalJSON(); //Transform the JSON string to an object   
+			var domainList  = (formData.domainList).evalJSON();
+			g_form.clearOptions('Select_Domain');
+			var defaultDomain = '';
+			for(var i=0; i<domainList.length; i++)
+			{
+				g_form.addOption('Select_Domain', domainList[i].domainName, domainList[i].domainName);
+				if(domainList[i].isdefault == 'true')
+					defaultDomain = domainList[i].domainName;
+			}
+			g_form.setValue('Select_Domain', defaultDomain);
 
-		loadData(formData);
-		loadingDialog.destroy();
+			loadData(formData);
+			loadingDialog.destroy();
+
+		}
+		else
+			loadingDialog.destroy();
 	}
 }
 
@@ -83,7 +88,7 @@ function loadData(formData)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0216cde3db317200208572ffbf96192c</sys_id>
-        <sys_mod_count>114</sys_mod_count>
+        <sys_mod_count>119</sys_mod_count>
         <sys_name>ADMPSUCOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -92,7 +97,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_0216cde3db317200208572ffbf96192c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 12:01:35</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:55:37</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>0</ui_type>

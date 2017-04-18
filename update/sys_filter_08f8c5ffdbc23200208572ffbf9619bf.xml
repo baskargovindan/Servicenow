@@ -27,6 +27,6 @@
         <sys_updated_on>2017-04-17 13:04:10</sys_updated_on>
         <table>sys_user</table>
         <title>mobile</title>
-        <user display_value="val1test2 ">67985833db823200208572ffbf9619ad</user>
+        <user display_value="">67985833db823200208572ffbf9619ad</user>
     </sys_filter>
 </record_update>

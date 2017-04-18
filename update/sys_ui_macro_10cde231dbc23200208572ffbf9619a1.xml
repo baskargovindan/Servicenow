@@ -10,7 +10,7 @@
         <sys_class_name>sys_ui_macro</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-11 15:19:47</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>10cde231dbc23200208572ffbf9619a1</sys_id>
         <sys_mod_count>44</sys_mod_count>
         <sys_name>password_macro</sys_name>

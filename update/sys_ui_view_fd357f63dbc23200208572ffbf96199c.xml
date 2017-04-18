@@ -8,7 +8,7 @@
         <sys_class_name>sys_ui_view</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-17 06:58:22</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>fd357f63dbc23200208572ffbf96199c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Cmdb_dashboard</sys_name>

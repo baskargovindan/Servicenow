@@ -18,7 +18,7 @@
         <sys_class_name>sys_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-30 06:24:39</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>89b007b5db313200208572ffbf9619b0</sys_id>

@@ -45,21 +45,22 @@
         <sc_ic_version/>
         <script><![CDATA[	]]></script>
         <short_description>Create A User in AD</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
         <sys_class_name>sc_cat_item_producer</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-04 07:29:12</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>ad5ff063db317200208572ffbf9619d4</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>Create a User in AD</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_replace_on_upgrade>true</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sc_cat_item_producer_ad5ff063db317200208572ffbf9619d4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 10:20:44</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:52:28</sys_updated_on>
         <table_name>incident</table_name>
         <template/>
         <type>item</type>
@@ -111,7 +112,6 @@
         <average_image_color/>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
-        <encryption_context/>
         <file_name>icon</file_name>
         <image_height/>
         <image_width/>

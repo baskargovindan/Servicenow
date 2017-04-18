@@ -20,6 +20,8 @@
    if (isLoading || newValue == '') {
       return;
    }
+	g_form.clearMessages();
+
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
 	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
@@ -50,7 +52,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>9ecc2902db023200208572ffbf9619c2</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>ADMPSUCDomainOnChange</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -59,7 +61,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_9ecc2902db023200208572ffbf9619c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 10:42:42</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:43:44</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

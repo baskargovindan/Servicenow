@@ -121,7 +121,7 @@
             <sys_class_name>sys_ui_section</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2017-04-04 07:38:58</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>79d1cd63db317200208572ffbf9619db</sys_id>

@@ -219,7 +219,7 @@ function displayResult(result)
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-05 16:34:02</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>bcc4c080dbca7200208572ffbf96195d</sys_id>
         <sys_mod_count>204</sys_mod_count>
         <sys_name>Create a User in AD</sys_name>

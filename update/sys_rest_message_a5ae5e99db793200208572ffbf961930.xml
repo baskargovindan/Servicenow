@@ -14,7 +14,7 @@
         <sys_class_name>sys_rest_message</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 14:39:15</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>a5ae5e99db793200208572ffbf961930</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>MobileLogin</sys_name>

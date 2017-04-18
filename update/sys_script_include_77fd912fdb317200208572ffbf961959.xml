@@ -71,7 +71,7 @@ ADMPTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxProcesso
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-04 09:44:23</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>77fd912fdb317200208572ffbf961959</sys_id>
         <sys_mod_count>26</sys_mod_count>
         <sys_name>ADMPTemplateHandler</sys_name>

@@ -14,7 +14,7 @@
         <sys_class_name>sys_rest_message</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-05 13:12:30</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>e0679f73dbb97200208572ffbf961929</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>CreateUser</sys_name>

@@ -5,10 +5,11 @@
         <changed_by display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</changed_by>
         <content display_value="ITSM Guided Setup">e1c73ab0ff830200b18affffffffffc3</content>
         <related_change_log_entry/>
+        <related_task_entry/>
         <sys_class_name>gsw_change_log</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-17 10:18:14</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>79f22cbbdb823200208572ffbf9619b7</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>2017-04-17 10:18:14</sys_name>

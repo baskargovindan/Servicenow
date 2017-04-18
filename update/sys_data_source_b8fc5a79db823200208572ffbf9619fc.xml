@@ -42,7 +42,7 @@
         <sys_class_name>sys_data_source</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-11 14:03:22</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>b8fc5a79db823200208572ffbf9619fc</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>/Users</sys_name>

@@ -24,15 +24,15 @@
         <sys_created_on>2017-04-04 14:54:04</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b9556ee7dbb17200208572ffbf961955</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>ADManager Plus</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_replace_on_upgrade>true</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sc_category_b9556ee7dbb17200208572ffbf961955</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 10:20:44</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:54:32</sys_updated_on>
         <title>ADManager Plus</title>
     </sc_category>
     <sys_translated_text action="delete_multiple" query="documentkey=b9556ee7dbb17200208572ffbf961955"/>
@@ -40,7 +40,6 @@
         <average_image_color/>
         <compressed>true</compressed>
         <content_type>image/gif</content_type>
-        <encryption_context/>
         <file_name>homepage_image</file_name>
         <image_height/>
         <image_width/>
@@ -77,7 +76,6 @@
         <average_image_color/>
         <compressed>true</compressed>
         <content_type>image/gif</content_type>
-        <encryption_context/>
         <file_name>icon</file_name>
         <image_height/>
         <image_width/>

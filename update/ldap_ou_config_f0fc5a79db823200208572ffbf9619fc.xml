@@ -5,10 +5,6 @@
         <default_values/>
         <filter>(objectClass=person)</filter>
         <map/>
-        <map_group_manager>false</map_group_manager>
-        <map_group_members>false</map_group_members>
-        <map_user_manager>false</map_user_manager>
-        <map_user_status>false</map_user_status>
         <name>Users</name>
         <ou>CN=Users</ou>
         <query_field>cn</query_field>
@@ -16,7 +12,7 @@
         <sys_class_name>ldap_ou_config</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-11 14:03:21</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>f0fc5a79db823200208572ffbf9619fc</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Users</sys_name>

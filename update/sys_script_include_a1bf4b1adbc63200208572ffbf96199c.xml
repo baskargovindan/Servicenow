@@ -9,11 +9,6 @@
         <name>ADMPHSKeyHandler</name>
         <script><![CDATA[var ADMPHSKeyHandler = Class.create();
 ADMPHSKeyHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
-	test: function()
-	{
-		gs.addErrorMessage('sdfsdf');
-			gs.addInfoMessage('sdfsdfs');
-	},
 	getKey: function()
 	{
 		var hsKeyRecord = new GlideRecord('x_96574_admanager_admphskey');
@@ -47,7 +42,6 @@ ADMPHSKeyHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 	},
 	validateHSKey: function(key)
 	{
-		gs.addInfoMessage(key);
 		var hsKeyRecord = new GlideRecord('x_96574_admanager_admphskey');
 		hsKeyRecord.query();
 		if(hsKeyRecord.next()) { 
@@ -55,7 +49,6 @@ ADMPHSKeyHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			if(key == hsKey)
 				return true;
 		}
-		gs.addInfoMessage('test2');
 		return false;
 	},
     type: 'ADMPHSKeyHandler'
@@ -65,7 +58,7 @@ ADMPHSKeyHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_created_on>2017-04-13 07:02:24</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a1bf4b1adbc63200208572ffbf96199c</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>ADMPHSKeyHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -73,6 +66,6 @@ ADMPHSKeyHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a1bf4b1adbc63200208572ffbf96199c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-13 09:11:38</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:33:23</sys_updated_on>
     </sys_script_include>
 </record_update>

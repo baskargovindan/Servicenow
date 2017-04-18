@@ -28,6 +28,21 @@
 	if(getCanReload() == 'true')
 	{
 		loadingDialog.render();
+		g_form.addInfoMessage('mobileLogin');
+				g_form.addInfoMessage('mobileLogin');
+
+				g_form.addInfoMessage('mobileLogin');
+
+				g_form.addInfoMessage('mobileLogin');
+
+				g_form.addInfoMessage('mobileLogin');
+
+				g_form.addInfoMessage('mobileLogin');
+		g_form.addInfoMessage(g_form.getValue('server_port'));
+		g_form.addInfoMessage(g_form.getValue('server_name'));
+		g_form.addInfoMessage(g_form.getValue('protocol_settings'));
+		g_form.addInfoMessage('mobileLogin');
+		g_form.addInfoMessage('mobileLogin');
 
 		var login = new GlideAjax("ADMPAPIUtil");
 		login.addParam("sysparm_name","mobileLogin");
@@ -40,9 +55,15 @@
 		login.addParam('username', '');
 		login.addParam('pwd', '');
 		login.addParam('domainName', '');
+				g_form.addInfoMessage('calling');
+
 		login.getXMLAnswer(loginResponse);	
 
 
+	}
+	else
+	{
+		loadingDialog.destroy();
 	}
 	function loginResponse(response)
 	{
@@ -66,7 +87,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>570b7367dbc23200208572ffbf9619a8</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>ADMPServerNameOnChange</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -75,7 +96,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_570b7367dbc23200208572ffbf9619a8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 07:56:10</sys_updated_on>
+        <sys_updated_on>2017-04-18 06:41:56</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>0</ui_type>
