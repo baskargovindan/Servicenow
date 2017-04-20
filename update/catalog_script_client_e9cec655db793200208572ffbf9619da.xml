@@ -28,6 +28,11 @@
 		var serverSetupAjax = new GlideAjax("ADMPAPIUtil");
 		serverSetupAjax.addParam("sysparm_name","mobileLogin");
 		serverSetupAjax.addParam("methodToCall",'getAuthTicket');
+		serverSetupAjax.addParam("useMIDServer",g_form.getValue('UseMIDServer'));
+		if(g_form.getValue('UseMIDServer') == 'true')
+			serverSetupAjax.addParam("MIDServer", g_form.getValue('MIDServer'));
+		else 
+			serverSetupAjax.addParam("MIDServer",'');
 		serverSetupAjax.addParam('username', getLoginName());
 		serverSetupAjax.addParam('pwd', getPwd());	
 		serverSetupAjax.addParam('domainName', getDomainName());
@@ -43,6 +48,11 @@
 		login.addParam("server_port",g_form.getValue('server_port'));
 		login.addParam("is_enabled",g_form.getValue('isenabled'));
 		login.addParam("enable_service_catalog_item",g_form.getValue('enable_service_catalog_item'));
+		login.addParam("useMIDServer",g_form.getValue('UseMIDServer'));
+		if(g_form.getValue('UseMIDServer') == 'true')
+			login.addParam("MIDServer", g_form.getValue('MIDServer'));
+		else 
+			login.addParam("MIDServer",'');
 		login.addParam('username', '');
 		login.addParam('pwd', '');
 		login.addParam('domainName', '');
@@ -78,7 +88,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e9cec655db793200208572ffbf9619da</sys_id>
-        <sys_mod_count>104</sys_mod_count>
+        <sys_mod_count>116</sys_mod_count>
         <sys_name>ADMPServerDetailsOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -87,7 +97,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_e9cec655db793200208572ffbf9619da</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 05:43:40</sys_updated_on>
+        <sys_updated_on>2017-04-18 13:15:31</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

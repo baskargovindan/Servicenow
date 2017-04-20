@@ -141,6 +141,34 @@
             <sys_user/>
             <type/>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>use_mid_server</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-04-18 10:02:39</sys_created_on>
+            <sys_id>cff8698c0f923200fcf28f8ce1050e2a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_96574_admanager_admpserverdetails" sys_domain="global" view="Default view">f9582955db393200208572ffbf9619b2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-04-18 10:02:39</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>mid_server</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-04-18 10:03:49</sys_created_on>
+            <sys_id>4c4921cc0f923200fcf28f8ce1050e4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_96574_admanager_admpserverdetails" sys_domain="global" view="Default view">f9582955db393200208572ffbf9619b2</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-04-18 10:03:49</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>
@@ -153,7 +181,7 @@
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>f9582955db393200208572ffbf9619b2</sys_id>
-            <sys_mod_count>0</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_name>x_96574_admanager_admpserverdetails</sys_name>
             <sys_overrides/>
             <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -162,7 +190,7 @@
             <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
             <sys_update_name>sys_ui_section_f9582955db393200208572ffbf9619b2</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2017-03-28 10:40:51</sys_updated_on>
+            <sys_updated_on>2017-04-18 10:03:49</sys_updated_on>
             <sys_user/>
             <title>true</title>
             <view display_value="Default view" name="NULL">Default view</view>

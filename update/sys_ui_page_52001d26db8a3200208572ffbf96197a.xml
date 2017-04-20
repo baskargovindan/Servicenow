@@ -222,6 +222,12 @@ function updateStatus(statusArray)
 	}
 
 	$j("#ADUserListBody").html(html);
+}
+
+function emptyAllFields()
+{
+	hideUsersList();
+	hideSubmitButton();
 }]]></client_script>
         <description>ADMPUsersList</description>
         <direct>false</direct>
@@ -279,9 +285,9 @@ function updateStatus(statusArray)
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-13 16:28:03</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>52001d26db8a3200208572ffbf96197a</sys_id>
-        <sys_mod_count>89</sys_mod_count>
+        <sys_mod_count>93</sys_mod_count>
         <sys_name>ADMPUsersList</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -289,6 +295,6 @@ function updateStatus(statusArray)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_page_52001d26db8a3200208572ffbf96197a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 09:20:11</sys_updated_on>
+        <sys_updated_on>2017-04-18 13:34:53</sys_updated_on>
     </sys_ui_page>
 </record_update>

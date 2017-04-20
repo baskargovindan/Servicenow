@@ -63,7 +63,7 @@
 	{
 		loadingWindow.destroy();
 		g_form.addInfoMessage('Thank you, your request has been submitted');
-		loadData({});
+		emptyAllFields();
 	}
 
 	function EnableUser(usersList)
@@ -133,11 +133,11 @@ function constructComments(requestDetails)
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:32:05</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>c617997adbce3200208572ffbf9619d0</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>ADMPDeleteUserOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -146,7 +146,7 @@ function constructComments(requestDetails)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_c617997adbce3200208572ffbf9619d0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 09:25:15</sys_updated_on>
+        <sys_updated_on>2017-04-18 13:27:39</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

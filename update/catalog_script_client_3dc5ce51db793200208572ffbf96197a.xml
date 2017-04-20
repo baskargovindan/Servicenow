@@ -19,7 +19,7 @@
         <script><![CDATA[function onLoad() 
 {
 	g_form.clearMessages();
-	removeEmptyVars();
+	//removeEmptyVars();
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
 	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
@@ -36,6 +36,8 @@
 		g_form.setValue('server_port', serverDetails.server_port?serverDetails.server_port:'8080');
 		g_form.setValue('protocol_settings', serverDetails.protocol_settings?serverDetails.protocol_settings:'HTTP');
 		g_form.setValue('isenabled', serverDetails.isenabled?serverDetails.isenabled:'true');
+		g_form.setValue('UseMIDServer', serverDetails.useMIDServer?serverDetails.useMIDServer:'true');
+		g_form.setValue('MIDServer', serverDetails.mIDServer?serverDetails.mIDServer:'');
 		g_form.setValue('enable_service_catalog_item', serverDetails.enable_service_catalog_item?serverDetails.enable_service_catalog_item:'true');
 		if((!serverDetails.login_name || serverDetails.login_name == '') && (serverDetails.password =='' || !serverDetails.password))
 		{
@@ -57,7 +59,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3dc5ce51db793200208572ffbf96197a</sys_id>
-        <sys_mod_count>62</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>ADMPServerDetailsOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -66,7 +68,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_3dc5ce51db793200208572ffbf96197a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:41:19</sys_updated_on>
+        <sys_updated_on>2017-04-18 12:53:28</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>10</ui_type>

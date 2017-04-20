@@ -8,12 +8,17 @@
         <element default="true" label="Enable Service Catalog Item" max_length="40" name="enable_service_catalog_item" read_only="true" type="boolean"/>
         <element default="true" label="Active" max_length="40" name="isenabled" read_only="true" type="boolean"/>
         <element label="LoginName" max_length="40" name="loginname" type="string"/>
+        <element label="MID Server" max_length="32" name="mid_server" reference="ecc_agent" type="reference"/>
         <element label="Password" max_length="255" name="password" type="password2"/>
         <element label="Protocol Settings" max_length="40" name="protocol_settings" read_only="true" type="string"/>
         <element label="Server Name" mandatory="true" max_length="40" name="server_name" read_only="true" type="string"/>
         <element label="Server Port" mandatory="true" max_length="40" name="server_port" read_only="true" type="string"/>
+        <element label="Use MID Server" max_length="40" name="use_mid_server" type="boolean"/>
         <index name="index">
             <element name="domain_name"/>
+        </index>
+        <index name="index2">
+            <element name="mid_server"/>
         </index>
     </element>
 </database>

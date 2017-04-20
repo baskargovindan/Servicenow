@@ -16,6 +16,11 @@ ADMPAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		var url = new ADMPServerDetails().getURL();
 		if(this.getParameter('server_name') && this.getParameter('server_port'))
 			url = this.getParameter('protocol_settings')+'://'+this.getParameter('server_name')+':'+this.getParameter('server_port');
+	
+		//update MID server
+		new ADMPMIDServerHandler().setMIDServerToRestMessages(this.getParameter('MIDServer'));
+		new ADMPServerDetails().updateMIDServer(this.getParameter('useMIDServer'), this.getParameter('MIDServer'));
+	
 		try{
 			sm = new sn_ws.RESTMessageV2("MobileLogin", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
 			sm.setStringParameter('methodToCall', methodToCall);  
@@ -45,7 +50,7 @@ ADMPAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			if(responseJSON.status == 'true')
 			{
 				new ADMPDomainListHandler().insertLoginDomainList(responseJSON.responseBody);
-				var sys_id = responseJSON.sys_id = new ADMPServerDetails().insertEntry(this.getParameter('protocol_settings'), this.getParameter('server_name'), this.getParameter('server_port'), this.getParameter('is_enabled'),  this.getParameter('enable_service_catalog_item')).toString();
+				var sys_id = responseJSON.sys_id = new ADMPServerDetails().insertEntry(this.getParameter('protocol_settings'), this.getParameter('server_name'), this.getParameter('server_port'), this.getParameter('is_enabled'),  this.getParameter('enable_service_catalog_item'), this.getParameter('useMIDServer'), this.getParameter('MIDServer')).toString();
 				responseJSON.sys_id = sys_id;
 				gs.addInfoMessage('Connected Successfully.');
 			}
@@ -327,7 +332,7 @@ ADMPAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_on>2017-03-28 14:22:21</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>74291e19db793200208572ffbf961909</sys_id>
-        <sys_mod_count>235</sys_mod_count>
+        <sys_mod_count>250</sys_mod_count>
         <sys_name>ADMPAPIUtil</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -335,6 +340,6 @@ ADMPAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_74291e19db793200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 05:44:07</sys_updated_on>
+        <sys_updated_on>2017-04-18 13:16:28</sys_updated_on>
     </sys_script_include>
 </record_update>

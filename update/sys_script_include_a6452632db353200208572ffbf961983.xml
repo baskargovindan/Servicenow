@@ -35,14 +35,37 @@ ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		var gr = new GlideRecord('x_96574_admanager_admpactionslist');
 		gr.deleteMultiple();
 	},
+	updateADManagerState: function(state)
+	{
+		// To activate/deactivate all menu modules
+		var moduleRecord = new GlideRecord('sys_app_module');
+		moduleRecord.addQuery('title', 'IN', 'Create a User, Delete Users, Disable Users, Enable Users, Reset User Password, Unlock Users');
+		moduleRecord.query();
+		while(moduleRecord.next())
+		{
+			moduleRecord.active = state;
+			moduleRecord.update();
+		}
+
+		// To activate/deactivate all context menu actions
+		
+		var actionRecord = new GlideRecord('sys_ui_action');
+		actionRecord.addQuery('title', 'IN', 'Create a User in AD, Delete Users in AD, Disable Users in AD, Enable Users in AD, Reset User Password in AD, Unlock Users in AD');
+		actionRecord.query();
+		while(actionRecord.next())
+		{
+			actionRecord.active = state;
+			actionRecord.update();
+		}
+	},
     type: 'ADMPActionHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-02 07:45:14</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>a6452632db353200208572ffbf961983</sys_id>
-        <sys_mod_count>46</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>ADMPActionHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -50,6 +73,6 @@ ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a6452632db353200208572ffbf961983</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-03 13:40:49</sys_updated_on>
+        <sys_updated_on>2017-04-18 14:05:07</sys_updated_on>
     </sys_script_include>
 </record_update>

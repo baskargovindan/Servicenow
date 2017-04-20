@@ -21,6 +21,10 @@
 	if (isLoading || newValue == '') {
 		return;
 	}
+	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
+	loadingDialog.setPreference('table', 'loading');
+	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.render();
 
 	var serverDetails = new GlideAjax("ADMPServerDetails");
 	serverDetails.addParam("sysparm_name","updateState");
@@ -28,17 +32,17 @@
 	serverDetails.getXMLAnswer(response);
 	function response()
 	{
-		//TODO
+		loadingDialog.destroy();
 	}
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-29 13:40:18</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>73885f29dbfd3200208572ffbf961985</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>ADMPServerStateOnChange</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -47,7 +51,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_73885f29dbfd3200208572ffbf961985</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-11 11:05:57</sys_updated_on>
+        <sys_updated_on>2017-04-18 14:06:58</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

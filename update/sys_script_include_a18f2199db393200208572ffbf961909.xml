@@ -21,6 +21,8 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 			serverDetails.server_name = detailsRecord.server_name.toString();
 			serverDetails.server_port = detailsRecord.server_port.toString();
 			serverDetails.isenabled = detailsRecord.isenabled.toString();
+			serverDetails.useMIDServer = detailsRecord.use_mid_server.toString();
+			serverDetails.mIDServer = detailsRecord.mid_server.toString();
 			serverDetails.enable_service_catalog_item = detailsRecord.enable_service_catalog_item.toString();
 			serverDetails.login_name = detailsRecord.loginname.toString();
 			serverDetails.password = detailsRecord.password.toString();
@@ -37,7 +39,7 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		detailsRecord.deleteMultiple(); //To remove previous entry before set the new server details.
 		return 'success';
 	},
-	insertEntry:function(protocol_settings, server_name, server_port, is_enabled, enable_service_catalog_item)
+	insertEntry:function(protocol_settings, server_name, server_port, is_enabled, enable_service_catalog_item, useMIDServer, mIDServer)
 	{
 		this.removeEntries();
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
@@ -46,29 +48,55 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		detailsRecord.server_name = server_name;
 		detailsRecord.server_port = server_port;
 		detailsRecord.isenabled = is_enabled;
+		detailsRecord.use_mid_server = useMIDServer;
+		detailsRecord.mid_server = mIDServer;
 		detailsRecord.enable_service_catalog_item = enable_service_catalog_item;
 		detailsRecord.insert();
 
+		this.updateCatalogState(enable_service_catalog_item);
+		this.updateState(is_enabled);
 		return detailsRecord.sys_id;
 	},
-	updateState:function()
+	updateMIDServer:function(state, mid_server)
 	{
+		//var state = this.getParameter('state');
+	//	var mid_server = this.getParameter('mid_server');
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
 		detailsRecord.query();
 		if(detailsRecord.next())
 		{
-			detailsRecord.isenabled = this.getParameter('state');
+			detailsRecord.use_mid_server = state;
+			detailsRecord.mid_server = mid_server;
 			detailsRecord.update();
 			return 'success';
 		}
 	},
-	updateCatalogState:function()
+	updateState:function(state)
 	{
+		if(!state)
+			 state = this.getParameter('state');
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
 		detailsRecord.query();
 		if(detailsRecord.next())
 		{
-			detailsRecord.enable_service_catalog_item = this.getParameter('state');
+			detailsRecord.isenabled = state;
+			detailsRecord.update();
+		}
+		else
+		{
+			return 'failed';
+		}
+		new ADMPActionHandler().updateADManagerState(this.getParameter('state'));
+	},
+	updateCatalogState:function(state)
+	{
+		if(!state)
+			 state = this.getParameter('state');
+		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
+		detailsRecord.query();
+		if(detailsRecord.next())
+		{
+			detailsRecord.enable_service_catalog_item = state;
 			detailsRecord.update();
 		}
 		else
@@ -85,17 +113,6 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 			categoryRecord.active = this.getParameter('state');
 			categoryRecord.update();
 		}
-		
-			
-// 		// To Activate/Deactivate all catalog items;
-// 		var itemRecord = new GlideRecord('sc_cat_item');
-// 		itemRecord.addQuery('name', "Create a User in AD");
-// 		itemRecord.query();
-// 		while(itemRecord.next())
-// 		{
-// 			itemRecord.active = this.getParameter('state');
-// 			itemRecord.update();
-// 		}
 	},
 	updateLoginCredentials:function(username, pwd, domainName)
 	{
@@ -161,7 +178,7 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_created_on>2017-03-28 11:13:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a18f2199db393200208572ffbf961909</sys_id>
-        <sys_mod_count>97</sys_mod_count>
+        <sys_mod_count>104</sys_mod_count>
         <sys_name>ADMPServerDetails</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -169,6 +186,6 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a18f2199db393200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:53:11</sys_updated_on>
+        <sys_updated_on>2017-04-18 14:15:14</sys_updated_on>
     </sys_script_include>
 </record_update>

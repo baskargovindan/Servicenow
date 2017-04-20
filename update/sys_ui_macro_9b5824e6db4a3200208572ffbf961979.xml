@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sys_ui_macro">
     <sys_ui_macro action="INSERT_OR_UPDATE">
-        <active>true</active>
+        <active>false</active>
         <category>general</category>
         <description>ADMPUserList</description>
         <media_type/>
@@ -12,7 +12,7 @@
         <sys_created_on>2017-04-13 13:29:44</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>9b5824e6db4a3200208572ffbf961979</sys_id>
-        <sys_mod_count>56</sys_mod_count>
+        <sys_mod_count>57</sys_mod_count>
         <sys_name>ADMPUserList</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -20,7 +20,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_macro_9b5824e6db4a3200208572ffbf961979</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:29:15</sys_updated_on>
+        <sys_updated_on>2017-04-18 14:42:59</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<div id="ADUserList">
