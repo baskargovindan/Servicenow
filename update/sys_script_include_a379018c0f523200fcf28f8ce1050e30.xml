@@ -37,7 +37,7 @@ ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxPr
 	setMIDServerToRestMessages: function(sys_id)
 	{
 		var restMessageRecord = new GlideRecord('sys_rest_message_fn');
-		restMessageRecord.addQuery('qualified_name', 'IN', 'ADManagerUnlockUser [ post ], ADManagerADUserList [ post ], ADManagerTemplateNames [ post ], ADManagerEnableUser [ post ], ADManagerLogin [ post ], ADManagerResetPwd [ post ], ADManagerCreateUser [ post ], ADManagerDeleteUser [ post ]');
+		restMessageRecord.addQuery('qualified_name', 'IN', 'ADManagerUnlockUser [ post ], ADManagerADUserList [ post ], ADManagerTemplateNames [ post ], ADManagerEnableUser [ post ], ADManagerGetDomainList [ post ], ADManagerResetPwd [ post ], ADManagerCreateUser [ post ], ADManagerDeleteUser [ post ], ADManagerGetAuthToken [ post ]');
 		restMessageRecord.query();
 		while(restMessageRecord.next())
 		{
@@ -52,7 +52,7 @@ ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxPr
         <sys_created_on>2017-04-18 07:45:24</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a379018c0f523200fcf28f8ce1050e30</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>ADManagerMIDServerHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -60,6 +60,6 @@ ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxPr
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a379018c0f523200fcf28f8ce1050e30</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-21 14:23:52</sys_updated_on>
+        <sys_updated_on>2017-04-25 11:04:20</sys_updated_on>
     </sys_script_include>
 </record_update>

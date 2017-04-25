@@ -150,15 +150,28 @@ function getUserData()
 function constructComments(requestDetails)
 {
 	requestDetails = requestDetails.evalJSON();
-	var comments = '';
+	var comments = '[code]<ul class="sn-widget-list sn-widget-list-table">';
 	for(var key in requestDetails)
 	{
 		var value = requestDetails[key];
 		if(value != '')
 		{
-			if(key == 'Password')
-				value = '******';
-			comments = comments+'\n'+key+' : '+value;
+			if(key == 'DomainName')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Selected Domain</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'TemplateName')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Selected Template</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'FirstName')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">First Name</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'LastName')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Last Name</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'Password')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Password</span><span class="sn-widget-list-table-cell"><span class="ng-scope">******</span></span></li>';
+			else if(key == 'MobileNumber')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Mobile Number</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'TelephoneNumber')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Telephone Number</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
+			else if(key == 'JobTitle')
+				comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Job Title</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+value+'</span></span></li>';
 		}
 	}
 	return comments;
@@ -183,7 +196,7 @@ function loadData(formData)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6697f167db717200208572ffbf9619a7</sys_id>
-        <sys_mod_count>81</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_name>ADManagerSUCOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -192,7 +205,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_6697f167db717200208572ffbf9619a7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-25 06:43:27</sys_updated_on>
+        <sys_updated_on>2017-04-25 10:05:58</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

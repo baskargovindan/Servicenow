@@ -117,7 +117,12 @@ function constructRequestDetails(usersList)
 function constructComments(requestDetails)
 {
 	requestDetails = requestDetails.evalJSON();
-	var comments = 'Domain Name : '+requestDetails.domainName+' \n User Name : ';
+	var comments = '[code]<ul class="sn-widget-list sn-widget-list-table">';
+	
+	comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Selected Domain</span><span class="sn-widget-list-table-cell"><span class="ng-scope">'+requestDetails.domainName+'</span></span></li>';
+	
+	comments = comments+'<li class="ng-scope"><span class="sn-widget-list-table-cell">Selected User</span><span class="sn-widget-list-table-cell"><span class="ng-scope">';
+
 	var userList = requestDetails.usersList;
 
 	for(var i=0; i<userList.length; i++)
@@ -129,9 +134,9 @@ function constructComments(requestDetails)
 		else
 			comments = comments+',  '+userList[i].userPrincipalName;
 	}
+	comments = comments+'</span></span></li></ul>[/code]';
 	return comments;
-}
-]]></script>
+}]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:24:31</sys_created_on>
@@ -139,7 +144,7 @@ function constructComments(requestDetails)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0f55197adbce3200208572ffbf9619d0</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>ADManagerDisableUserOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -148,7 +153,7 @@ function constructComments(requestDetails)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_0f55197adbce3200208572ffbf9619d0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 14:08:23</sys_updated_on>
+        <sys_updated_on>2017-04-25 10:02:27</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>
