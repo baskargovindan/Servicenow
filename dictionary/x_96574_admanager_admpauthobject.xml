@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element label="ADMPAuthObject" max_length="40" name="x_96574_admanager_admpauthobject" type="collection">
+    <element label="ADManagerAuthObject" max_length="40" name="x_96574_admanager_admpauthobject" type="collection">
         <element label="AuthToken" mandatory="true" max_length="255" name="authtoken" type="password2"/>
         <element label="LoginName" max_length="40" name="loginname" type="string"/>
         <element label="Login Id" max_length="40" name="login_id" type="integer"/>

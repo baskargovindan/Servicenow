@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element label="ADMPActionsList" max_length="40" name="x_96574_admanager_admpactionslist" type="collection">
+    <element label="ADManagerActionsList" max_length="40" name="x_96574_admanager_admpactionslist" type="collection">
         <element label="Action ID" max_length="40" name="action_id" type="integer"/>
         <element label="Domain ID" max_length="40" name="domain_id" type="integer"/>
         <element label="Unique ID" mandatory="true" max_length="40" name="unique_id" type="integer" unique="true"/>

@@ -7,20 +7,20 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Create a User in AD">ad5ff063db317200208572ffbf9619d4</cat_item>
+        <cat_item display_value="Create User">ad5ff063db317200208572ffbf9619d4</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPSUCOnSubmit</name>
+        <name>ADManagerSUCOnSubmit</name>
         <order/>
         <script><![CDATA[function onSubmit() {
 	g_form.clearMessages();
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
 
 
@@ -29,7 +29,7 @@
 	var parent = gURL.getParam('parent');
 
 
-	if(parent)
+	if(parent && g_user.hasRole('x_96574_admanager.admanager_admin'))
 	{
 		if(parent == 'module')
 		{
@@ -43,7 +43,7 @@
 	else
 	{
 		var requestDetails = constructRequestDetails();
-		var incidentAjax = new GlideAjax('ADMPIncidentHandler');
+		var incidentAjax = new GlideAjax('ADManagerIncidentHandler');
 		incidentAjax.addParam("sysparm_name","createIncident");
 		incidentAjax.addParam("requestDetails", requestDetails);
 		incidentAjax.addParam("description", "Create a user in AD with the following details");
@@ -53,7 +53,7 @@
 	
 	function createUser()
 	{
-		var createUserAjax = new GlideAjax('ADMPAPIUtil');
+		var createUserAjax = new GlideAjax('ADManagerAPIUtil');
 		createUserAjax.addParam("sysparm_name","createSingleUser");
 		createUserAjax.addParam("domainName", getDomainName());
 		createUserAjax.addParam("userDetails", getUserData());
@@ -84,7 +84,7 @@
 	function serverResponse(response)
 	{
 		loadingDialog.destroy();
-		g_form.addInfoMessage('Thank you, your request has been submitted');
+		g_form.addInfoMessage('Your request has been successfully submitted to the IT team.');
 		loadData({});
 	}
 
@@ -98,10 +98,10 @@ function constructRequestDetails()
 	var domainName = g_form.getValue('Select_Domain');
 	var firstname = g_form.getValue('First_Name');
 	var lastName = g_form.getValue('Last_Name');
-	var logonName = g_form.getValue('Logon_Name');
-	var logonnamePreWindows =  g_form.getValue('Logon_namepreWindows_');
+	//var logonName = g_form.getValue('Logon_Name');
+	//var logonnamePreWindows =  g_form.getValue('Logon_namepreWindows_');
 	var password = getPassword();
-	var email = g_form.getValue('EMail');
+	//var email = g_form.getValue('EMail');
 	var mobileNumber = g_form.getValue('Mobile_Number');
 	var telephoneNumber = g_form.getValue('Telephone_Number');
 	var jobTitle = g_form.getValue('Job_Title');
@@ -112,10 +112,10 @@ function constructRequestDetails()
 	requestDetails.DomainName =domainName;
 	requestDetails.FirstName = firstname;
 	requestDetails.LastName = lastName;
-	requestDetails.LogonName = logonName;
-	requestDetails.LogonNamePreWindows = logonnamePreWindows;
+	//requestDetails.LogonName = logonName;
+	//requestDetails.LogonNamePreWindows = logonnamePreWindows;
 	requestDetails.Password = password;
-	requestDetails.Email = email;
+	//requestDetails.Email = email;
 	requestDetails.MobileNumber = mobileNumber;
 	requestDetails.TelephoneNumber = telephoneNumber;
 	requestDetails.JobTitle = jobTitle;
@@ -134,10 +134,10 @@ function getUserData()
 	var userDetails = {};
 	userDetails.givenName =  g_form.getValue('First_Name');
 	userDetails.sn =  g_form.getValue('Last_Name');
-	userDetails.userPrincipalName = g_form.getValue('Logon_Name');
-	userDetails.sAMAccountName = g_form.getValue('Logon_namepreWindows_');
+	//userDetails.userPrincipalName = g_form.getValue('Logon_Name');
+	//userDetails.sAMAccountName = g_form.getValue('Logon_namepreWindows_');
 	userDetails.password = getPassword();
-	userDetails.mail = g_form.getValue('EMail');
+	//userDetails.mail = g_form.getValue('EMail');
 	userDetails.mobile = g_form.getValue('Mobile_Number');
 	userDetails.telephoneNumber =  g_form.getValue('Telephone_Number');
 	userDetails.title = g_form.getValue('Job_Title');
@@ -167,10 +167,10 @@ function loadData(formData)
 {
 	g_form.setValue('First_Name', formData.FirstName?formData.FirstName:'');
 	g_form.setValue('Last_Name', formData.LastName?formData.LastName:'');
-	g_form.setValue('Logon_Name', formData.LogonName?formData.LogonName:'');
-	g_form.setValue('Logon_namepreWindows_', formData.LogonNamePreWindows?formData.LogonNamePreWindows:'');
+	//g_form.setValue('Logon_Name', formData.LogonName?formData.LogonName:'');
+	//g_form.setValue('Logon_namepreWindows_', formData.LogonNamePreWindows?formData.LogonNamePreWindows:'');
 	setPassword(formData.Password?formData.Password:'');
-	g_form.setValue('EMail', formData.Email?formData.Email:'');
+	//g_form.setValue('EMail', formData.Email?formData.Email:'');
 	g_form.setValue('Mobile_Number', formData.MobileNumber?formData.MobileNumber:'');
 	g_form.setValue('Telephone_Number', formData.TelephoneNumber?formData.TelephoneNumber:'');
 	g_form.setValue('Job_Title', formData.JobTitle?formData.JobTitle:'');
@@ -179,12 +179,12 @@ function loadData(formData)
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-04 11:36:24</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6697f167db717200208572ffbf9619a7</sys_id>
-        <sys_mod_count>76</sys_mod_count>
-        <sys_name>ADMPSUCOnSubmit</sys_name>
+        <sys_mod_count>81</sys_mod_count>
+        <sys_name>ADManagerSUCOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -192,7 +192,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_6697f167db717200208572ffbf9619a7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-14 14:01:49</sys_updated_on>
+        <sys_updated_on>2017-04-25 06:43:27</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

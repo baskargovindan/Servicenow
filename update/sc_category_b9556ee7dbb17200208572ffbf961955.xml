@@ -2,7 +2,7 @@
 <record_update table="sc_category">
     <sc_category action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description/>
+        <description>Create requests for Active Directory  management tasks such as creating users, resetting passwords, and enabling or disabling users.</description>
         <entitlement_script/>
         <header_icon/>
         <homepage_image/>
@@ -24,16 +24,16 @@
         <sys_created_on>2017-04-04 14:54:04</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b9556ee7dbb17200208572ffbf961955</sys_id>
-        <sys_mod_count>34</sys_mod_count>
-        <sys_name>ADManager Plus</sys_name>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>Active Directory Management</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>true</sys_replace_on_upgrade>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sc_category_b9556ee7dbb17200208572ffbf961955</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 14:50:58</sys_updated_on>
-        <title>ADManager Plus</title>
+        <sys_updated_on>2017-04-21 15:24:16</sys_updated_on>
+        <title>Active Directory Management</title>
     </sc_category>
     <sys_translated_text action="delete_multiple" query="documentkey=b9556ee7dbb17200208572ffbf961955"/>
     <sys_attachment action="INSERT_OR_UPDATE">

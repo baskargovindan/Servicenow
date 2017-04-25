@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPAuthHandler</api_name>
+        <api_name>x_96574_admanager.ADManagerAuthHandler</api_name>
         <client_callable>true</client_callable>
-        <description>ADMP AuthObject Handler</description>
-        <name>ADMPAuthHandler</name>
-        <script><![CDATA[var ADMPAuthHandler = Class.create();
-ADMPAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager AuthObject Handler</description>
+        <name>ADManagerAuthHandler</name>
+        <script><![CDATA[var ADManagerAuthHandler = Class.create();
+ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	handleResponse: function(response)
 	{
 		this.removeAuth();
@@ -23,8 +23,8 @@ ADMPAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		
 		var admpAuthObject = new global.JSON().decode(authObject.AdmpAuthObject);
 
-		new ADMPDomainListHandler().addDomainList(admpAuthObject.domainNameList);
-		new ADMPActionHandler().addActionList(admpAuthObject.domainsVsActionList);
+		new ADManagerDomainListHandler().addDomainList(admpAuthObject.domainNameList);
+		new ADManagerActionHandler().addActionList(admpAuthObject.domainsVsActionList);
 	},
 	removeAuth: function()
 	{
@@ -53,21 +53,21 @@ ADMPAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 		return authToken;
 	},
-    type: 'ADMPAuthHandler'
+    type: 'ADManagerAuthHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-02 06:25:53</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>b8cdd6f2dbf13200208572ffbf9619c2</sys_id>
-        <sys_mod_count>33</sys_mod_count>
-        <sys_name>ADMPAuthHandler</sys_name>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>ADManagerAuthHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_b8cdd6f2dbf13200208572ffbf9619c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-04 09:16:23</sys_updated_on>
+        <sys_updated_on>2017-04-21 11:35:16</sys_updated_on>
     </sys_script_include>
 </record_update>

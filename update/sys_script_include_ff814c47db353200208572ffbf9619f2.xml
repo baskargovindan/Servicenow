@@ -3,20 +3,26 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPErrorHandler</api_name>
+        <api_name>x_96574_admanager.ADManagerErrorHandler</api_name>
         <client_callable>true</client_callable>
-        <description/>
-        <name>ADMPErrorHandler</name>
-        <script><![CDATA[var ADMPErrorHandler = Class.create();
-ADMPErrorHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager Error Handler</description>
+        <name>ADManagerErrorHandler</name>
+        <script><![CDATA[var ADManagerErrorHandler = Class.create();
+ADManagerErrorHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	handleError: function(responseCode, responseBody)
 	{		
 		var responseJSON = {};
-		if(responseCode != '200' || responseBody == '' || responseBody == 'null')
+		if(responseCode == '0')
 		{
 			responseJSON.status = 'false';
 			responseJSON.responseCode = responseCode;
-			responseJSON.responseBody = (responseBody == '' || responseBody == null)?'Couldn\'t connect to server':responseBody;
+			responseJSON.responseBody = 'Cannot connect to ADManager Plus. Possible reasons could be no network connection, wrong server name or port number, or MID server being down.';
+		}
+		else if(responseCode != '200' || responseBody == '' || responseBody == 'null')
+		{
+			responseJSON.status = 'false';
+			responseJSON.responseCode = responseCode;
+			responseJSON.responseBody = (responseBody == '' || responseBody == null)?'Cannot connect to ADManager Plus. Possible reasons could be no network connection, wrong server name or port number, or MID server being down.':responseBody;
 		}
 		else if((new global.JSON().decode(responseBody)).ERROR_CODE != null)
 		{
@@ -58,21 +64,21 @@ ADMPErrorHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		}
 		return responseJSON;
 	},
-	type: 'ADMPErrorHandler'
+	type: 'ADManagerErrorHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-02 13:41:20</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>ff814c47db353200208572ffbf9619f2</sys_id>
-        <sys_mod_count>47</sys_mod_count>
-        <sys_name>ADMPErrorHandler</sys_name>
+        <sys_mod_count>49</sys_mod_count>
+        <sys_name>ADManagerErrorHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_ff814c47db353200208572ffbf9619f2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-12 06:35:45</sys_updated_on>
+        <sys_updated_on>2017-04-24 14:40:11</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -7,20 +7,21 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Unlock Users in AD">5a881dbadbce3200208572ffbf961956</cat_item>
+        <cat_item display_value="Unlock User">5a881dbadbce3200208572ffbf961956</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPUnlockUserOnLoad</name>
+        <name>ADManagerUnlockUserOnLoad</name>
         <order/>
         <script><![CDATA[function onLoad() {
 	var loadingWindow = getDialogWindow();
 	loadingWindow.render();
 
 	g_form.clearMessages();
+	g_form.disableAttachments();
 
 	hideSubmitButton();
 	hideUsersList();
@@ -31,14 +32,14 @@
 	var formDataAjax;
 	if(sys_id != null && sys_id != '')
 	{
-		formDataAjax = new GlideAjax("ADMPCommonUtil");
+		formDataAjax = new GlideAjax("ADManagerCommonUtil");
 		formDataAjax.addParam("sysparm_name","loadDefaultValues");
 		formDataAjax.addParam("sys_id", sys_id);
 		formDataAjax.getXMLAnswer(handleResponse);
 	}
 	else
 	{
-		formDataAjax = new GlideAjax("ADMPDomainListHandler");
+		formDataAjax = new GlideAjax("ADManagerDomainListHandler");
 		formDataAjax.addParam("sysparm_name","getDomainList");
 		formDataAjax.getXMLAnswer(handleDomainResponse);
 	}
@@ -46,13 +47,36 @@
 	function handleResponse(formData)
 	{
 		formData = formData.evalJSON(); //Transform the JSON string to an object   
+		if(formData.status == 'false')
+		{
+			g_form.addErrorMessage(formData.responseBody);
+			g_form.setValue('Name', '-');
+			g_form.setDisabled('Select_Domain', true);
+			g_form.setDisabled('Name', true);
+			loadingWindow.destroy();
+			return;
+		}
+		showSearchButton();
 		formData.defaultDomainName = setDomainList(formData.domainList.evalJSON());
-		loadData(formData);
+		if(formData.usersList)
+			loadData(formData);
 		loadingWindow.destroy();
 	}
 	function handleDomainResponse(domainList)
 	{
-		var defaultDomain = setDomainList(domainList.evalJSON());
+		domainList = domainList.evalJSON();
+		if(domainList.status == 'false')
+		{
+			g_form.addErrorMessage(domainList.responseBody);
+			g_form.setValue('Name', '-');
+			g_form.setDisabled('Select_Domain', true);
+			g_form.setDisabled('Name', true);
+			loadingWindow.destroy();
+			return;
+		}
+		showSearchButton();
+
+		var defaultDomain = setDomainList(domainList);
 		g_form.setValue('Select_Domain', defaultDomain);
 		loadingWindow.destroy();
 	}
@@ -64,7 +88,7 @@ function setDomainList(domainList)
 	for(var i=0; i<domainList.length; i++)
 	{
 		g_form.addOption('Select_Domain', domainList[i].domainName, domainList[i].domainName);
-		if(domainList[i].isdefault == 'true')
+		if(domainList[i].isDefault == 'true')
 			defaultDomain = domainList[i].domainName;
 	}
 	return defaultDomain;
@@ -77,19 +101,19 @@ function loadData(formData)
 	formData.endIndex = formData.usersList.length;
 	formData.count = formData.usersList.length;
 	formData.UsersList = formData.usersList;
-	loadUserList(JSON.stringify(formData));
+	loadUserList(JSON.stringify(formData), true);
 }
 
 ]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:38:23</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2e8815fadbce3200208572ffbf96190a</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>ADMPUnlockUserOnLoad</sys_name>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>ADManagerUnlockUserOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -97,7 +121,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_2e8815fadbce3200208572ffbf96190a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 12:09:27</sys_updated_on>
+        <sys_updated_on>2017-04-24 14:24:31</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>10</ui_type>

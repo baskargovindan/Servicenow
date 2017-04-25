@@ -7,14 +7,14 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Create a User in AD">ad5ff063db317200208572ffbf9619d4</cat_item>
+        <cat_item display_value="Create User">ad5ff063db317200208572ffbf9619d4</cat_item>
         <cat_variable>IO:5c7ceeb9db823200208572ffbf961923</cat_variable>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPSUCDomainOnChange</name>
+        <name>ADManagerSUCDomainOnChange</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
    if (isLoading || newValue == '') {
@@ -24,12 +24,12 @@
 
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
 	
 	var domain = g_form.getValue('Select_Domain');
 
-	var templateListAjax = new GlideAjax("ADMPTemplateHandler");
+	var templateListAjax = new GlideAjax("ADManagerTemplateHandler");
 	templateListAjax.addParam("sysparm_name","getTemplateList");
 	templateListAjax.addParam("domainName", newValue);
 	templateListAjax.getXMLAnswer(handleResponsee);
@@ -39,10 +39,14 @@
 		loadingDialog.destroy();
 		templateList = templateList.evalJSON();
 		g_form.clearOptions('Select_Template');
+		var defaultTemplate = '';
 		for(var i=0; i<templateList.length; i++)
 		{
-			g_form.addOption('Select_Template', templateList[i], templateList[i]);
+			g_form.addOption('Select_Template', templateList[i].templateName, templateList[i].templateName);
+			if(templateList[i].isDefault == 'true')
+				defaultTemplate = templateList[i].templateName;
 		}
+		g_form.setValue('Select_Template', defaultTemplate);
 	}
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
@@ -52,8 +56,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>9ecc2902db023200208572ffbf9619c2</sys_id>
-        <sys_mod_count>20</sys_mod_count>
-        <sys_name>ADMPSUCDomainOnChange</sys_name>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>ADManagerSUCDomainOnChange</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -61,7 +65,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_9ecc2902db023200208572ffbf9619c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:43:44</sys_updated_on>
+        <sys_updated_on>2017-04-24 12:50:38</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

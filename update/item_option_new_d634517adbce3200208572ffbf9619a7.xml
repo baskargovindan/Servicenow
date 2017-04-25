@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Enable Users in AD">95752e06db423200208572ffbf961990</cat_item>
+        <cat_item display_value="Enable User">95752e06db423200208572ffbf961990</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -31,7 +31,7 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="Search Button">118f23d2db0a3200208572ffbf96192f</macro>
+        <macro display_value="ADManager Search Button">118f23d2db0a3200208572ffbf96192f</macro>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>

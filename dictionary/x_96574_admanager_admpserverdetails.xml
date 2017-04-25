@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element label="ADMPServerDetails" max_length="40" name="x_96574_admanager_admpserverdetails" type="collection">
+    <element label="ADManagerServerDetails" max_length="40" name="x_96574_admanager_admpserverdetails" type="collection">
         <element default="ADManager Plus" display="true" label="Application Name" max_length="40" name="application_name" read_only="true" type="string"/>
         <element choice="2" default="Select a Domain" label="Domain Name" max_length="32" name="domain_name" reference="x_96574_admanager_admplogindomaindetails" type="reference">
             <choice/>

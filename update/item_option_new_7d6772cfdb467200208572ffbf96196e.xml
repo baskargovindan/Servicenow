@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -31,7 +31,7 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="ADMPLogin">9d973647db867200208572ffbf961943</macro>
+        <macro display_value="ADManager Login">9d973647db867200208572ffbf961943</macro>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>

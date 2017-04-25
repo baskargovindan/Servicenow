@@ -7,17 +7,19 @@
         <applies_req_item>false</applies_req_item>
         <applies_sc_task>false</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Create a User in AD">ad5ff063db317200208572ffbf9619d4</cat_item>
+        <cat_item display_value="Create User">ad5ff063db317200208572ffbf9619d4</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPSUCOnLoad</name>
+        <name>ADManagerSUCOnLoad</name>
         <order/>
         <script><![CDATA[function onLoad() {
 	g_form.clearMessages();
+	g_form.disableAttachments();
+	
 	removeEmptyVars();
 	var gURL = new GlideURL();
 	gURL.setFromCurrent();
@@ -25,9 +27,9 @@
 
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
-	var formDataAjax = new GlideAjax("ADMPCommonUtil");
+	var formDataAjax = new GlideAjax("ADManagerCommonUtil");
 	if(sys_id != null && sys_id != '')
 	{
 		formDataAjax.addParam("sysparm_name","loadDefaultValues");
@@ -45,20 +47,29 @@
 		if(formData)
 		{
 			formData = formData.evalJSON(); //Transform the JSON string to an object   
-			var domainList  = (formData.domainList).evalJSON();
-			g_form.clearOptions('Select_Domain');
-			var defaultDomain = '';
-			for(var i=0; i<domainList.length; i++)
+			if(formData.status == 'true')
 			{
-				g_form.addOption('Select_Domain', domainList[i].domainName, domainList[i].domainName);
-				if(domainList[i].isdefault == 'true')
-					defaultDomain = domainList[i].domainName;
+				var domainList  = (formData.domainList).evalJSON();
+				g_form.clearOptions('Select_Domain');
+				var defaultDomain = '';
+				for(var i=0; i<domainList.length; i++)
+				{
+					g_form.addOption('Select_Domain', domainList[i].domainName, domainList[i].domainName);
+					if(domainList[i].isDefault == 'true')
+						defaultDomain = domainList[i].domainName;
+				}
+				if(formData.DomainName)
+					defaultDomain = formData.DomainName;
+				g_form.setValue('Select_Domain', defaultDomain);
+
+				loadData(formData);
+				loadingDialog.destroy();
 			}
-			g_form.setValue('Select_Domain', defaultDomain);
-
-			loadData(formData);
-			loadingDialog.destroy();
-
+			else
+			{
+				g_form.addErrorMessage(formData.responseBody);
+				loadingDialog.destroy();
+			}
 		}
 		else
 			loadingDialog.destroy();
@@ -69,10 +80,10 @@ function loadData(formData)
 {
 	g_form.setValue('First_Name', formData.FirstName?formData.FirstName:'');
 	g_form.setValue('Last_Name', formData.LastName?formData.LastName:'');
-	g_form.setValue('Logon_Name', formData.LogonName?formData.LogonName:'');
-	g_form.setValue('Logon_namepreWindows_', formData.LogonNamePreWindows?formData.LogonNamePreWindows:'');
+	//g_form.setValue('Logon_Name', formData.LogonName?formData.LogonName:'');
+	//g_form.setValue('Logon_namepreWindows_', formData.LogonNamePreWindows?formData.LogonNamePreWindows:'');
 	setPassword(formData.Password?formData.Password:'');
-	g_form.setValue('EMail', formData.Email?formData.Email:'');
+	//g_form.setValue('EMail', formData.Email?formData.Email:'');
 	g_form.setValue('Mobile_Number', formData.MobileNumber?formData.MobileNumber:'');
 	g_form.setValue('Telephone_Number', formData.TelephoneNumber?formData.TelephoneNumber:'');
 	g_form.setValue('Job_Title', formData.JobTitle?formData.JobTitle:'');
@@ -88,8 +99,8 @@ function loadData(formData)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0216cde3db317200208572ffbf96192c</sys_id>
-        <sys_mod_count>119</sys_mod_count>
-        <sys_name>ADMPSUCOnLoad</sys_name>
+        <sys_mod_count>126</sys_mod_count>
+        <sys_name>ADManagerSUCOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -97,7 +108,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_0216cde3db317200208572ffbf96192c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:55:37</sys_updated_on>
+        <sys_updated_on>2017-04-25 06:41:57</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>0</ui_type>

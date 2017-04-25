@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>false</active>
         <attributes/>
-        <cat_item display_value="Create a User in AD">ad5ff063db317200208572ffbf9619d4</cat_item>
+        <cat_item display_value="Create User">ad5ff063db317200208572ffbf9619d4</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -72,7 +72,7 @@
         <table/>
         <tooltip/>
         <type>15</type>
-        <ui_page display_value="Create a User in AD">bcc4c080dbca7200208572ffbf96195d</ui_page>
+        <ui_page/>
         <use_dynamic_default>false</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
         <variable_name/>

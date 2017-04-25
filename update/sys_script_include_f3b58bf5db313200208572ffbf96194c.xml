@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPDomainListHandler</api_name>
+        <api_name>x_96574_admanager. ADManagerDomainListHandler</api_name>
         <client_callable>true</client_callable>
-        <description>DomainListHandler</description>
-        <name>ADMPDomainListHandler</name>
-        <script><![CDATA[var ADMPDomainListHandler = Class.create();
-ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager DomainListHandler</description>
+        <name> ADManagerDomainListHandler</name>
+        <script><![CDATA[var ADManagerDomainListHandler = Class.create();
+ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	insertLoginDomainList:function(domainVsFlatName)
 	{
 		var gr = new GlideRecord('x_96574_admanager_admplogindomaindetails');
@@ -94,6 +94,13 @@ ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProces
 		var domainList = [];
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
 		detailsRecord.query();
+		if(!(new ADManagerServerDetails().isServerConfigured()) || detailsRecord.getRowCount() ==0)
+		{
+			var requestDetails  = {};
+			requestDetails.status = 'false';
+			requestDetails.responseBody = 'Please configure ADManager server or Contact you administrator for more details.';
+			return new global.JSON().encode(requestDetails);
+		}
 		while(detailsRecord.next()) { 
 			var domainDetails = {};
 			domainDetails.domainName = detailsRecord.domain_name.toString();
@@ -103,21 +110,21 @@ ADMPDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProces
 		}
 		return JSON.stringify(domainList);
 	},
-    type: 'ADMPDomainListHandler'
+    type: 'ADManagerDomainListHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-30 06:47:22</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>f3b58bf5db313200208572ffbf96194c</sys_id>
-        <sys_mod_count>30</sys_mod_count>
-        <sys_name>ADMPDomainListHandler</sys_name>
+        <sys_mod_count>40</sys_mod_count>
+        <sys_name> ADManagerDomainListHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_f3b58bf5db313200208572ffbf96194c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:03:49</sys_updated_on>
+        <sys_updated_on>2017-04-24 14:31:44</sys_updated_on>
     </sys_script_include>
 </record_update>

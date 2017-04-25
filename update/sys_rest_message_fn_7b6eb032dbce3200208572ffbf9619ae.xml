@@ -11,15 +11,15 @@
         <lock>false</lock>
         <oauth2_profile/>
         <protocol_name/>
-        <qualified_name>EnableUser [ post ]</qualified_name>
+        <qualified_name>ADManagerEnableUser [ post ]</qualified_name>
         <rest_endpoint>${url}/MobileAPI/EnableUser</rest_endpoint>
-        <rest_message display_value="EnableUser">2bed7c32dbce3200208572ffbf96190d</rest_message>
+        <rest_message display_value="ADManagerEnableUser">2bed7c32dbce3200208572ffbf96190d</rest_message>
         <sys_class_name>sys_rest_message_fn</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 09:44:21</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>7b6eb032dbce3200208572ffbf9619ae</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>16</sys_mod_count>
         <sys_name>post</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -27,9 +27,9 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_rest_message_fn_7b6eb032dbce3200208572ffbf9619ae</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-20 10:53:39</sys_updated_on>
+        <sys_updated_on>2017-04-24 18:42:24</sys_updated_on>
         <use_basic_auth>false</use_basic_auth>
-        <use_mid_server display_value="MID_ADManager">c73204b80f9a7200fcf28f8ce1050eff</use_mid_server>
+        <use_mid_server display_value="SNCMIDServer_ADManager">088bb5090fd6b200fcf28f8ce1050e0d</use_mid_server>
         <use_mutual_auth>false</use_mutual_auth>
     </sys_rest_message_fn>
 </record_update>

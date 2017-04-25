@@ -2,13 +2,17 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[function loadUserList(userListJSON, dialogWindow)
+        <client_script><![CDATA[function loadUserList(userListJSON, selectAll, dialogWindow)
 {
 	userListJSON = userListJSON.evalJSON(); 
 	$j('#start_index').html(userListJSON.startIndex);
 	$j('#end_index').html(userListJSON.endIndex);
 	$j('#total_count').html(userListJSON.count);
 	var UsersList = userListJSON.UsersList;
+	
+	var headerHtml = '<th style=" padding: 0 2px 5px; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span> Display Name</span></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span> Logon Name</span></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span> Distinguished Name</span></th><th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col"><span> OU Name</span></th>';
+	$j('#ADUserListHeader').html(headerHtml);
+	
 	var html = '';
 	if(UsersList.length > 0)
 	{
@@ -28,14 +32,14 @@
 			var sid = UsersList[i].SID_STRING?UsersList[i].SID_STRING:UsersList[i].objectSID;
 			var sAMAccountName = UsersList[i].SAM_ACCOUNT_NAME?UsersList[i].SAM_ACCOUNT_NAME:UsersList[i].sAMAccountName;
 			var objectGUID = UsersList[i].OBJECT_GUID?UsersList[i].OBJECT_GUID:UsersList[i].objectGUID;
-			var isChecked = isExist(UsersList[i].OBJECT_GUID)?'checked' : '';
+			var isChecked = selectAll?'checked' : '';
 			
 			if(i%2==1)
 				html = html+'<tr class="list_row list_odd">';
 			else
 				html = html+'<tr class="list_row list_even">';
 
-			html = html+'<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-checkbox"><input data-logon_name = "'+logonName+'" data-samaccountname = "'+sAMAccountName+'" data-sid = "'+sid+'" data-distinguishedname = "'+distinguishedName+'" data-displayname = "'+displayName+'" data-ouname = "'+ouName+'" name="check_aduser" id="check_aduserlist_'+objectGUID+'" data-type="list2_checkbox" type="checkbox" class="checkbox " onClick="selectSingle(this);" value = '+objectGUID+' '+isChecked+'></input><label for="check_aduserlist_'+objectGUID+'" class="checkbox-label" style=""></label></span></td>';
+			html = html+'<td style="white-space:nowrap;" class="list_decoration_cell col-control col-small col-center " rowspan="1" scope="row"><span class="input-group-radio"><input data-logon_name = "'+logonName.replace(/"/g, "'")+'" data-samaccountname = "'+sAMAccountName.replace(/"/g, "'")+'" data-sid = "'+sid+'" data-distinguishedname = "'+distinguishedName.replace(/"/g, "'")+'" data-displayname = "'+displayName.replace(/"/g, "'")+'" data-ouname = "'+ouName.replace(/"/g, "'")+'" name="check_aduser" id="check_aduserlist_'+objectGUID+'" data-type="list2_checkbox" type="radio" class="radio "  value = '+objectGUID+' '+isChecked+'></input><label for="check_aduserlist_'+objectGUID+'" class="radio-label" style=""></label></span></td>';
 
 			html = html+'<td class="vt vt-spacer" style="padding: 0">'+displayName+'</td><td class="vt vt-spacer" style="padding: 0">'+logonName+'</td><td class="vt vt-spacer" style="padding: 0">'+distinguishedName+'</td><td class="vt vt-spacer" style="padding: 0">'+ouName+'</td></tr>'; 
 		}
@@ -67,70 +71,47 @@ function getDialogWindow()
 {
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	return loadingDialog;
 }
 function navigateFirst()
 {
 	var StartIndex = parseInt($j('#start_index').html());
-	if(StartIndex>100)
-		searchUsers(1, 100);
+	if(StartIndex>20)
+		searchUsers(1, 20);
 }
 function navigateBack()
 {
 	var total_count = parseInt($j('#total_count').html());
 	var StartIndex = parseInt($j('#start_index').html());
 
-	if(StartIndex-100>=1)
-		searchUsers(StartIndex-100, 100);
+	if(StartIndex-20>=1)
+		searchUsers(StartIndex-20, 20);
 }
 function navigateNext()
 {
 	var total_count = parseInt($j('#total_count').html());
 	var StartIndex = parseInt($j('#start_index').html());
 
-	if(StartIndex+100<total_count)
-		searchUsers(StartIndex+100, 100);
+	if(StartIndex+20<total_count)
+		searchUsers(StartIndex+20, 20);
 }
 function navigateLast()
 {
 	var total_count = parseInt($j('#total_count').html());
 	var StartIndex = parseInt($j('#start_index').html());
 
-	if(StartIndex+100<total_count)
+	if(StartIndex+20<total_count)
 	{
 		var startIndex = 1;
-		if(total_count%100 ==0)
-			startIndex = total_count-99;
+		if(total_count%20 ==0)
+			startIndex = total_count-19;
 		else
-			startIndex = total_count-(total_count%100)+1;
+			startIndex = total_count-(total_count%20)+1;
 
-		searchUsers(startIndex, 100);
+		searchUsers(startIndex, 20);
 	}
 
-}
-
-function selectAllFunc()
-{
-// 	$j('#ADUserListSelectAll').prop("checked",true);
-// 	$j('#ADUserListSelectAll').click();
-	//$j('#ADUserListSelectAll').prop("checked",checkBoxCheckedStatus);
-}
-function selectAll(obj)
-{
-	var checkBoxCheckedStatus = $j(obj).prop("checked");
-
-	$j('[name=check_aduser]').each(function() { //No i18N
-		$j(this).prop("checked",checkBoxCheckedStatus);
-	});
-}
-function selectSingle(obj)
-{
-	var checkBoxCheckedStatus = $j(obj).prop("checked");
-	if(!checkBoxCheckedStatus)
-	{
-		removeUser(obj.value);
-	}
 }
 
 function getCurrentSelectedUsersData()
@@ -173,20 +154,14 @@ function addUsers(userList)
 	for(var i=0; i<userList.length; i++)
 	{
 		if(!isExist(userList[i].objectGUID))
-			selectedUsers.push(userList[i]);
+			{
+				selectedUsers = [];
+				selectedUsers.push(userList[i]);
+			}
 	}
 	setSelectedUsersList(JSON.stringify(selectedUsers));
 }
-function removeUser(guid)
-{
-	var selectedUsers = getSelectedUsersList();
-	for(var i=0; i< selectedUsers.length; i++)
-	{
-		if(selectedUsers[i].objectGUID==guid)
-			selectedUsers.splice(i,1);
-	}
-	setSelectedUsersList(JSON.stringify(selectedUsers));
-}
+
 function isExist(guid)
 {
 	var selectedUsers = getSelectedUsersList();
@@ -228,15 +203,16 @@ function emptyAllFields()
 {
 	hideUsersList();
 	hideSubmitButton();
+	g_form.setValue('Name', '');
 }]]></client_script>
-        <description>ADMPUsersList</description>
+        <description>ADManagerUsersList</description>
         <direct>false</direct>
-        <endpoint>x_96574_admanager_ADMPUsersList.do</endpoint>
+        <endpoint>x_96574_admanager_ADManager Users List.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<input type="hidden" id="selectedUsers" value=""/>
 
-	<div id="ADUserList">
+	<div id="ADUserList"  style="display: none;">
 		<nav style="display: block; width: 100%; position: relative;" id="list_nav_aduserlist" class="navbar navbar-default list_nav list_nav_top  list_nav_top_border">
 			<div class="nav navbar-right text-align-right" id="nav_elements">
 				<button name="vcr_first" data-nav="true" title="" id="nav_first" class="list_nav  btn btn-icon h_flip_content tab_button_disabled" data-original-title="First page" style="right: 0px; z-index: 10;" onClick="navigateFirst();"><span class="sr-only">First page</span><span class="icon-vcr-left"></span><span class="icon-vcr-left"></span></button>
@@ -257,22 +233,6 @@ function emptyAllFields()
 		<table style="width: 100%; margin-bottom: 0px; outline: none;" class="data_list_table list_table table table-hover " id="ADUserListTable">
 			<thead>
 				<tr id="ADUserListHeader">
-					<th style=" padding: 0 2px 5px; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
-						<span class="input-group-checkbox"><input name="ADUserListSelectAll" id="ADUserListSelectAll" data-type="list2_checkbox" type="checkbox" title="" class="checkbox " onClick="selectAll(this);"></input><label for="ADUserListSelectAll" class="checkbox-label" style=""></label></span>
-					</th>
-
-					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
-						<span> Display Name</span>
-					</th>
-					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
-						<span> Logon Name</span>
-					</th>
-					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
-						<span> Distinguished Name</span>
-					</th>
-					<th style="; vertical-align:middle; white-space:nowrap" align="center" class=" col-control" scope="col">
-						<span> OU Name</span>
-					</th>
 				</tr>
 			</thead>
 			<tbody class="list2_body" tabindex="0" id = "ADUserListBody">
@@ -280,21 +240,21 @@ function emptyAllFields()
 		</table>
 	</div>
 </j:jelly>]]></html>
-        <name>ADMPUsersList</name>
+        <name>ADManager Users List</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-13 16:28:03</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>52001d26db8a3200208572ffbf96197a</sys_id>
-        <sys_mod_count>93</sys_mod_count>
-        <sys_name>ADMPUsersList</sys_name>
+        <sys_mod_count>104</sys_mod_count>
+        <sys_name>ADManager Users List</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_page_52001d26db8a3200208572ffbf96197a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 13:34:53</sys_updated_on>
+        <sys_updated_on>2017-04-24 13:12:31</sys_updated_on>
     </sys_ui_page>
 </record_update>

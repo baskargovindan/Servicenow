@@ -7,14 +7,14 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Reset User Password in AD">063815badbce3200208572ffbf96196c</cat_item>
+        <cat_item display_value="Reset Password">063815badbce3200208572ffbf96196c</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPResetUserPasswordOnSubmit</name>
+        <name>ADManagerResetUserPasswordOnSubmit</name>
         <order/>
         <script><![CDATA[function onSubmit() {
 	var loadingWindow = getDialogWindow();
@@ -48,7 +48,7 @@
 
 
 
-	if(parent)
+	if(parent && g_user.hasRole('x_96574_admanager.admanager_admin'))
 	{
 		if(parent == 'module')
 		{
@@ -62,23 +62,23 @@
 	else
 	{
 		var requestDetails = constructRequestDetails(usersList);
-		var incidentAjax = new GlideAjax('ADMPIncidentHandler');
+		var incidentAjax = new GlideAjax('ADManagerIncidentHandler');
 		incidentAjax.addParam("sysparm_name","createIncident");
 		incidentAjax.addParam("requestDetails", requestDetails);
-		incidentAjax.addParam("description", "Reset Password for the following user(s) in Active Directory.");
+		incidentAjax.addParam("description", "Reset Password for the following user in Active Directory.");
 		incidentAjax.addParam("comments", constructComments(requestDetails));
 		incidentAjax.getXMLAnswer(serverResponse);
 	}
 	function serverResponse(response)
 	{
 		loadingWindow.destroy();
-		g_form.addInfoMessage('Thank you, your request has been submitted');
+		g_form.addInfoMessage('Your request has been successfully submitted to the IT team.');
 		emptyAllFields();
 	}
 
 	function resetPassword(usersList, password,	mustChangePassword)
 	{
-		var enableUserAjax = new GlideAjax("ADMPAPIUtil");
+		var enableUserAjax = new GlideAjax("ADManagerAPIUtil");
 		enableUserAjax.addParam("sysparm_name","resetPwd");
 		enableUserAjax.addParam("domainName", g_form.getValue('Select_Domain'));
 		enableUserAjax.addParam("password", password);
@@ -105,7 +105,7 @@
 			}
 			else
 			{
-				g_form.addInfoMessage('Couldn\'t Connect to ADManager Plus server.');
+				g_form.addErrorMessage('Cannot connect to ADManager Plus. Possible reasons could be no network connection, wrong server name or port number, or MID server being down.');
 			}
 			loadingWindow.destroy();
 		}
@@ -129,7 +129,7 @@ function constructRequestDetails(usersList)
 function constructComments(requestDetails)
 {
 	requestDetails = requestDetails.evalJSON();
-	var comments = 'Domain Name : '+requestDetails.domainName+' \n Users : ';
+	var comments = 'Domain Name : '+requestDetails.domainName+' \n User Name : ';
 	var userList = requestDetails.usersList;
 
 	for(var i=0; i<userList.length; i++)
@@ -156,8 +156,8 @@ function constructComments(requestDetails)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>523851fadbce3200208572ffbf961915</sys_id>
-        <sys_mod_count>12</sys_mod_count>
-        <sys_name>ADMPResetUserPasswordOnSubmit</sys_name>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>ADManagerResetUserPasswordOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -165,7 +165,7 @@ function constructComments(requestDetails)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_523851fadbce3200208572ffbf961915</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 13:37:25</sys_updated_on>
+        <sys_updated_on>2017-04-24 14:08:16</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

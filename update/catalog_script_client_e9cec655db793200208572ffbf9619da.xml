@@ -7,25 +7,25 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPServerDetailsOnSubmit</name>
+        <name>ADManagerServerDetailsOnSubmit</name>
         <order/>
         <script><![CDATA[function onSubmit() {
 	g_form.clearMessages();
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
 
 	if(getLoginSectionVisibility())
 	{
-		var serverSetupAjax = new GlideAjax("ADMPAPIUtil");
+		var serverSetupAjax = new GlideAjax("ADManagerAPIUtil");
 		serverSetupAjax.addParam("sysparm_name","mobileLogin");
 		serverSetupAjax.addParam("methodToCall",'getAuthTicket');
 		serverSetupAjax.addParam("useMIDServer",g_form.getValue('UseMIDServer'));
@@ -36,11 +36,11 @@
 		serverSetupAjax.addParam('username', getLoginName());
 		serverSetupAjax.addParam('pwd', getPwd());	
 		serverSetupAjax.addParam('domainName', getDomainName());
-		serverSetupAjax.getXMLAnswer(configResponse);	
+		serverSetupAjax.getXMLAnswer(loginResponse);	
 	}
 	else
 	{
-		var login = new GlideAjax("ADMPAPIUtil");
+		var login = new GlideAjax("ADManagerAPIUtil");
 		login.addParam("sysparm_name","mobileLogin");
 		login.addParam("methodToCall",'domainList');
 		login.addParam("protocol_settings",g_form.getValue('protocol_settings'));
@@ -56,24 +56,21 @@
 		login.addParam('username', '');
 		login.addParam('pwd', '');
 		login.addParam('domainName', '');
-		login.getXMLAnswer(loginResponse);	
+		login.getXMLAnswer(configResponse);	
 	}
-	function serverDetailsResponse(serverDetails) 
-	{
-		loadingDialog.destroy();
-	}
-	function loginResponse(response)
+	function configResponse(response)
 	{
 		loadingDialog.destroy();
 		response = response.evalJSON();
 		if(response.status =='true')
 		{
+			setCanReload('true');
 			disableSeverConfigSection();
 			slideDownLoginSection();
 		}
 			
 	}
-	function configResponse(response)
+	function loginResponse(response)
 	{
 		loadingDialog.destroy();
 	}
@@ -88,8 +85,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e9cec655db793200208572ffbf9619da</sys_id>
-        <sys_mod_count>116</sys_mod_count>
-        <sys_name>ADMPServerDetailsOnSubmit</sys_name>
+        <sys_mod_count>120</sys_mod_count>
+        <sys_name>ADManagerServerDetailsOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -97,7 +94,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_e9cec655db793200208572ffbf9619da</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 13:15:31</sys_updated_on>
+        <sys_updated_on>2017-04-24 13:08:13</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>

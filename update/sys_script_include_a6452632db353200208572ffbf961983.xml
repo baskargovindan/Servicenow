@@ -3,18 +3,18 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPActionHandler</api_name>
+        <api_name>x_96574_admanager.ADManagerActionHandler</api_name>
         <client_callable>true</client_callable>
         <description/>
-        <name>ADMPActionHandler</name>
-        <script><![CDATA[var ADMPActionHandler = Class.create();
-ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <name>ADManagerActionHandler</name>
+        <script><![CDATA[var ADManagerActionHandler = Class.create();
+ADManagerActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	addActionList:function(domainsVsActionList)
 	{
 		this.removeList();
 		var id = 0;
 		for(var domainName in domainsVsActionList){
-			var domain_id = new ADMPDomainListHandler().getDomainId(domainName);
+			var domain_id = new ADManagerDomainListHandler().getDomainId(domainName);
 			var actionList = domainsVsActionList[domainName];
 			actionList  = new global.JSON().decode(actionList);
 			
@@ -39,7 +39,7 @@ ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	{
 		// To activate/deactivate all menu modules
 		var moduleRecord = new GlideRecord('sys_app_module');
-		moduleRecord.addQuery('title', 'IN', 'Create a User, Delete Users, Disable Users, Enable Users, Reset User Password, Unlock Users');
+		moduleRecord.addQuery('title', 'IN', 'Create User, Delete User, Disable User, Enable User, Reset Password, Unlock User');
 		moduleRecord.query();
 		while(moduleRecord.next())
 		{
@@ -50,7 +50,7 @@ ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		// To activate/deactivate all context menu actions
 		
 		var actionRecord = new GlideRecord('sys_ui_action');
-		actionRecord.addQuery('title', 'IN', 'Create a User in AD, Delete Users in AD, Disable Users in AD, Enable Users in AD, Reset User Password in AD, Unlock Users in AD');
+		actionRecord.addQuery('title', 'IN', 'Create AD User, Delete AD User, Disable AD User, Enable AD User, Reset AD password, Unlock AD User');
 		actionRecord.query();
 		while(actionRecord.next())
 		{
@@ -58,21 +58,21 @@ ADMPActionHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 			actionRecord.update();
 		}
 	},
-    type: 'ADMPActionHandler'
+    type: 'ADManagerActionHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-02 07:45:14</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a6452632db353200208572ffbf961983</sys_id>
-        <sys_mod_count>49</sys_mod_count>
-        <sys_name>ADMPActionHandler</sys_name>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>ADManagerActionHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a6452632db353200208572ffbf961983</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 14:05:07</sys_updated_on>
+        <sys_updated_on>2017-04-21 14:22:48</sys_updated_on>
     </sys_script_include>
 </record_update>

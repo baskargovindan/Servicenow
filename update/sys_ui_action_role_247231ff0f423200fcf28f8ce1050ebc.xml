@@ -12,7 +12,7 @@
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
-        <sys_ui_action display_value="Reset User Password in AD">155fb9badb027200208572ffbf96195b</sys_ui_action>
+        <sys_ui_action display_value="Reset AD password">155fb9badb027200208572ffbf96195b</sys_ui_action>
         <sys_update_name>sys_ui_action_role_247231ff0f423200fcf28f8ce1050ebc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2017-04-17 16:09:53</sys_updated_on>

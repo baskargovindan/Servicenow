@@ -12,7 +12,7 @@
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
-        <sys_ui_action display_value="Unlock Users in AD">5caff9badb027200208572ffbf9619c3</sys_ui_action>
+        <sys_ui_action display_value="Unlock AD User">5caff9badb027200208572ffbf9619c3</sys_ui_action>
         <sys_update_name>sys_ui_action_role_eeaf06440f163200fcf28f8ce1050e41</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2017-04-18 12:51:59</sys_updated_on>

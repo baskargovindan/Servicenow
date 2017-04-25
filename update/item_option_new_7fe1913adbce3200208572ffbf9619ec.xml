@@ -31,7 +31,7 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="password_macro">10cde231dbc23200208572ffbf9619a1</macro>
+        <macro display_value="ADManager Password">10cde231dbc23200208572ffbf9619a1</macro>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>

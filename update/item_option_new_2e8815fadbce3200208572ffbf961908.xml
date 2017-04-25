@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Unlock Users in AD">5a881dbadbce3200208572ffbf961956</cat_item>
+        <cat_item display_value="Unlock User">5a881dbadbce3200208572ffbf961956</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>

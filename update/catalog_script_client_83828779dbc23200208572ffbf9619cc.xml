@@ -7,32 +7,32 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Create a User in AD">ad5ff063db317200208572ffbf9619d4</cat_item>
+        <cat_item display_value="Create User">ad5ff063db317200208572ffbf9619d4</cat_item>
         <cat_variable>IO:249c26f9db823200208572ffbf9619f5</cat_variable>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPSUCFirstNameChanged</name>
+        <name>ADManagerSUCFirstNameChanged</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
    if (isLoading || newValue == '') {
       return;
    }
 
-	g_form.setValue('Logon_Name', g_form.getValue('First_Name')+g_form.getValue('Last_Name'));
-	g_form.setValue('Logon_namepreWindows_', g_form.getValue('First_Name')+g_form.getValue('Last_Name'));
+	//g_form.setValue('Logon_Name', g_form.getValue('First_Name')+g_form.getValue('Last_Name'));
+	//g_form.setValue('Logon_namepreWindows_', g_form.getValue('First_Name')+g_form.getValue('Last_Name'));
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-11 16:50:19</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>83828779dbc23200208572ffbf9619cc</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>ADMPSUCFirstNameChanged</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ADManagerSUCFirstNameChanged</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -40,7 +40,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_83828779dbc23200208572ffbf9619cc</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-11 16:51:45</sys_updated_on>
+        <sys_updated_on>2017-04-25 06:41:19</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

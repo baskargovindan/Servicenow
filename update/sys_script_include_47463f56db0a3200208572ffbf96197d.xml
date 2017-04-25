@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPUserListHandler</api_name>
+        <api_name>x_96574_admanager.ADManagerUserListHandler</api_name>
         <client_callable>true</client_callable>
-        <description>ADMPUserListHandler</description>
-        <name>ADMPUserListHandler</name>
-        <script><![CDATA[var ADMPUserListHandler = Class.create();
-ADMPUserListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager UserListHandler</description>
+        <name>ADManagerUserListHandler</name>
+        <script><![CDATA[var ADManagerUserListHandler = Class.create();
+ADManagerUserListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	getADUsersList: function()
 	{
 		var resultJSON = {};
@@ -16,7 +16,7 @@ ADMPUserListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcesso
 		var domainName = this.getParameter('domainName');
 		var startIndex = this.getParameter('startIndex');
 		var range = this.getParameter('range');
-		var responseJSON = new ADMPAPIUtil().getADUsersList(domainName, searchText, startIndex, range);
+		var responseJSON = new ADManagerAPIUtil().getADUsersList(domainName, searchText, startIndex, range);
 		responseJSON = new global.JSON().decode(responseJSON);
 		
 		if(responseJSON.status == 'true')
@@ -30,29 +30,29 @@ ADMPUserListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcesso
 			var endIndex = parseInt(startIndex)+parseInt(range)-1;
 			resultJSON.endIndex = (endIndex<=count)?endIndex:count;
 			resultJSON.UsersList = userList;
+			resultJSON.status = 'true';
 		} 
 		else
 		{
-			gs.addInfoMessage(responseJSON.responseBody);
+			gs.addErrorMessage(responseJSON.responseBody);
 		}
 		return new global.JSON().encode(resultJSON);
-	//	return '{"startIndex":1,"endIndex":10,"count":6,"UsersList":[{"DISPLAY_NAME":"admin-xp2","SID_STRING":"S-1-5-21-1867688552-3649366528-3325780993-5762","DISTINGUISHED_NAME":"CN=admin-xp2,CN=Users,DC=csez,DC=zohocorpin,DC=com","OBJECT_GUID":"{2ABE4653-B6CE-4F8C-AB59-7AA2431A8E17}","LOGON_NAME":"admin-xp2@csez.zohocorpin.com","OU_NAME":"Users","SAM_ACCOUNT_NAME":"admin-xp2"}]}';
 	},
-    type: 'ADMPUserListHandler'
+    type: 'ADManagerUserListHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-13 09:51:02</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>47463f56db0a3200208572ffbf96197d</sys_id>
-        <sys_mod_count>19</sys_mod_count>
-        <sys_name>ADMPUserListHandler</sys_name>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>ADManagerUserListHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_47463f56db0a3200208572ffbf96197d</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-14 04:59:27</sys_updated_on>
+        <sys_updated_on>2017-04-21 12:46:43</sys_updated_on>
     </sys_script_include>
 </record_update>

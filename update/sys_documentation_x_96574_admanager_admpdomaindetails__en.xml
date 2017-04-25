@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_documentation element="" label="ADMPDomainDetails" language="en" table="x_96574_admanager_admpdomaindetails">
+    <sys_documentation element="" label="ADManagerDomainDetails" language="en" table="x_96574_admanager_admpdomaindetails">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element/>
             <help/>
             <hint/>
-            <label>ADMPDomainDetails</label>
+            <label>ADManagerDomainDetails</label>
             <language>en</language>
             <name>x_96574_admanager_admpdomaindetails</name>
-            <plural>ADMPDomainDetails</plural>
+            <plural>ADManagerDomainDetails</plural>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2017-03-28 09:47:34</sys_created_on>
-            <sys_customer_update>false</sys_customer_update>
+            <sys_customer_update>true</sys_customer_update>
             <sys_id>9d2cd191db393200208572ffbf96191e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_name>ADMPDomainDetails</sys_name>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>ADManagerDomainDetails</sys_name>
             <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
             <sys_update_name>sys_documentation_x_96574_admanager_admpdomaindetails__en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2017-03-28 09:47:34</sys_updated_on>
+            <sys_updated_on>2017-04-21 11:25:51</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

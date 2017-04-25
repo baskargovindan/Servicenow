@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element label="ADMPSUCTemplateList" max_length="40" name="x_96574_admanager_admpsuctemplatelist" type="collection">
+    <element label="ADManagerSUCTemplateList" max_length="40" name="x_96574_admanager_admpsuctemplatelist" type="collection">
         <element label="Domain ID" max_length="40" name="domain_id" type="integer"/>
+        <element label="isDefault" max_length="40" name="isdefault" type="boolean"/>
         <element display="true" label="Template Display Name" max_length="250" name="template_display_name" type="string"/>
         <element label="Template ID" max_length="40" name="template_id" type="integer"/>
         <element label="Template Name" max_length="250" name="template_name" type="string"/>

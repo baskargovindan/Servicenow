@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPServerDetails</api_name>
+        <api_name>x_96574_admanager.ADManagerServerDetails</api_name>
         <client_callable>true</client_callable>
-        <description>ADMPServerDetails</description>
-        <name>ADMPServerDetails</name>
-        <script><![CDATA[var ADMPServerDetails = Class.create();
-ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager ServerDetails</description>
+        <name>ADManagerServerDetails</name>
+        <script><![CDATA[var ADManagerServerDetails = Class.create();
+ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	getServerDetails:function()
 	{
 		var serverDetails = {};
@@ -27,8 +27,13 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 			serverDetails.login_name = detailsRecord.loginname.toString();
 			serverDetails.password = detailsRecord.password.toString();
 			serverDetails.server_url = detailsRecord.protocol_settings+"://"+detailsRecord.server_name+":"+detailsRecord.server_port;
-			var domainName = new ADMPDomainListHandler().getdomainNameforSysId(detailsRecord.domain_name.toString());
+			var domainName = new ADManagerDomainListHandler().getdomainNameforSysId(detailsRecord.domain_name.toString());
 			serverDetails.domain_name = domainName;
+			serverDetails.isConfigured = 'true';
+		}
+		else
+		{
+			serverDetails.isConfigured = 'false';
 		}
 
 		return new global.JSON().encode(serverDetails);
@@ -55,12 +60,9 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 
 		this.updateCatalogState(enable_service_catalog_item);
 		this.updateState(is_enabled);
-		return detailsRecord.sys_id;
 	},
 	updateMIDServer:function(state, mid_server)
 	{
-		//var state = this.getParameter('state');
-	//	var mid_server = this.getParameter('mid_server');
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
 		detailsRecord.query();
 		if(detailsRecord.next())
@@ -86,7 +88,7 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		{
 			return 'failed';
 		}
-		new ADMPActionHandler().updateADManagerState(this.getParameter('state'));
+		new ADManagerActionHandler().updateADManagerState(this.getParameter('state'));
 	},
 	updateCatalogState:function(state)
 	{
@@ -106,7 +108,7 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		
 		// To Activate/Deactivate all catalog categories;
 		var categoryRecord = new GlideRecord('sc_category');
-		categoryRecord.addQuery('title', "ADManager Plus");
+		categoryRecord.addQuery('title', "Active Directory Management");
 		categoryRecord.query();
 		while(categoryRecord.next())
 		{
@@ -116,7 +118,7 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 	},
 	updateLoginCredentials:function(username, pwd, domainName)
 	{
-		var sys_id = new ADMPDomainListHandler().getSysIdforDomain(domainName);
+		var sys_id = new ADManagerDomainListHandler().getSysIdforDomain(domainName);
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
 		detailsRecord.query();
 		detailsRecord.next();
@@ -171,21 +173,21 @@ ADMPServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor,
 		}
 		return false;
 	},
-	type: 'ADMPServerDetails'
+	type: 'ADManagerServerDetails'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 11:13:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a18f2199db393200208572ffbf961909</sys_id>
-        <sys_mod_count>104</sys_mod_count>
-        <sys_name>ADMPServerDetails</sys_name>
+        <sys_mod_count>110</sys_mod_count>
+        <sys_name>ADManagerServerDetails</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a18f2199db393200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 14:15:14</sys_updated_on>
+        <sys_updated_on>2017-04-24 13:02:09</sys_updated_on>
     </sys_script_include>
 </record_update>

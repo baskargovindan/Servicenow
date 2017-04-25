@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_96574_admanager.ADMPTemplateHandler</api_name>
+        <api_name>x_96574_admanager.ADManagerTemplateHandler</api_name>
         <client_callable>true</client_callable>
-        <description/>
-        <name>ADMPTemplateHandler</name>
-        <script><![CDATA[var ADMPTemplateHandler = Class.create();
-ADMPTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <description>ADManager Template Handler</description>
+        <name>ADManagerTemplateHandler</name>
+        <script><![CDATA[var ADManagerTemplateHandler = Class.create();
+ADManagerTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	addTemplateList: function(templateList, domainId)
 	{
 		for(var i=0; i< templateList.length; i++)
@@ -57,30 +57,52 @@ ADMPTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxProcesso
 		
 		if(domainName)
 		{
-			var domainId = new ADMPDomainListHandler().getDomainId(domainName);
+			var domainId = new ADManagerDomainListHandler().getDomainId(domainName);
 			templateGr.addQuery('domain_id', domainId);
 		}
 		templateGr.query();  
 		while (templateGr.next()){  
-			templateList.push(templateGr.template_display_name.toString());
+			var templateDetails = {};
+			templateDetails.templateName = templateGr.template_display_name.toString();
+			templateDetails.isDefault = templateGr.isdefault.toString();
+			templateList.push(templateDetails);
 		}
 		return JSON.stringify(templateList);
 	},
-	type: 'ADMPTemplateHandler'
+	setDefaultTemplate: function(domainName, templateName)
+	{
+		var templateRecord = new GlideRecord('x_96574_admanager_admpsuctemplatelist');
+		if(domainName)
+		{
+			var domainId = new ADManagerDomainListHandler().getDomainId(domainName);
+			templateRecord.addQuery('domain_id', domainId);
+		}
+		if(templateName)
+		{
+			templateRecord.addQuery('template_display_name', templateName);
+		}
+		templateRecord.query();
+		if(templateRecord.next())
+		{
+			templateRecord.isdefault = true;
+			templateRecord.update();
+		}
+	},
+	type: 'ADManagerTemplateHandler'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-04 09:44:23</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>77fd912fdb317200208572ffbf961959</sys_id>
-        <sys_mod_count>26</sys_mod_count>
-        <sys_name>ADMPTemplateHandler</sys_name>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>ADManagerTemplateHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_77fd912fdb317200208572ffbf961959</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 12:01:33</sys_updated_on>
+        <sys_updated_on>2017-04-21 11:52:35</sys_updated_on>
     </sys_script_include>
 </record_update>

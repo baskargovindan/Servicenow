@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sc_cat_item_category">
     <sc_cat_item_category action="INSERT_OR_UPDATE">
-        <sc_cat_item display_value="Disable Users in AD">cb55197adbce3200208572ffbf9619ca</sc_cat_item>
-        <sc_category display_value="ADManager Plus">b9556ee7dbb17200208572ffbf961955</sc_category>
+        <sc_cat_item display_value="Disable User">cb55197adbce3200208572ffbf9619ca</sc_cat_item>
+        <sc_category display_value="Active Directory Management">b9556ee7dbb17200208572ffbf961955</sc_category>
         <sys_class_name>sc_cat_item_category</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-14 11:24:30</sys_created_on>

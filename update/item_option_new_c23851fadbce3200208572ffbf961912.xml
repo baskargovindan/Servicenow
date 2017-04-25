@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Reset User Password in AD">063815badbce3200208572ffbf96196c</cat_item>
+        <cat_item display_value="Reset Password">063815badbce3200208572ffbf96196c</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -72,7 +72,7 @@
         <table/>
         <tooltip/>
         <type>15</type>
-        <ui_page display_value="ADMPUsersList">52001d26db8a3200208572ffbf96197a</ui_page>
+        <ui_page display_value="ADManager Users List">52001d26db8a3200208572ffbf96197a</ui_page>
         <use_dynamic_default>false</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
         <variable_name/>

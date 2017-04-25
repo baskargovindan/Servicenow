@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -13,7 +13,7 @@
         <default_value>true</default_value>
         <delete_roles/>
         <delivery_plan/>
-        <description><![CDATA[<p>Enable ADManager Plus menu</p>]]></description>
+        <description><![CDATA[<p><span style="font-size: 13px;">Allows technicians to perform AD management actions using ADManager Plus.</span></p>]]></description>
         <display_title>false</display_title>
         <do_not_select_first>false</do_not_select_first>
         <dynamic_default_value/>
@@ -21,7 +21,7 @@
         <field>isenabled</field>
         <global>false</global>
         <help_tag>More information</help_tag>
-        <help_text>If "Enable ADManager Plus menu" is checked, will show the "ADManager Plus menu" menu in the incident form context menu.</help_text>
+        <help_text/>
         <include_none>false</include_none>
         <instructions><![CDATA[<p>Enable ADManager Plus menu</p>]]></instructions>
         <layout>normal</layout>
@@ -40,7 +40,7 @@
         <order>100</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>Enable ADManager Plus menu</question_text>
+        <question_text>Enable ADManager Plus Menu</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -58,19 +58,19 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-28 09:51:42</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>f11d5511db393200208572ffbf9619d4</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>Enable ADManager Plus menu</sys_name>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Enable ADManager Plus Menu</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>item_option_new_f11d5511db393200208572ffbf9619d4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-11 06:34:22</sys_updated_on>
+        <sys_updated_on>2017-04-24 10:48:25</sys_updated_on>
         <table/>
-        <tooltip>Enable ADManager Plus menu</tooltip>
+        <tooltip>Allows technicians to perform AD tasks</tooltip>
         <type>7</type>
         <ui_page/>
         <use_dynamic_default>false</use_dynamic_default>

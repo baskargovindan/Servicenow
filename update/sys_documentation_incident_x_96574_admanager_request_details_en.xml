@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update>
-    <sys_documentation element="x_96574_admanager_request_details" label="Request Details" language="en" table="incident">
+    <sys_documentation element="x_96574_admanager_request_details" label="ADManager Request Details" language="en" table="incident">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element>x_96574_admanager_request_details</element>
             <help/>
             <hint/>
-            <label>Request Details</label>
+            <label>ADManager Request Details</label>
             <language>en</language>
             <name>incident</name>
-            <plural>Request Details</plural>
+            <plural>ADManager Request Details</plural>
             <sys_class_name>sys_documentation</sys_class_name>
             <sys_created_by>admin</sys_created_by>
             <sys_created_on>2017-04-03 16:05:21</sys_created_on>
-            <sys_customer_update>false</sys_customer_update>
+            <sys_customer_update>true</sys_customer_update>
             <sys_id>f52cedd7db3d3200208572ffbf961980</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_name>Request Details</sys_name>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>ADManager Request Details</sys_name>
             <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
             <sys_update_name>sys_documentation_incident_x_96574_admanager_request_details_en</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2017-04-03 16:05:21</sys_updated_on>
+            <sys_updated_on>2017-04-21 11:27:51</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

@@ -12,7 +12,7 @@
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
-        <sys_ui_action display_value="Create a User in AD">5be146fbdbf57200208572ffbf9619a9</sys_ui_action>
+        <sys_ui_action display_value="Create AD User">5be146fbdbf57200208572ffbf9619a9</sys_ui_action>
         <sys_update_name>sys_ui_action_role_a278a5b70f423200fcf28f8ce1050eb4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2017-04-17 16:06:21</sys_updated_on>

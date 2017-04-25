@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element attributes="email_client=true,text_index_translations=true,hasWorkflow=true,live_feed=true" audit="true" extends="task" label="Incident" max_length="40" name="incident" sizeclass="73" text_index="true" type="collection">
-        <element label="Request Details" max_length="1000" name="x_96574_admanager_request_details" read_only="true" type="string"/>
+    <element attributes="email_client=true,text_index_translations=true,hasWorkflow=true,live_feed=true" audit="true" extends="task" label="Incident" max_length="40" name="incident" sizeclass="99" text_index="true" type="collection">
+        <element label="ADManager Request Details" max_length="1000" name="x_96574_admanager_request_details" read_only="true" type="string"/>
     </element>
 </database>

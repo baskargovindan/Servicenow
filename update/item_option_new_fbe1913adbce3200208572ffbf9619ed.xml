@@ -31,7 +31,7 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="ADMPUserList">9b5824e6db4a3200208572ffbf961979</macro>
+        <macro/>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
@@ -72,7 +72,7 @@
         <table/>
         <tooltip/>
         <type>15</type>
-        <ui_page display_value="ADMPUsersList">52001d26db8a3200208572ffbf96197a</ui_page>
+        <ui_page display_value="ADManager Users List">52001d26db8a3200208572ffbf96197a</ui_page>
         <use_dynamic_default>false</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
         <variable_name/>

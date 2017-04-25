@@ -7,14 +7,14 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <cat_variable>IO:061d5511db393200208572ffbf9619d6</cat_variable>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPServerNameOnChange</name>
+        <name>ADManagerServerNameOnChange</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
 	if (isLoading || newValue == '') {
@@ -22,52 +22,7 @@
 	}
 	g_form.clearMessages();
 	
-	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
-	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
-	if(getCanReload() == 'true')
-	{
-		loadingDialog.render();
-	
-		var login = new GlideAjax("ADMPAPIUtil");
-		login.addParam("sysparm_name","mobileLogin");
-		login.addParam("methodToCall",'domainList');
-		login.addParam("protocol_settings",g_form.getValue('protocol_settings'));
-		login.addParam("server_name",g_form.getValue('server_name'));
-		login.addParam("server_port",g_form.getValue('server_port'));
-		login.addParam("is_enabled",g_form.getValue('isenabled'));
-		login.addParam("enable_service_catalog_item",g_form.getValue('enable_service_catalog_item'));
-		login.addParam("useMIDServer",g_form.getValue('UseMIDServer'));
-		if(g_form.getValue('UseMIDServer') == 'true')
-			login.addParam("MIDServer", g_form.getValue('MIDServer'));
-		else 
-			login.addParam("MIDServer",'');
-		login.addParam('username', '');
-		login.addParam('pwd', '');
-		login.addParam('domainName', '');
-		login.getXMLAnswer(loginResponse);	
-
-
-	}
-	else
-	{
-		loadingDialog.destroy();
-	}
-	function loginResponse(response)
-	{
-		loadingDialog.destroy();
-		response = response.evalJSON();
-		if(response.status =='true')
-		{
-			disableSeverConfigSection();
-			slideDownLoginSection();
-			setLoginCredentials('', '');
-		}
-		else
-		{
-			hideLoginSection();
-		}
-	}
+	checkConnection();
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -76,8 +31,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>570b7367dbc23200208572ffbf9619a8</sys_id>
-        <sys_mod_count>18</sys_mod_count>
-        <sys_name>ADMPServerNameOnChange</sys_name>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>ADManagerServerNameOnChange</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -85,7 +40,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_570b7367dbc23200208572ffbf9619a8</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 13:15:28</sys_updated_on>
+        <sys_updated_on>2017-04-21 07:09:08</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>0</ui_type>

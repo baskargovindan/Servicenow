@@ -7,25 +7,27 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPServerDetailsOnLoad</name>
+        <name>ADManagerServerDetailsOnLoad</name>
         <order/>
         <script><![CDATA[function onLoad() 
 {
 	g_form.clearMessages();
+	g_form.disableAttachments();
+	
 	//removeEmptyVars();
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
 	
-	var serverDetails = new GlideAjax("ADMPServerDetails");
+	var serverDetails = new GlideAjax("ADManagerServerDetails");
 	serverDetails.addParam("sysparm_name","getServerDetails");
 	serverDetails.getXMLAnswer(serverDetailsResponse);
 
@@ -49,7 +51,8 @@
 			setLoginCredentials(serverDetails.login_name, serverDetails.password, serverDetails.domain_name);
 		}
 		loadingDialog.destroy();
-		setCanReload('true');
+		if(serverDetails.isConfigured == 'true')
+			setCanReload('true');
 	}
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
@@ -59,8 +62,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3dc5ce51db793200208572ffbf96197a</sys_id>
-        <sys_mod_count>64</sys_mod_count>
-        <sys_name>ADMPServerDetailsOnLoad</sys_name>
+        <sys_mod_count>68</sys_mod_count>
+        <sys_name>ADManagerServerDetailsOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -68,7 +71,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_3dc5ce51db793200208572ffbf96197a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 12:53:28</sys_updated_on>
+        <sys_updated_on>2017-04-24 13:02:55</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>10</ui_type>

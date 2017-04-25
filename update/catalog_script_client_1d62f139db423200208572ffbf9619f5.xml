@@ -7,14 +7,14 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="ADManager Setup">b11d5511db393200208572ffbf9619d3</cat_item>
+        <cat_item display_value="ADManager Plus Server Configuration and Login">b11d5511db393200208572ffbf9619d3</cat_item>
         <cat_variable>IO:d33430b1db023200208572ffbf961993</cat_variable>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPServiceCatalogStateChanged</name>
+        <name>ADManagerServiceCatalogStateChanged</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
    if (isLoading || newValue == '') {
@@ -24,10 +24,10 @@
 	
 	var loadingDialog = new GlideDialogWindow("dialog_loading", true);
 	loadingDialog.setPreference('table', 'loading');
-	loadingDialog.setTitle('Loading...'); //Set the loading dialog title here...
+	loadingDialog.setTitle('Connecting ADManager...'); //Set the loading dialog title here...
 	loadingDialog.render();
 	
-	var serverDetails = new GlideAjax("ADMPServerDetails");
+	var serverDetails = new GlideAjax("ADManagerServerDetails");
 	serverDetails.addParam("sysparm_name","updateCatalogState");
 	serverDetails.addParam("state", newValue);
 	serverDetails.getXMLAnswer(response);
@@ -47,8 +47,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>1d62f139db423200208572ffbf9619f5</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_name>ADMPServiceCatalogStateChanged</sys_name>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>ADManagerServiceCatalogStateChanged</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -56,7 +56,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_1d62f139db423200208572ffbf9619f5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 14:08:09</sys_updated_on>
+        <sys_updated_on>2017-04-24 12:48:28</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>

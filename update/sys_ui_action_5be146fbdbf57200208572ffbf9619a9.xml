@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update sys_domain="global" table="sys_ui_action">
     <sys_ui_action action="INSERT_OR_UPDATE">
-        <action_name>Create a User in AD</action_name>
+        <action_name>Create AD User</action_name>
         <active>true</active>
         <client>false</client>
         <comments/>
-        <condition>new ADMPServerDetails().isEnabled();</condition>
+        <condition>new ADManagerServerDetails().isEnabled();</condition>
         <form_action>true</form_action>
         <form_button>false</form_button>
         <form_context_menu>true</form_context_menu>
@@ -18,7 +18,7 @@
         <list_context_menu>false</list_context_menu>
         <list_link>false</list_link>
         <list_save_with_form_button>false</list_save_with_form_button>
-        <name>Create a User in AD</name>
+        <name>Create AD User</name>
         <onclick>onSubmit()</onclick>
         <order>2100</order>
         <script><![CDATA[action.setRedirectURL('./com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=ad5ff063db317200208572ffbf9619d4&sysparm_preview=true&parent=menu&sys_id='+current.sys_id);  ]]></script>
@@ -33,8 +33,8 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5be146fbdbf57200208572ffbf9619a9</sys_id>
-        <sys_mod_count>27</sys_mod_count>
-        <sys_name>Create a User in AD</sys_name>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>Create AD User</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -42,7 +42,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_action_5be146fbdbf57200208572ffbf9619a9</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 06:03:12</sys_updated_on>
+        <sys_updated_on>2017-04-21 13:07:20</sys_updated_on>
         <table>incident</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

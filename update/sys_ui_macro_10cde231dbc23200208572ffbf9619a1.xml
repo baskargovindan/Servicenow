@@ -5,22 +5,22 @@
         <category>general</category>
         <description>Single User Creation password field</description>
         <media_type/>
-        <name>password_macro</name>
-        <scoped_name>x_96574_admanager_password_macro</scoped_name>
+        <name>ADManager Password</name>
+        <scoped_name>x_96574_admanager_ADManager Password</scoped_name>
         <sys_class_name>sys_ui_macro</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-04-11 15:19:47</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>10cde231dbc23200208572ffbf9619a1</sys_id>
-        <sys_mod_count>44</sys_mod_count>
-        <sys_name>password_macro</sys_name>
+        <sys_mod_count>45</sys_mod_count>
+        <sys_name>ADManager Password</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_macro_10cde231dbc23200208572ffbf9619a1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-17 10:24:05</sys_updated_on>
+        <sys_updated_on>2017-04-21 11:30:01</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<tr parent_container_id="" style='padding-top:-100;'>

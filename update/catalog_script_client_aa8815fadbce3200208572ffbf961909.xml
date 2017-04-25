@@ -7,14 +7,14 @@
         <applies_req_item>true</applies_req_item>
         <applies_sc_task>true</applies_sc_task>
         <applies_to>item</applies_to>
-        <cat_item display_value="Unlock Users in AD">5a881dbadbce3200208572ffbf961956</cat_item>
+        <cat_item display_value="Unlock User">5a881dbadbce3200208572ffbf961956</cat_item>
         <cat_variable/>
         <condition/>
         <description/>
         <field/>
         <global>true</global>
         <messages/>
-        <name>ADMPUnlockUserOnSubmit</name>
+        <name>ADManagerUnlockUserOnSubmit</name>
         <order/>
         <script><![CDATA[function onSubmit() {
 	var loadingWindow = getDialogWindow();
@@ -38,7 +38,7 @@
 
 
 
-	if(parent)
+	if(parent && g_user.hasRole('x_96574_admanager.admanager_admin'))
 	{
 		if(parent == 'module')
 		{
@@ -52,23 +52,23 @@
 	else
 	{
 		var requestDetails = constructRequestDetails(usersList);
-		var incidentAjax = new GlideAjax('ADMPIncidentHandler');
+		var incidentAjax = new GlideAjax('ADManagerIncidentHandler');
 		incidentAjax.addParam("sysparm_name","createIncident");
 		incidentAjax.addParam("requestDetails", requestDetails);
-		incidentAjax.addParam("description", "Unlock the following user(s) in Active Directory.");
+		incidentAjax.addParam("description", "Unlock the following user in Active Directory.");
 		incidentAjax.addParam("comments", constructComments(requestDetails));
 		incidentAjax.getXMLAnswer(serverResponse);
 	}
 	function serverResponse(response)
 	{
 		loadingWindow.destroy();
-		g_form.addInfoMessage('Thank you, your request has been submitted');
+		g_form.addInfoMessage('Your request has been successfully submitted to the IT team.');
 		emptyAllFields();
 	}
 
 	function EnableUser(usersList)
 	{
-		var enableUserAjax = new GlideAjax("ADMPAPIUtil");
+		var enableUserAjax = new GlideAjax("ADManagerAPIUtil");
 		enableUserAjax.addParam("sysparm_name","unlockUser");
 		enableUserAjax.addParam("domainName", g_form.getValue('Select_Domain'));
 		enableUserAjax.addParam("inputFormat", JSON.stringify(usersList));
@@ -93,7 +93,7 @@
 			}
 			else
 			{
-				g_form.addErrorMessage('Couldn\'t Connect to ADManager Plus server.');
+				g_form.addErrorMessage('Cannot connect to ADManager Plus. Possible reasons could be no network connection, wrong server name or port number, or MID server being down.');
 			}
 			loadingWindow.destroy();
 		}
@@ -115,7 +115,7 @@ function constructRequestDetails(usersList)
 function constructComments(requestDetails)
 {
 	requestDetails = requestDetails.evalJSON();
-	var comments = 'Domain Name : '+requestDetails.domainName+' \n Users : ';
+	var comments = 'Domain Name : '+requestDetails.domainName+' \n User Name : ';
 	var userList = requestDetails.usersList;
 
 	for(var i=0; i<userList.length; i++)
@@ -137,8 +137,8 @@ function constructComments(requestDetails)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>aa8815fadbce3200208572ffbf961909</sys_id>
-        <sys_mod_count>7</sys_mod_count>
-        <sys_name>ADMPUnlockUserOnSubmit</sys_name>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>ADManagerUnlockUserOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -146,7 +146,7 @@ function constructComments(requestDetails)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_aa8815fadbce3200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-18 13:37:23</sys_updated_on>
+        <sys_updated_on>2017-04-24 14:08:10</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>
