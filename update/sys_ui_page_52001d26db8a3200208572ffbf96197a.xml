@@ -100,7 +100,7 @@ function navigateLast()
 {
 	var total_count = parseInt($j('#total_count').html());
 	var StartIndex = parseInt($j('#start_index').html());
-
+	
 	if(StartIndex+20<total_count)
 	{
 		var startIndex = 1;
@@ -108,7 +108,6 @@ function navigateLast()
 			startIndex = total_count-19;
 		else
 			startIndex = total_count-(total_count%20)+1;
-
 		searchUsers(startIndex, 20);
 	}
 
@@ -247,7 +246,7 @@ function emptyAllFields()
         <sys_created_on>2017-04-13 16:28:03</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>52001d26db8a3200208572ffbf96197a</sys_id>
-        <sys_mod_count>104</sys_mod_count>
+        <sys_mod_count>106</sys_mod_count>
         <sys_name>ADManager Users List</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy/>
@@ -255,6 +254,6 @@ function emptyAllFields()
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_ui_page_52001d26db8a3200208572ffbf96197a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 13:12:31</sys_updated_on>
+        <sys_updated_on>2017-04-25 14:10:15</sys_updated_on>
     </sys_ui_page>
 </record_update>

@@ -55,6 +55,8 @@
 			g_form.setValue('Name', '-');
 			g_form.setDisabled('Select_Domain', true);
 			g_form.setDisabled('Name', true);
+			g_form.setDisabled('mustChangePassword', true);
+			disablePasswordFields();
 			loadingWindow.destroy();
 			return;
 		}
@@ -73,6 +75,8 @@
 			g_form.setValue('Name', '-');
 			g_form.setDisabled('Select_Domain', true);
 			g_form.setDisabled('Name', true);
+			g_form.setDisabled('mustChangePassword', true);
+			disablePasswordFields();
 			loadingWindow.destroy();
 			return;
 		}
@@ -116,7 +120,7 @@ function loadData(formData)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>de3851fadbce3200208572ffbf961913</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>ADManagerResetUserPasswordOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -125,7 +129,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_de3851fadbce3200208572ffbf961913</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 14:24:27</sys_updated_on>
+        <sys_updated_on>2017-04-25 11:22:48</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>10</ui_type>

@@ -27,7 +27,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 				if(this.getParameter('username') == '' && this.getParameter('pwd') == '')
 				{
 					new ADManagerAuthHandler().removeAuth();
-					new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), this.getParameter('pwd'), this.getParameter('domainName'));	
+					new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), '', this.getParameter('domainName'));	
 					return new global.JSON().encode(responseJSON);
 				}
 				sm = new sn_ws.RESTMessageV2("ADManagerGetAuthToken", "post");  // Might throw exception if message doesn't exist or not visible due to scope.       
@@ -73,7 +73,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			if(responseJSON.status == 'true')
 			{
 				new ADManagerAuthHandler().handleResponse(responseJSON.responseBody);
-				new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), this.getParameter('pwd'), this.getParameter('domainName'));	
+				new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), '', this.getParameter('domainName'));	
 				gs.addInfoMessage('Login Successful');
 			}else
 			{
@@ -215,6 +215,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		} finally {
 			requestBody = sm ? sm.getRequestBody():null;
 		}
+		gs.addInfoMessage(responseBody);
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
 		return new global.JSON().encode(responseJSON);
 	},
@@ -362,7 +363,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_created_on>2017-03-28 14:22:21</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>74291e19db793200208572ffbf961909</sys_id>
-        <sys_mod_count>287</sys_mod_count>
+        <sys_mod_count>289</sys_mod_count>
         <sys_name>ADManagerAPIUtil</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -370,6 +371,6 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_74291e19db793200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-25 06:58:12</sys_updated_on>
+        <sys_updated_on>2017-04-25 14:16:26</sys_updated_on>
     </sys_script_include>
 </record_update>

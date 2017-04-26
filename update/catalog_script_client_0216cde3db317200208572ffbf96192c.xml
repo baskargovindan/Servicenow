@@ -68,6 +68,7 @@
 			else
 			{
 				g_form.addErrorMessage(formData.responseBody);
+				hideSubmitButton();
 				loadingDialog.destroy();
 			}
 		}
@@ -99,7 +100,7 @@ function loadData(formData)
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>0216cde3db317200208572ffbf96192c</sys_id>
-        <sys_mod_count>126</sys_mod_count>
+        <sys_mod_count>127</sys_mod_count>
         <sys_name>ADManagerSUCOnLoad</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -108,7 +109,7 @@ function loadData(formData)
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_0216cde3db317200208572ffbf96192c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-25 06:41:57</sys_updated_on>
+        <sys_updated_on>2017-04-25 11:29:25</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>0</ui_type>

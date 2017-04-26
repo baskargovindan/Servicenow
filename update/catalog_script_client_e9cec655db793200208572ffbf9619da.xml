@@ -25,6 +25,13 @@
 
 	if(getLoginSectionVisibility())
 	{
+		if(getLoginName() != '' && getPwd() == '')
+		{
+			alert('Please enter a password');
+			g_form.submitted = false;
+			loadingDialog.destroy();
+			return false;
+		}
 		var serverSetupAjax = new GlideAjax("ADManagerAPIUtil");
 		serverSetupAjax.addParam("sysparm_name","mobileLogin");
 		serverSetupAjax.addParam("methodToCall",'getAuthTicket');
@@ -85,7 +92,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e9cec655db793200208572ffbf9619da</sys_id>
-        <sys_mod_count>120</sys_mod_count>
+        <sys_mod_count>124</sys_mod_count>
         <sys_name>ADManagerServerDetailsOnSubmit</sys_name>
         <sys_overrides/>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -94,7 +101,7 @@
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>catalog_script_client_e9cec655db793200208572ffbf9619da</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 13:08:13</sys_updated_on>
+        <sys_updated_on>2017-04-25 14:20:58</sys_updated_on>
         <table/>
         <type>onSubmit</type>
         <ui_type>10</ui_type>
