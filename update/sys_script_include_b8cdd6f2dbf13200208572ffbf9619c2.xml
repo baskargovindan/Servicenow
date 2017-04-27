@@ -7,11 +7,15 @@
         <client_callable>true</client_callable>
         <description>ADManager AuthObject Handler</description>
         <name>ADManagerAuthHandler</name>
-        <script><![CDATA[var ADManagerAuthHandler = Class.create();
+        <script><![CDATA[/*
+ * ADManager Auth Object Handler
+ */
+var ADManagerAuthHandler = Class.create();
 ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	// Store ADManager auth in DB
 	handleResponse: function(response)
 	{
-		this.removeAuth();
+		this.removeAuth(); // remove previous details;
 		var authObject =  new global.JSON().decode(response);
 		var authTicket = authObject.AuthTicket;
 		var loginName = authObject.LoginName;
@@ -23,14 +27,16 @@ ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcess
 		
 		var admpAuthObject = new global.JSON().decode(authObject.AdmpAuthObject);
 
-		new ADManagerDomainListHandler().addDomainList(admpAuthObject.domainNameList);
-		new ADManagerActionHandler().addActionList(admpAuthObject.domainsVsActionList);
+		new ADManagerDomainListHandler().addDomainList(admpAuthObject.domainNameList); // store domain details
+		new ADManagerActionHandler().addActionList(admpAuthObject.domainsVsActionList); // store action details
 	},
+	///remove all previous record from DB.
 	removeAuth: function()
 	{
 		var gr = new GlideRecord('x_96574_admanager_admpauthobject');
 		gr.deleteMultiple();
 	},
+	// Add a new entry in DB which received data.
 	storeAuth:function(authTicket, loginName, loginId, loginStatus, validDate, loginStatusMessage)
 	{
 		var authRecord = new GlideRecord('x_96574_admanager_admpauthobject');
@@ -43,6 +49,7 @@ ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcess
 		authRecord.login_status_message	 = loginStatusMessage;
 		authRecord.insert();
 	},
+	// Return the authtoken present in DB.
 	getAuthToken: function()
 	{
 		var authRecord = new GlideRecord('x_96574_admanager_admpauthobject');
@@ -60,7 +67,7 @@ ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcess
         <sys_created_on>2017-04-02 06:25:53</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b8cdd6f2dbf13200208572ffbf9619c2</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>ADManagerAuthHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -68,6 +75,6 @@ ADManagerAuthHandler.prototype = Object.extendsObject(global.AbstractAjaxProcess
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_b8cdd6f2dbf13200208572ffbf9619c2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-21 11:35:16</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:03:54</sys_updated_on>
     </sys_script_include>
 </record_update>

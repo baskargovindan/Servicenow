@@ -139,7 +139,7 @@
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>79d1cd63db317200208572ffbf9619db</sys_id>
-            <sys_mod_count>1</sys_mod_count>
+            <sys_mod_count>3</sys_mod_count>
             <sys_name>x_96574_admanager_admpsuctemplatelist</sys_name>
             <sys_overrides/>
             <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -148,7 +148,7 @@
             <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
             <sys_update_name>sys_ui_section_79d1cd63db317200208572ffbf9619db</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2017-04-21 09:25:24</sys_updated_on>
+            <sys_updated_on>2017-04-27 09:25:21</sys_updated_on>
             <sys_user/>
             <title>true</title>
             <view display_value="Default view" name="NULL">Default view</view>

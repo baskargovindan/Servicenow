@@ -7,24 +7,35 @@
         <client_callable>true</client_callable>
         <description>ADManager APIUtil</description>
         <name>ADManagerAPIUtil</name>
-        <script><![CDATA[var ADManagerAPIUtil = Class.create();
+        <script><![CDATA[/*
+* ADManagerAPIUtil
+*/
+
+var ADManagerAPIUtil = Class.create();
 ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	// GetAuthToken & GetDomainList call
+	// These API calls will be seperated in next release 
+	/*
+	 *Params 
+	 *       GetDomainList : methodToCall, MIDServer, useMIDServer, username, password, domainname;
+	 *       GetAuthTicket : methodToCall, server_name, server_port, protocol_settings, MIDServer, useMIDServer;
+	 */
 	mobileLogin: function(){
 		var requestBody, responseBody, responseCode, sm;
 		var responseJSON;
 		var methodToCall = this.getParameter('methodToCall');
-		var url = new ADManagerServerDetails().getURL();
+		var url = new ADManagerServerDetails().getURL(); // If Server is already configured.
 		if(this.getParameter('server_name') && this.getParameter('server_port'))
 			url = this.getParameter('protocol_settings')+'://'+this.getParameter('server_name')+':'+this.getParameter('server_port');
 	
 		//update MID server
-		new ADManagerMIDServerHandler().setMIDServerToRestMessages(this.getParameter('MIDServer'));
-		new ADManagerServerDetails().updateMIDServer(this.getParameter('useMIDServer'), this.getParameter('MIDServer'));
+		new ADManagerMIDServerHandler().setMIDServerToRestMessages(this.getParameter('MIDServer')); // Update MID server in all ADManager rest messages 
+		new ADManagerServerDetails().updateMIDServer(this.getParameter('useMIDServer'), this.getParameter('MIDServer')); // Update MIDserver name in serversetails table/
 		try{
 			
-			if(methodToCall == 'getAuthTicket')
+			if(methodToCall == 'getAuthTicket') // ADManger Login call
 			{
-				if(this.getParameter('username') == '' && this.getParameter('pwd') == '')
+				if(this.getParameter('username') == '' && this.getParameter('pwd') == '') // This will logout the current logged in user by removing auth. 
 				{
 					new ADManagerAuthHandler().removeAuth();
 					new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), '', this.getParameter('domainName'));	
@@ -35,7 +46,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 				sm.setStringParameter('password', this.getParameter('pwd'));  
 				sm.setStringParameter('domainName', this.getParameter('domainName')); 
 			}
-			else if(methodToCall == 'domainList')
+			else if(methodToCall == 'domainList') // ADMAnager get domain list call
 			{
 				sm = new sn_ws.RESTMessageV2("ADManagerGetDomainList", "post");  // Might throw exception if message doesn't exist or not visible due to scope.	
 			}
@@ -53,14 +64,15 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		} finally {
 			requestBody = sm ? sm.getRequestBody():null;
 		}
+		// ADManaer Error handler will check the response & throw proper error.
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
 		if(methodToCall == 'domainList')
 		{
 			if(responseJSON.status == 'true')
 			{
-				new ADManagerDomainListHandler().insertLoginDomainList(responseJSON.responseBody);
-				new ADManagerServerDetails().insertEntry(this.getParameter('protocol_settings'), this.getParameter('server_name'), this.getParameter('server_port'), this.getParameter('is_enabled'),  this.getParameter('enable_service_catalog_item'), this.getParameter('useMIDServer'), this.getParameter('MIDServer'));
-				new ADManagerAuthHandler().removeAuth();
+				new ADManagerDomainListHandler().insertLoginDomainList(responseJSON.responseBody); // Update received domain list in ADManger domainList
+				new ADManagerServerDetails().insertEntry(this.getParameter('protocol_settings'), this.getParameter('server_name'), this.getParameter('server_port'), this.getParameter('is_enabled'),  this.getParameter('enable_service_catalog_item'), this.getParameter('useMIDServer'), this.getParameter('MIDServer'));  // update server details in serverdetails table
+				new ADManagerAuthHandler().removeAuth(); // To initiate ADManager login, auth removed.
 				gs.addInfoMessage('Connected Successfully');
 			}
 			else
@@ -72,9 +84,9 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		{
 			if(responseJSON.status == 'true')
 			{
-				new ADManagerAuthHandler().handleResponse(responseJSON.responseBody);
+				new ADManagerAuthHandler().handleResponse(responseJSON.responseBody); // Update/ Store Authtoken & Auth Details in AuthObject table
 				new ADManagerServerDetails().updateLoginCredentials(this.getParameter('username'), '', this.getParameter('domainName'));	
-				gs.addInfoMessage('Login Successful');
+				gs.addInfoMessage('Login Successful'); // Update User provided loginname & domain name in server details table.
 			}else
 			{
 				gs.addErrorMessage('Login Failure');
@@ -82,10 +94,9 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		}
 		return new global.JSON().encode(responseJSON);
 	},
-	getAuthToken:function()
-	{
-		
-	},
+	/* fetch all template list from ADManager
+	 * Params : -
+	 */
 	getTemplateList: function()
 	{
 		var responseJSON = {};
@@ -98,7 +109,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		var serverHandler = new ADManagerServerDetails();
 
 		var authToken = authHandler.getAuthToken();
-		if(authToken == '')
+		if(authToken == '') // If AuthToken not present in DB.
 		{
 			responseJSON.responseBody = 'ADManager is not yet authenticated. Please login with valid credentials.';
 			responseJSON.status = 'false';
@@ -106,8 +117,9 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		}
 		var url = serverHandler.getURL();	
 		var domainList =  new global.JSON().decode(domainHandler.getDomainList());
-		templateHandler.removeTemplates();
-		for(var i= 0; i<domainList.length;i++)
+		templateHandler.removeTemplates(); // To remove all previous templates
+		// Tempate list api called again & again for each domain. This may take more time, if number of domains is high. This will be fixed in next release.
+		for(var i= 0; i<domainList.length;i++) 
 		{
 			var domainName = domainList[i].domainName;
 			var domainId = domainList[i].domainId;
@@ -128,19 +140,25 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 				requestBody = sm ? sm.getRequestBody():null;
 			}
 
+			// ADManaer Error handler will check the response & throw proper error.
 			responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
 
 			if(responseJSON.status == 'true')
 			{
 				var response =  new global.JSON().decode(responseJSON.responseBody);
-				templateHandler.addTemplateList(response.TemplateList, domainId);
+				// Store received templates in DB.
+				templateHandler.addTemplateList(response.TemplateList, domainId); 
 			} 
 		}
+		// Send default domain name to client script.
 		responseJSON.DomainName = domainHandler.getDefaultDomain().toString();
 
 		return new global.JSON().encode(responseJSON);
 	},
-
+	
+	/* Create a new user in AD
+	 * Params : userDetails JSON, domainName
+	 */
 	createSingleUser: function()
 	{
 		var requestBody, responseBody, responseCode, sm;
@@ -152,7 +170,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 
 		// To get domainName & AuthToken
 		var authToken = authHandler.getAuthToken();
-		if(authToken == '')
+		if(authToken == '') // If Authtoken not present in DB.
 		{ 
 			responseJSON.status = 'false';
 			return new global.JSON().encode(responseJSON);
@@ -165,7 +183,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			sm.setStringParameter('AuthToken', authToken);  
 			sm.setStringParameter('url', url);
 			sm.setStringParameter('domainName', domainName);
-			sm.setStringParameterNoEscape('inputFormat', userDetails);
+			sm.setStringParameterNoEscape('inputFormat', userDetails);// setStringParameterNoEscape for JSON String
 			sm.setHttpTimeout(10000); //In milliseconds. Wait at most 10 seconds for response from http request.
 			response = sm.execute();//Might throw exception if http connection timed out or some issue with sending request itself because of encryption/decryption of password.
 			responseBody = response.haveError() ? response.getErrorMessage() : response.getBody();
@@ -178,9 +196,11 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		}
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
 
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
-
+	/* Fetch ADUSer List from ADManager
+	 * Params : domainName, searchText, startIndex, range;
+	 */
 	getADUsersList: function(domainName, searchText, startIndex, range)
 	{
 		var requestBody, responseBody, responseCode, sm;
@@ -190,7 +210,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		var serverHandler = new ADManagerServerDetails();
 
 		var authToken = authHandler.getAuthToken();
-		if(authToken == '')
+		if(authToken == '')// If Authtoken not present in DB.
 		{
 			responseJSON.responseBody = 'ADManager is not yet authenticated. Please login with valid credentials.';
 			responseJSON.status = 'false';
@@ -215,10 +235,12 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		} finally {
 			requestBody = sm ? sm.getRequestBody():null;
 		}
-		gs.addInfoMessage(responseBody);
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
+	/* Enable or Disable a AD User.
+	 * Params : domainName, isEnable, inputFormat;
+	 */
 	enableDisableUser: function()
 	{		
 		var requestBody, responseBody, responseCode, sm;
@@ -251,8 +273,11 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			requestBody = sm ? sm.getRequestBody():null;
 		}
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
+	/* Unlock a AD User.
+	 * Params : domainName, inputFormat;
+	 */
 	unlockUser: function()
 	{
 		var requestBody, responseBody, responseCode, sm;
@@ -264,8 +289,6 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		var authToken = authHandler.getAuthToken();
 		var url = serverHandler.getURL();	
 		var domainName = this.getParameter('domainName');
-		var password = this.getParameter('password');
-		var mustChangePassword = this.getParameter('mustChangePassword');
 		var inputFormat = this.getParameter('inputFormat');
 		try{
 			sm = new sn_ws.RESTMessageV2("ADManagerUnlockUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
@@ -284,8 +307,11 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			requestBody = sm ? sm.getRequestBody():null;
 		}
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
+	/* Delete a AD User.
+	 * Params : domainName, inputFormat;
+	 */
 	deleteUser: function()
 	{
 		var requestBody, responseBody, responseCode, sm;
@@ -298,8 +324,6 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		var url = serverHandler.getURL();	
 
 		var domainName = this.getParameter('domainName');
-		var password = this.getParameter('password');
-		var mustChangePassword = this.getParameter('mustChangePassword');
 		var inputFormat = this.getParameter('inputFormat');
 		try{
 			sm = new sn_ws.RESTMessageV2("ADManagerDeleteUser", "post");  // Might throw exception if message doesn't exist or not visible due to scope.
@@ -318,8 +342,11 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			requestBody = sm ? sm.getRequestBody():null;
 		}
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
+	/* Reeset password for a AD User.
+	 * Params : domainName, inputFormat;
+	 */
 	resetPwd: function()
 	{
 		var requestBody, responseBody, responseCode, sm;
@@ -354,7 +381,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 			requestBody = sm ? sm.getRequestBody():null;
 		}
 		responseJSON = new ADManagerErrorHandler().handleError(responseCode, responseBody);	
-		return new global.JSON().encode(responseJSON);
+		return new global.JSON().encode(responseJSON); // JSON Object --> JSON String;
 	},
 	type: 'ADManagerAPIUtil'
 });]]></script>
@@ -363,7 +390,7 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_created_on>2017-03-28 14:22:21</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>74291e19db793200208572ffbf961909</sys_id>
-        <sys_mod_count>289</sys_mod_count>
+        <sys_mod_count>290</sys_mod_count>
         <sys_name>ADManagerAPIUtil</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -371,6 +398,6 @@ ADManagerAPIUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_74291e19db793200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-25 14:16:26</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:00:31</sys_updated_on>
     </sys_script_include>
 </record_update>

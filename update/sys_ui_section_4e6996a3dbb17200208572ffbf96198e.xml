@@ -223,7 +223,7 @@
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>4e6996a3dbb17200208572ffbf96198e</sys_id>
-            <sys_mod_count>0</sys_mod_count>
+            <sys_mod_count>2</sys_mod_count>
             <sys_name>sc_cat_item_producer</sys_name>
             <sys_overrides/>
             <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
@@ -232,7 +232,7 @@
             <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
             <sys_update_name>sys_ui_section_4e6996a3dbb17200208572ffbf96198e</sys_update_name>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2017-04-04 14:01:33</sys_updated_on>
+            <sys_updated_on>2017-04-27 09:25:19</sys_updated_on>
             <sys_user/>
             <title>false</title>
             <view display_value="test" name="test">426996a3dbb17200208572ffbf96198e</view>

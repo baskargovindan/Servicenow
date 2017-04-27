@@ -7,32 +7,36 @@
         <client_callable>true</client_callable>
         <description>ADManager DomainListHandler</description>
         <name> ADManagerDomainListHandler</name>
-        <script><![CDATA[var ADManagerDomainListHandler = Class.create();
+        <script><![CDATA[/*
+ *Domain List Handler  
+ */
+var ADManagerDomainListHandler = Class.create();
 ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	// To insert the list of Login domain list. (Including ADManager Plus Authentication)
 	insertLoginDomainList:function(domainVsFlatName)
 	{
 		var gr = new GlideRecord('x_96574_admanager_admplogindomaindetails');
-		gr.deleteMultiple();
-		domainVsFlatName = new global.JSON().decode(domainVsFlatName);
-		var i=0;
+		gr.deleteMultiple(); // To delete all previous entries;
+		domainVsFlatName = new global.JSON().decode(domainVsFlatName); // JSONString to JSON Object;
+		var i=0; // for domain unique id;
 		for(var domainName in domainVsFlatName){
-			
 			var domain_flat_name = domainVsFlatName[domainName];
 			var domainRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
-			domainRecord.initialize(); 
+			domainRecord.initialize(); // initialize a new row with empty data
 			domainRecord.domain_id = ++i;
 			domainRecord.domain_name = domainName; 
 			domainRecord.domain_flat_name = domain_flat_name; 
-			domainRecord.insert();
+			domainRecord.insert(); // insert given values.
 		}
 	},
+	//To add list of domains configured in ADManager 
 	addDomainList: function(domainList)
 	{
-		this.removeEntries();
+		this.removeEntries(); //To delete all previous entries;
 		for(var i=0;i<domainList.length;i++)
  		{
 			var domainRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
-			domainRecord.initialize(); 
+			domainRecord.initialize(); // initialize a new row with empty data
 			domainRecord.domain_id = i+1;
 			domainRecord.domain_name = domainList[i].DOMAIN_NAME; 
 			domainRecord.domain_flat_name = domainList[i].DOMAIN_FLAT_NAME; 
@@ -40,44 +44,49 @@ ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxP
 			domainRecord.insert();
 		}
 	},
+	// Remove all records from admpdomainDetails table.
 	removeEntries:function()
 	{
 		var gr = new GlideRecord('x_96574_admanager_admpdomaindetails');
-		gr.deleteMultiple();
+		gr.deleteMultiple(); // Delete all records that matches the criteria.
 	},
+	// get domain_unique_id for a domain_name;
 	getDomainId: function(domainName)
 	{
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
 		detailsRecord.addQuery('domain_name', domainName);
 		detailsRecord.query();
-		var domain_id = 0;
+		var domain_id = 0; // dummy data
 		if (detailsRecord.next()) { 
 			 domain_id = detailsRecord.domain_id;
 		}
 		return domain_id;
 	},
+	// get sys_id of a domain record with domain_name.
 	getSysIdforDomain: function(domainName)
 	{
 		var detailsRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
 		detailsRecord.addQuery('domain_name', domainName);
 		detailsRecord.query();
-		var sys_id = -1;
+		var sys_id = -1; // dummy data
 		if (detailsRecord.next()) { 
 			 sys_id = detailsRecord.sys_id;
 		}
 		return sys_id;
 	},
+	// get domain name from a record with sys_id
 	getdomainNameforSysId: function(sys_id)
 	{
 		var detailsRecord = new GlideRecord('x_96574_admanager_admplogindomaindetails');
 		detailsRecord.addQuery('sys_id', sys_id);
 		detailsRecord.query();
-		var domainName = '';
+		var domainName = ''; 
 		if (detailsRecord.next()) { 
 			 domainName = detailsRecord.domain_name.toString();
 		}
 		return domainName;
 	},
+	// Get Default Domain Name.
 	getDefaultDomain: function()
 	{
 		var domainName = '';
@@ -89,12 +98,13 @@ ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxP
 		}
 		return domainName;
 	},
+	// get all record from admanager domain details table.
 	getDomainList: function ()
 	{
 		var domainList = [];
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpdomaindetails');
 		detailsRecord.query();
-		if(!(new ADManagerServerDetails().isServerConfigured()) || detailsRecord.getRowCount() ==0)
+		if(!(new ADManagerServerDetails().isServerConfigured()) || detailsRecord.getRowCount() ==0) // To check whether the server is configured or not. If no, then throw a errror response.
 		{
 			var requestDetails  = {};
 			requestDetails.status = 'false';
@@ -108,7 +118,7 @@ ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxP
 			domainDetails.isDefault = detailsRecord.isdefault.toString();
 			domainList.push(domainDetails);
 		}
-		return JSON.stringify(domainList);
+		return JSON.stringify(domainList); // JSON Array --> JSON String.
 	},
     type: 'ADManagerDomainListHandler'
 });]]></script>
@@ -117,7 +127,7 @@ ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxP
         <sys_created_on>2017-03-30 06:47:22</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>f3b58bf5db313200208572ffbf96194c</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name> ADManagerDomainListHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -125,6 +135,6 @@ ADManagerDomainListHandler.prototype = Object.extendsObject(global.AbstractAjaxP
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_f3b58bf5db313200208572ffbf96194c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 14:31:44</sys_updated_on>
+        <sys_updated_on>2017-04-26 05:54:53</sys_updated_on>
     </sys_script_include>
 </record_update>

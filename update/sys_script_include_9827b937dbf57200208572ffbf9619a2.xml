@@ -7,8 +7,12 @@
         <client_callable>true</client_callable>
         <description>ADManager Incident Handler</description>
         <name>ADManagerIncidentHandler</name>
-        <script><![CDATA[var ADManagerIncidentHandler = Class.create();
+        <script><![CDATA[/*
+* ADManager Incident Handler
+*/
+var ADManagerIncidentHandler = Class.create();
 ADManagerIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	// Create a new incident 
 	createIncident: function()
 	{
 		var requestDetails = this.getParameter('requestDetails');
@@ -20,6 +24,7 @@ ADManagerIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
 		var user_id = gs.getUser().getName();
 		try
 		{
+			// TO get sys_id for the current user;
 			var userRecord = new GlideRecord('sys_user');
 			userRecord.addQuery('user_name', user_id);
 			userRecord.query();
@@ -35,9 +40,10 @@ ADManagerIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
 		}
 		catch(e)
 		{
-			gs.addInfoMessage(e.getMessage());
+			gs.addErrorMessage(e.getMessage());
 		}
 	},
+	// Get Request details from request details column in incident table;
 	getIncidentDetails: function(sys_id)
 	{
 		var detailsRecord = new GlideRecord('incident');
@@ -58,7 +64,7 @@ ADManagerIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
         <sys_created_on>2017-04-05 06:10:36</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>9827b937dbf57200208572ffbf9619a2</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>ADManagerIncidentHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -66,6 +72,6 @@ ADManagerIncidentHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_9827b937dbf57200208572ffbf9619a2</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-21 11:50:27</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:12:43</sys_updated_on>
     </sys_script_include>
 </record_update>

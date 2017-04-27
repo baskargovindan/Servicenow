@@ -7,7 +7,10 @@
         <client_callable>true</client_callable>
         <description>ADManager Template Handler</description>
         <name>ADManagerTemplateHandler</name>
-        <script><![CDATA[var ADManagerTemplateHandler = Class.create();
+        <script><![CDATA[/*
+ * ADManager Template Handler
+ */
+var ADManagerTemplateHandler = Class.create();
 ADManagerTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	addTemplateList: function(templateList, domainId)
 	{
@@ -95,7 +98,7 @@ ADManagerTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
         <sys_created_on>2017-04-04 09:44:23</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>77fd912fdb317200208572ffbf961959</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>ADManagerTemplateHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -103,6 +106,6 @@ ADManagerTemplateHandler.prototype = Object.extendsObject(global.AbstractAjaxPro
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_77fd912fdb317200208572ffbf961959</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-21 11:52:35</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:21:45</sys_updated_on>
     </sys_script_include>
 </record_update>

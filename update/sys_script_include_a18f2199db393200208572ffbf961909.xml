@@ -7,8 +7,12 @@
         <client_callable>true</client_callable>
         <description>ADManager ServerDetails</description>
         <name>ADManagerServerDetails</name>
-        <script><![CDATA[var ADManagerServerDetails = Class.create();
+        <script><![CDATA[/*
+ * ADManagerServerDetails
+ */
+var ADManagerServerDetails = Class.create();
 ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	//Get server details from DB.
 	getServerDetails:function()
 	{
 		var serverDetails = {};
@@ -27,7 +31,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 			serverDetails.login_name = detailsRecord.loginname.toString();
 			serverDetails.password = detailsRecord.password.toString();
 			serverDetails.server_url = detailsRecord.protocol_settings+"://"+detailsRecord.server_name+":"+detailsRecord.server_port;
-			var domainName = new ADManagerDomainListHandler().getdomainNameforSysId(detailsRecord.domain_name.toString());
+			var domainName = new ADManagerDomainListHandler().getdomainNameforSysId(detailsRecord.domain_name.toString()); // domain_name is a Reference field, So this will return the sys_id of the record only. We need to fetch the doman name.
 			serverDetails.domain_name = domainName;
 			serverDetails.isConfigured = 'true';
 		}
@@ -38,12 +42,14 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 
 		return new global.JSON().encode(serverDetails);
 	},
+	//Remove All Records
 	removeEntries:function()
 	{
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
 		detailsRecord.deleteMultiple(); //To remove previous entry before set the new server details.
 		return 'success';
 	},
+	// INsert new entries
 	insertEntry:function(protocol_settings, server_name, server_port, is_enabled, enable_service_catalog_item, useMIDServer, mIDServer)
 	{
 		this.removeEntries();
@@ -61,6 +67,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 		this.updateCatalogState(enable_service_catalog_item);
 		this.updateState(is_enabled);
 	},
+	// This will update MID Server  field
 	updateMIDServer:function(state, mid_server)
 	{
 		var detailsRecord = new GlideRecord('x_96574_admanager_admpserverdetails');
@@ -73,6 +80,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 			return 'success';
 		}
 	},
+	// Update ADManager State.
 	updateState:function(state)
 	{
 		if(!state)
@@ -90,6 +98,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 		}
 		new ADManagerActionHandler().updateADManagerState(this.getParameter('state'));
 	},
+	// Update Catalog items state
 	updateCatalogState:function(state)
 	{
 		if(!state)
@@ -106,7 +115,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
 			return 'failed';
 		}
 		
-		// To Activate/Deactivate all catalog categories;
+		// To Activate/Deactivate ADManager catalog categories;
 		var categoryRecord = new GlideRecord('sc_category');
 		categoryRecord.addQuery('title', "Active Directory Management");
 		categoryRecord.query();
@@ -180,7 +189,7 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
         <sys_created_on>2017-03-28 11:13:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a18f2199db393200208572ffbf961909</sys_id>
-        <sys_mod_count>110</sys_mod_count>
+        <sys_mod_count>111</sys_mod_count>
         <sys_name>ADManagerServerDetails</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -188,6 +197,6 @@ ADManagerServerDetails.prototype = Object.extendsObject(global.AbstractAjaxProce
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a18f2199db393200208572ffbf961909</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-24 13:02:09</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:19:55</sys_updated_on>
     </sys_script_include>
 </record_update>

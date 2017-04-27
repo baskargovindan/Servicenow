@@ -7,33 +7,12 @@
         <client_callable>true</client_callable>
         <description>ADManager MID Server Handler</description>
         <name>ADManagerMIDServerHandler</name>
-        <script><![CDATA[var ADManagerMIDServerHandler = Class.create();
+        <script><![CDATA[/*
+ * ADManager MIDServer Handler
+ */
+var ADManagerMIDServerHandler = Class.create();
 ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
-	isMIDServerConfigured: function()
-	{
-		//ecc_agent
-		var midServerRecord = new GlideRecord('ecc_agent');
-		midServerRecord.addQuery('name', 'SNCMIDServer_ADManager');
-		midServerRecord.query();
-		if (midServerRecord.getRowCount()>0) 
-			 return true;
-		else
-			return false;
-	},
-	isMIDServerUP: function()
-	{
-		var status = false;
-		var midServerRecord = new GlideRecord('ecc_agent');
-		midServerRecord.addQuery('name', 'SNCMIDServer_ADManager');
-		midServerRecord.query();
-		if(midServerRecord.next())
-		{
-			if(midServerRecord.status == 'Up' && midServerRecord.Validated == 'Yes')
-				status = true;
-		}
-		else
-			status = false;
-	},
+	// This will update MIDServer field in all ADManger rest messages with user provided mid server;
 	setMIDServerToRestMessages: function(sys_id)
 	{
 		var restMessageRecord = new GlideRecord('sys_rest_message_fn');
@@ -52,7 +31,7 @@ ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxPr
         <sys_created_on>2017-04-18 07:45:24</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a379018c0f523200fcf28f8ce1050e30</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>20</sys_mod_count>
         <sys_name>ADManagerMIDServerHandler</sys_name>
         <sys_package display_value="ADManager Plus" source="x_96574_admanager">fa4b5c44db397200208572ffbf961935</sys_package>
         <sys_policy>read</sys_policy>
@@ -60,6 +39,6 @@ ADManagerMIDServerHandler.prototype = Object.extendsObject(global.AbstractAjaxPr
         <sys_scope display_value="ADManager Plus">fa4b5c44db397200208572ffbf961935</sys_scope>
         <sys_update_name>sys_script_include_a379018c0f523200fcf28f8ce1050e30</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-04-25 11:04:20</sys_updated_on>
+        <sys_updated_on>2017-04-26 07:14:31</sys_updated_on>
     </sys_script_include>
 </record_update>
